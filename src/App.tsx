@@ -5,9 +5,7 @@ import SideNav from "./components/SideNav";
 function App() {
 	return (
 		<>
-			<ChakraProvider>
-				<SideNav />
-			</ChakraProvider>
+			<ChakraProvider>{/* <SideNav /> */}</ChakraProvider>
 		</>
 	);
 }

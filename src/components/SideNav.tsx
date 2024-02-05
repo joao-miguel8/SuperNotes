@@ -23,7 +23,7 @@ function SideNav() {
 					{navigationMenu.map(navItem => {
 						return (
 							<li key={navItem.title} className="py-2 flex items-center gap-2 font-semibold rounded-md">
-								<Icon className="ml-2" as={navItem.icon} color={"#ADB0B1"} boxSize={4} />
+								<Icon className="ml-2" as={navItem.icon} color={"#ADB0B1"} boxSize={14} />
 								<span className="ml-2 text-[#ADB0B1]">{navItem.title}</span>
 							</li>
 						);
