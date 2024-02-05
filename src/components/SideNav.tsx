@@ -21,7 +21,7 @@ function SideNav() {
 		// side menu wrapper
 		<section className="max-w-60 h-screen sticky top-0 bg-[#1D2327]">
 			{/* side menu container */}
-			<div className="pt-10 max-w-60 w-[240px] h-full">
+			<div className="pt-[3.71rem] max-w-60 w-[240px] h-full">
 				{/* divider */}
 				<div className="w-full h-[1.6px] bg-[#292F33]"></div>
 				{/* nav list  */}
