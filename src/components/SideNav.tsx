@@ -21,12 +21,12 @@ function SideNav() {
 		// side menu wrapper
 		<section className="max-w-60 h-screen sticky top-0 bg-[#1D2327]">
 			{/* side menu container */}
-			<div className="pt-10 max-w-60 w-[240px] h-full flex flex-col">
+			<div className="pt-10 max-w-60 w-[240px] h-full">
 				{/* divider */}
 				<div className="w-full h-[1.6px] bg-[#292F33]"></div>
 				{/* nav list  */}
 				<nav className="mx-4 flex flex-col h-full">
-					<ul className="mt-4 flex flex-col flex-1 text-[#F6F9F8]">
+					<ul className="mt-4 flex flex-col text-[#F6F9F8]">
 						{navigationMenu.map(navItem => {
 							const currentlyChosenMenuItem = navItem.path === currentPage;
 
@@ -41,7 +41,7 @@ function SideNav() {
 						})}
 					</ul>
 					{/* tags container */}
-					<div className="flex-1">
+					<div className="mt-10">
 						<div className="flex justify-between">
 							<span className="text-14 font-semibold text-[#B1B4B6]">TAGS</span>
 							<button aria-label="edit-tags" className="text-14 font-semibold text-[#F7B93E]">
