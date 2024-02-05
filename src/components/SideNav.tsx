@@ -1,6 +1,7 @@
 import { Icon, Tooltip } from "@chakra-ui/react";
 import classNames from "classnames";
 import { useState } from "react";
+import { IconType } from "react-icons";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { GrNotes } from "react-icons/gr";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -9,7 +10,14 @@ import { Link, useLocation } from "react-router-dom";
 
 function SideNav() {
 	const routeLocation = useLocation();
-	const navigationMenu = [
+
+	type NavigationMenuItemType = {
+		title: string;
+		path: string;
+		icon: IconType;
+	};
+
+	const navigationMenu: NavigationMenuItemType[] = [
 		{ title: "All Notes", path: "/allNotes", icon: GrNotes },
 		{ title: "Notifications", path: "", icon: IoMdNotificationsOutline },
 		{ title: "All Tags", path: "", icon: TiTag },
@@ -27,7 +35,7 @@ function SideNav() {
 				{/* nav list  */}
 				<nav className="mx-4 flex flex-col h-full">
 					<ul className="mt-4 flex flex-col text-[#F6F9F8]">
-						{navigationMenu.map(navItem => {
+						{navigationMenu.map((navItem: NavigationMenuItemType) => {
 							const currentlyChosenMenuItem = navItem.path === currentPage;
 
 							return (
