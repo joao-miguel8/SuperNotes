@@ -1,17 +1,21 @@
 import { Icon } from "@chakra-ui/react";
+import classNames from "classnames";
+import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { GrNotes } from "react-icons/gr";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { TiTag } from "react-icons/ti";
+import { Link, useLocation } from "react-router-dom";
 
 function SideNav() {
-	// C1C2C4;
+	const routeLocation = useLocation();
 	const navigationMenu = [
-		{ title: "All Notes", page: "", icon: GrNotes },
-		{ title: "Notifications", page: "", icon: IoMdNotificationsOutline },
-		{ title: "All Tags", page: "", icon: TiTag },
-		{ title: "Trash", page: "", icon: FaRegTrashAlt },
+		{ title: "All Notes", path: "/allNotes", icon: GrNotes },
+		{ title: "Notifications", path: "", icon: IoMdNotificationsOutline },
+		{ title: "All Tags", path: "", icon: TiTag },
+		{ title: "Trash", path: "", icon: FaRegTrashAlt },
 	];
+	const [currentPage] = useState(routeLocation.pathname);
 
 	return (
 		<div className="pt-10 max-w-60 h-screen bg-[#1D2327]">
@@ -21,10 +25,14 @@ function SideNav() {
 			<nav className="mx-4 flex flex-col h-full">
 				<ul className="mt-4 flex flex-col flex-1 text-[#F6F9F8]">
 					{navigationMenu.map(navItem => {
+						const currentlyChosenMenuItem = navItem.path === currentPage;
+
 						return (
-							<li key={navItem.title} className="py-2 flex items-center gap-2 font-semibold rounded-md">
-								<Icon className="ml-2" as={navItem.icon} color={"#ADB0B1"} boxSize={14} />
-								<span className="ml-2 text-[#ADB0B1]">{navItem.title}</span>
+							<li key={navItem.title} className={classNames(`flex items-center gap-2 font-semibold rounded-md ${currentlyChosenMenuItem && "bg-[#353E43]"}`)}>
+								<Link className="py-2 h-full w-full rounded-md" to={navItem.path}>
+									<Icon className={classNames(`ml-2 ${currentlyChosenMenuItem && "text-white"}`)} as={navItem.icon} color={currentlyChosenMenuItem ? "text-white" : "#ADB0B1"} boxSize={14} />
+									<span className={classNames(`ml-2 text-[#ADB0B1] ${currentlyChosenMenuItem && "text-white"}`)}>{navItem.title}</span>
+								</Link>
 							</li>
 						);
 					})}
