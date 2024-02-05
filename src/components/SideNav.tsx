@@ -1,5 +1,5 @@
 import { Icon } from "@chakra-ui/react";
-import { FaHashtag, FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { GrNotes } from "react-icons/gr";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { TiTag } from "react-icons/ti";
@@ -18,11 +18,11 @@ function SideNav() {
 			{/* divider */}
 			<div className="w-full h-[1.6px] bg-[#292F33]"></div>
 			{/* nav list  */}
-			<nav className="flex flex-col h-full">
-				<ul className="mt-10 flex flex-col flex-1 text-[#F6F9F8]">
+			<nav className="mx-4 flex flex-col h-full">
+				<ul className="mt-4 flex flex-col flex-1 text-[#F6F9F8]">
 					{navigationMenu.map(navItem => {
 						return (
-							<li key={navItem.title} className="mx-4 py-2 flex items-center gap-2 rounded-md">
+							<li key={navItem.title} className="py-2 flex items-center gap-2 rounded-md">
 								<Icon className="ml-2" as={navItem.icon} color={"#ADB0B1"} boxSize={4} />
 								<span className="ml-2 text-[#ADB0B1]">{navItem.title}</span>
 							</li>
@@ -30,8 +30,13 @@ function SideNav() {
 					})}
 				</ul>
 				{/* tags container */}
-				<div className="pl-6 flex-1">
-					<span className="font-semibold text-[#B1B4B6]">TAGS</span>
+				<div className="flex-1">
+					<div className="flex justify-between">
+						<span className="font-semibold text-[#B1B4B6]">TAGS</span>
+						<button aria-label="edit-tags" className="font-semibold text-[#F7B93E]">
+							EDIT
+						</button>
+					</div>
 					<div className="mt-4 overflow-scroll overflow-x-hidden scrollbar-thin  scrollbar-thumb-gray-600 scrollbar-track-gray-500">
 						<ul className="h-full max-h-60 flex flex-col gap-2 font-bold text-white">
 							<li>#tag1</li>
