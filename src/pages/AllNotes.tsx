@@ -4,11 +4,14 @@ import { IoSearch } from "react-icons/io5";
 import { Icon } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
 import SideNav from "../components/SideNav";
+import { useState } from "react";
 
 function AllNotes() {
+	const [isSideNavClosed, setIsSideNavClosed] = useState(true);
+
 	return (
 		<div className="inline-flex">
-			<SideNav />
+			{isSideNavClosed && <SideNav />}
 			{/* notes snippets list container */}
 			<section className="w-80 inline-block border-[1.6px]   border-[#292F33] bg-[#171C1F]">
 				<div className="h-full">
@@ -16,7 +19,7 @@ function AllNotes() {
 					<div className="sticky top-0">
 						{/* header section (menu btn + title + add Note btn) */}
 						<div className="p-[1rem] flex items-center justify-between bg-[#171C1F] border-b-[1.6px]   border-[#292F33]">
-							<button>
+							<button onClick={() => setIsSideNavClosed(prevVal => !prevVal)}>
 								<Icon as={IoIosMenu} color={"#ADB0B1"} boxSize={24} />
 							</button>
 							<span className=" text-white">All Notes</span>
