@@ -1,18 +1,36 @@
+import { Icon } from "@chakra-ui/react";
+import { FaHashtag, FaRegTrashAlt } from "react-icons/fa";
+import { GrNotes } from "react-icons/gr";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { TiTag } from "react-icons/ti";
+
 function SideNav() {
+	// C1C2C4;
+	const navigationMenu = [
+		{ title: "All Notes", page: "", icon: GrNotes },
+		{ title: "Notifications", page: "", icon: IoMdNotificationsOutline },
+		{ title: "All Tags", page: "", icon: TiTag },
+		{ title: "Trash", page: "", icon: FaRegTrashAlt },
+	];
+
 	return (
 		<div className="pt-10 max-w-60 h-screen bg-[#1D2327]">
 			{/* divider */}
 			<div className="w-full h-[1.6px] bg-[#292F33]"></div>
 			{/* nav list  */}
-			<nav className="pl-4 flex flex-col h-full">
-				<ul className="mt-10 flex flex-col gap-4 flex-1 text-[#F6F9F8]">
-					<li>All Notes</li>
-					<li>Notifications</li>
-					<li>All Tags</li>
-					<li>Trash</li>
+			<nav className="flex flex-col h-full">
+				<ul className="mt-10 flex flex-col flex-1 text-[#F6F9F8]">
+					{navigationMenu.map(navItem => {
+						return (
+							<li key={navItem.title} className="mx-4 py-2 flex items-center gap-2 rounded-md">
+								<Icon className="ml-2" as={navItem.icon} color={"#ADB0B1"} boxSize={4} />
+								<span className="ml-2 text-[#ADB0B1]">{navItem.title}</span>
+							</li>
+						);
+					})}
 				</ul>
 				{/* tags container */}
-				<div className="flex-1">
+				<div className="pl-6 flex-1">
 					<span className="font-semibold text-[#B1B4B6]">TAGS</span>
 					<div className="mt-4 overflow-scroll overflow-x-hidden scrollbar-thin  scrollbar-thumb-gray-600 scrollbar-track-gray-500">
 						<ul className="h-full max-h-60 flex flex-col gap-2 font-bold text-white">
