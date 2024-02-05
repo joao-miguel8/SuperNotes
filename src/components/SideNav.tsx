@@ -22,7 +22,7 @@ function SideNav() {
 				<ul className="mt-4 flex flex-col flex-1 text-[#F6F9F8]">
 					{navigationMenu.map(navItem => {
 						return (
-							<li key={navItem.title} className="py-2 flex items-center gap-2 rounded-md">
+							<li key={navItem.title} className="py-2 flex items-center gap-2 font-semibold rounded-md">
 								<Icon className="ml-2" as={navItem.icon} color={"#ADB0B1"} boxSize={4} />
 								<span className="ml-2 text-[#ADB0B1]">{navItem.title}</span>
 							</li>
@@ -32,8 +32,8 @@ function SideNav() {
 				{/* tags container */}
 				<div className="flex-1">
 					<div className="flex justify-between">
-						<span className="font-semibold text-[#B1B4B6]">TAGS</span>
-						<button aria-label="edit-tags" className="font-semibold text-[#F7B93E]">
+						<span className="text-14 font-semibold text-[#B1B4B6]">TAGS</span>
+						<button aria-label="edit-tags" className="text-14 font-semibold text-[#F7B93E]">
 							EDIT
 						</button>
 					</div>
