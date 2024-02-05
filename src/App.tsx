@@ -1,13 +1,8 @@
 import "./App.css";
-import { ChakraProvider } from "@chakra-ui/react";
-import SideNav from "./components/SideNav";
+// import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
-	return (
-		<>
-			<ChakraProvider>{/* <SideNav /> */}</ChakraProvider>
-		</>
-	);
+	return <>{/* <ChakraProvider></ChakraProvider> */}</>;
 }
 
 export default App;
