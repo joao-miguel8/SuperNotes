@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 const AllNotes = lazy(() => import("../pages/AllNotes"));
 const ErrorPage = lazy(() => import("../pages/ErrorPage"));
@@ -7,7 +7,11 @@ const ErrorPage = lazy(() => import("../pages/ErrorPage"));
 export const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <AllNotes />,
+		element: <Navigate to="/allNotes" />,
 		errorElement: <ErrorPage />,
+	},
+	{
+		path: "/allNotes",
+		element: <AllNotes />,
 	},
 ]);
