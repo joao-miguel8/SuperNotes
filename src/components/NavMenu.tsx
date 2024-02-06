@@ -27,7 +27,7 @@ function NavMenu() {
 
 	return (
 		// side menu wrapper
-		<section className="p-2 h-fit max-w-60 w-40 top-10 left-8 fixed z-40 bg-[#1D2327] rounded-lg">
+		<section className="p-2 h-fit max-w-60 w-40 top-8 left-6 absolute z-40 bg-[#1D2327] rounded-lg">
 			{/* side menu container */}
 			<div className="pt-1 max-w-60 h-full">
 				{/* divider */}
