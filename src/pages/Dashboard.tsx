@@ -7,7 +7,7 @@ import { useState } from "react";
 import classNames from "classnames";
 import NavMenu from "../components/NavMenu";
 
-function Boards() {
+function Dashboard() {
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [currentSnippetTab, setCurrentSnippetTab] = useState<"Boards" | "Components">("Boards");
 
@@ -74,4 +74,4 @@ function Boards() {
 	);
 }
 
-export default Boards;
+export default Dashboard;
