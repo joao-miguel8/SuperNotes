@@ -22,8 +22,7 @@ function Boards() {
 							<button onClick={() => setIsSideNavClosed(prevVal => !prevVal)}>
 								<Icon as={IoIosMenu} color={"#ADB0B1"} boxSize={24} />
 							</button>
-							{/* Title */}
-							<span className="font-bold text-white">Boards</span>
+
 							<Tooltip
 								className="py-1 px-2 text-14 text-white bg-[rgba(68,67,67,0.16)] rounded-[16px] [box-shadow:0_4px_30px_rgba(0,_0,_0,_0.1)] backdrop-filter backdrop-blur-[11.6px] border-[1px] border-[rgba(61,60,60,0.42)]"
 								arrowSize={15}
@@ -34,6 +33,16 @@ function Boards() {
 									<Icon as={RxPencil2} color={"#ADB0B1"} boxSize={24} />
 								</button>
 							</Tooltip>
+						</div>
+						<div className="flex justify-center items-center">
+							{/* Tab Title 1 */}
+							<button className="p-2 flex-1 bg-[#353E42]">
+								<span className="uppercase text-12 font-bold text-white">Boards</span>
+							</button>
+							{/* Tab Title 2 */}
+							<button className="p-2 flex-1">
+								<span className="uppercase text-12 font-bold text-white">Components</span>
+							</button>
 						</div>
 						{/* Search bar container */}
 						<div className="flex items-center bg-[#1A1F23]">
