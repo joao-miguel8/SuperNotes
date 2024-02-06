@@ -6,7 +6,7 @@ import { Tooltip } from "@chakra-ui/react";
 import SideNav from "../components/SideNav";
 import { useState } from "react";
 
-function AllNotes() {
+function Boards() {
 	const [isSideNavClosed, setIsSideNavClosed] = useState(true);
 
 	return (
@@ -22,13 +22,14 @@ function AllNotes() {
 							<button onClick={() => setIsSideNavClosed(prevVal => !prevVal)}>
 								<Icon as={IoIosMenu} color={"#ADB0B1"} boxSize={24} />
 							</button>
-							<span className=" text-white">All Notes</span>
+							{/* Title */}
+							<span className="font-bold text-white">Boards</span>
 							<Tooltip
 								className="py-1 px-2 text-14 text-white bg-[rgba(68,67,67,0.16)] rounded-[16px] [box-shadow:0_4px_30px_rgba(0,_0,_0,_0.1)] backdrop-filter backdrop-blur-[11.6px] border-[1px] border-[rgba(61,60,60,0.42)]"
 								arrowSize={15}
 								hasArrow
-								label="Add a new note"
-								aria-aria-label="Add a new note tooltip">
+								label="Add a new board"
+								aria-label="Add a new board">
 								<button>
 									<Icon as={RxPencil2} color={"#ADB0B1"} boxSize={24} />
 								</button>
@@ -37,7 +38,7 @@ function AllNotes() {
 						{/* Search bar container */}
 						<div className="flex items-center bg-[#1A1F23]">
 							<Icon as={IoSearch} boxSize={24} className="ml-4" color={"#6B6C70"} />
-							<input placeholder="Search all notes" type="text" className="py-4 px-2 w-full text-white bg-transparent outline-none placeholder:text-[#6B6C70]" />
+							<input placeholder="Search boards" type="text" className="py-4 px-2 w-full text-white bg-transparent outline-none placeholder:text-[#6B6C70]" />
 						</div>
 					</div>
 					<div className="w-full h-screen scrollbar-none overflow-auto overscroll-contain bg-[#171C1F]"></div>
@@ -47,4 +48,4 @@ function AllNotes() {
 	);
 }
 
-export default AllNotes;
+export default Boards;

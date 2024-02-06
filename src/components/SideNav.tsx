@@ -18,7 +18,7 @@ function SideNav() {
 	};
 
 	const navigationMenu: NavigationMenuItemType[] = [
-		{ title: "All Notes", path: "/allNotes", icon: GrNotes },
+		{ title: "Boards", path: "/boards", icon: GrNotes },
 		{ title: "Notifications", path: "", icon: IoMdNotificationsOutline },
 		{ title: "All Tags", path: "", icon: TiTag },
 		{ title: "Trash", path: "", icon: FaRegTrashAlt },
