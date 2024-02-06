@@ -1,11 +1,10 @@
-import { IoIosMenu } from "react-icons/io";
 import { RxPencil2 } from "react-icons/rx";
 import { IoSearch } from "react-icons/io5";
 import { Icon } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
 import classNames from "classnames";
-import NavMenu from "../components/NavMenu";
+import Header from "../layouts/Header";
 
 function Dashboard() {
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
@@ -15,15 +14,7 @@ function Dashboard() {
 		<>
 			<div className="inline-flex h-screen w-full">
 				{/* page header | menu btn */}
-				<header className="p-2 mx-2 sticky z-40 top-0">
-					<div className="relative">
-						<button onClick={() => setIsSideNavClosed(prevVal => !prevVal)}>
-							<Icon as={IoIosMenu} color={"#ADB0B1"} boxSize={24} />
-						</button>
-						{/* menu */}
-						{isSideNavClosed && <NavMenu />}
-					</div>
-				</header>
+				<Header isSideNavClosed={isSideNavClosed} setIsSideNavClosed={() => setIsSideNavClosed(!isSideNavClosed)} />
 				{/* Boards + Components snippets list container */}
 				<section className="w-80 inline-block">
 					<div className="w-80 h-full border-[1.6px] border-[#292F33] bg-[#171C1F]">
