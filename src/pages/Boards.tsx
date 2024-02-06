@@ -13,17 +13,17 @@ function Boards() {
 
 	return (
 		<>
-			{/* page header | menu btn */}
-			<header className="p-2 mx-2 w-full">
-				<div className="relative">
-					<button onClick={() => setIsSideNavClosed(prevVal => !prevVal)}>
-						<Icon as={IoIosMenu} color={"#ADB0B1"} boxSize={24} />
-					</button>
-					{/* menu */}
-					{isSideNavClosed && <NavMenu />}
-				</div>
-			</header>
 			<div className="inline-flex h-screen w-full">
+				{/* page header | menu btn */}
+				<header className="p-2 mx-2 sticky z-40 top-0">
+					<div className="relative">
+						<button onClick={() => setIsSideNavClosed(prevVal => !prevVal)}>
+							<Icon as={IoIosMenu} color={"#ADB0B1"} boxSize={24} />
+						</button>
+						{/* menu */}
+						{isSideNavClosed && <NavMenu />}
+					</div>
+				</header>
 				{/* Boards + Components snippets list container */}
 				<section className="w-80 inline-block">
 					<div className="w-80 h-full border-[1.6px] border-[#292F33] bg-[#171C1F]">
@@ -63,10 +63,10 @@ function Boards() {
 					</div>
 				</section>
 				{/* left-side main content container */}
-				<div className="inline-block bg-red-300 flex-1 h-full">
+				<div className="inline-flex flex-col flex-1 h-full overflow-auto">
 					{/* left-side main-content header */}
 					<div className="sticky top-0 py-2 w-full bg-[#1D2327]">header</div>
-					<div className="w-full bg-blue-400">content body</div>
+					<div className="w-full h-full bg-white">content body</div>
 				</div>
 			</div>
 		</>
