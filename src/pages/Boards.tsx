@@ -66,7 +66,8 @@ function Boards() {
 				<div className="inline-flex flex-col flex-1 h-full overflow-auto">
 					{/* left-side main-content header */}
 					<div className="sticky top-0 py-2 w-full bg-[#1D2327]">header</div>
-					<div className="w-full h-full bg-white">content body</div>
+					{/* left-side main-content */}
+					<div className="w-full flex-1 bg-white"></div>
 				</div>
 			</div>
 		</>
