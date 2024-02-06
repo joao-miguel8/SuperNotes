@@ -8,7 +8,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { TiTag } from "react-icons/ti";
 import { Link, useLocation } from "react-router-dom";
 
-function SideNav() {
+function NavMenu() {
 	const routeLocation = useLocation();
 
 	type NavigationMenuItemType = {
@@ -54,4 +54,4 @@ function SideNav() {
 	);
 }
 
-export default SideNav;
+export default NavMenu;

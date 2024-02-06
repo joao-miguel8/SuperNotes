@@ -3,9 +3,9 @@ import { RxPencil2 } from "react-icons/rx";
 import { IoSearch } from "react-icons/io5";
 import { Icon } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
-import SideNav from "../components/SideNav";
 import { useState } from "react";
 import classNames from "classnames";
+import NavMenu from "../components/NavMenu";
 
 function Boards() {
 	const [isSideNavClosed, setIsSideNavClosed] = useState(true);
@@ -14,7 +14,7 @@ function Boards() {
 	return (
 		<>
 			<div className="inline-flex h-screen w-full">
-				{isSideNavClosed && <SideNav />}
+				{isSideNavClosed && <NavMenu />}
 				{/* Boards + Components snippets list container */}
 				<section className="w-80 inline-block ">
 					<div className="w-80 h-full border-[1.6px] border-[#292F33] bg-[#171C1F]">
