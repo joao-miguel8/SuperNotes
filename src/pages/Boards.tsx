@@ -62,7 +62,12 @@ function Boards() {
 						<div className="w-full scrollbar-none overflow-auto overscroll-contain bg-[#171C1F]"></div>
 					</div>
 				</section>
-				<div className="inline-block bg-red-300 w-full h-8"></div>
+				{/* left-side main content container */}
+				<div className="inline-block bg-red-300 flex-1 h-full">
+					{/* left-side main-content header */}
+					<div className="sticky top-0 py-2 w-full bg-[#1D2327]">header</div>
+					<div className="w-full bg-blue-400">content body</div>
+				</div>
 			</div>
 		</>
 	);
