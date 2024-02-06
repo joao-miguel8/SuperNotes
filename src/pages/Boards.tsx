@@ -8,7 +8,7 @@ import classNames from "classnames";
 import NavMenu from "../components/NavMenu";
 
 function Boards() {
-	const [isSideNavClosed, setIsSideNavClosed] = useState(true);
+	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [currentSnippetTab, setCurrentSnippetTab] = useState<"Boards" | "Components">("Boards");
 
 	return (
