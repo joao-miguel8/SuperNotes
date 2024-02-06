@@ -1,4 +1,4 @@
-import { Icon, Tooltip } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
 import classNames from "classnames";
 import { useState } from "react";
 import { IconType } from "react-icons";
@@ -27,50 +27,27 @@ function SideNav() {
 
 	return (
 		// side menu wrapper
-		<section className="max-w-60 h-screen sticky top-0 bg-[#1D2327]">
+		<section className="p-2 h-fit max-w-60 w-40 top-10 left-8 fixed z-40 bg-[#1D2327] rounded-lg">
 			{/* side menu container */}
-			<div className="pt-[3.71rem] max-w-60 w-[240px] h-full">
+			<div className="pt-1 max-w-60 h-full">
 				{/* divider */}
 				<div className="w-full h-[1.6px] bg-[#292F33]"></div>
 				{/* nav list  */}
-				<nav className="mx-4 flex flex-col h-full">
+				<nav className="flex flex-col h-full">
 					<ul className="mt-4 flex flex-col text-[#F6F9F8]">
 						{navigationMenu.map((navItem: NavigationMenuItemType) => {
 							const currentlyChosenMenuItem = navItem.path === currentPage;
 
 							return (
-								<li key={navItem.title} className={classNames(`flex items-center gap-2 font-semibold rounded-md ${currentlyChosenMenuItem && "bg-[#353E43]"}`)}>
-									<Link className="py-2 h-full w-full rounded-md" to={navItem.path}>
+								<li key={navItem.title} className={classNames(` items-center gap-2 font-semibold rounded-md ${currentlyChosenMenuItem && "bg-[#353E43]"}`)}>
+									<Link className="py-2 flex items-center h-full w-full rounded-md" to={navItem.path}>
 										<Icon className={classNames(`ml-2 ${currentlyChosenMenuItem && "text-white"}`)} as={navItem.icon} color={currentlyChosenMenuItem ? "text-white" : "#ADB0B1"} boxSize={14} />
-										<span className={classNames(`ml-2 text-[#ADB0B1] ${currentlyChosenMenuItem && "text-white"}`)}>{navItem.title}</span>
+										<span className={classNames(`w-20 break-words ml-2 text-12 text-[#ADB0B1] ${currentlyChosenMenuItem && "text-white"}`)}>{navItem.title}</span>
 									</Link>
 								</li>
 							);
 						})}
 					</ul>
-					{/* tags container */}
-					<div className="mt-10">
-						<div className="flex justify-between">
-							<span className="text-14 font-semibold text-[#B1B4B6]">TAGS</span>
-							<Tooltip
-								className="py-1 px-2 text-14 text-white bg-[rgba(68,67,67,0.16)] rounded-[16px] [box-shadow:0_4px_30px_rgba(0,_0,_0,_0.1)] backdrop-filter backdrop-blur-[11.6px] border-[1px] border-[rgba(61,60,60,0.42)]"
-								arrowSize={15}
-								hasArrow
-								label="Edit tags"
-								aria-aria-label="Add a new note tooltip">
-								<button aria-label="edit-tags" className="text-14 font-semibold text-[#F7B93E]">
-									EDIT
-								</button>
-							</Tooltip>
-						</div>
-						<div className="mt-4 overflow-scroll overflow-x-hidden scrollbar-thin  scrollbar-thumb-gray-600 scrollbar-track-gray-500">
-							<ul className="h-full max-h-60 flex flex-col gap-2 font-bold text-white">
-								<li>#tag1</li>
-								<li>#tag2</li>
-								<li>#tag3</li>
-							</ul>
-						</div>
-					</div>
 				</nav>
 			</div>
 		</section>
