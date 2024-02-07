@@ -1,8 +1,8 @@
 import { Input } from "@chakra-ui/react";
-import { FormEvent, useState } from "react";
+import { Dispatch, FormEvent, useState } from "react";
 import type { BoardType } from "../types/BoardType";
 
-function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal, setBoards }: { showAddNewBoardModal: boolean; setShowAddNewBoardModal: (bool: boolean) => void; setBoards: (boards: BoardType[]) => void }) {
+function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal, setBoards }: { showAddNewBoardModal: boolean; setShowAddNewBoardModal: (bool: boolean) => void; setBoards: Dispatch<React.SetStateAction<BoardType[]>> }) {
 	const [newBoardFormData, setNewBoardFormData] = useState<BoardType>({
 		name: "",
 		description: "",
