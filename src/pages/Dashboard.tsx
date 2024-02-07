@@ -12,6 +12,12 @@ function Dashboard() {
 	const [showAddNewBoardModal, setShowAddNewBoardModal] = useState(false);
 	const [currentSnippetTab, setCurrentSnippetTab] = useState<"Boards" | "Components">("Boards");
 
+	type BoardType = {
+		name: string;
+	};
+
+	const [boards, setBoards] = useState<BoardType[]>([]);
+
 	return (
 		<>
 			<AddNewBoard showAddNewBoardModal={showAddNewBoardModal} setShowAddNewBoardModal={(bool: boolean) => setShowAddNewBoardModal(bool)} />
