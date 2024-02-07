@@ -10,10 +10,13 @@ import AddNewBoard from "../components/AddNewBoard";
 import BoardPreviewTile from "../components/BoardPreviewTile";
 
 function Dashboard() {
+	const [searchQuery, setSearchQuery] = useState("");
 	const [boards, setBoards] = useState<BoardType[]>([]);
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [showAddNewBoardModal, setShowAddNewBoardModal] = useState(false);
 	const [currentPreviewTab, setCurrentPreviewTab] = useState<"Boards" | "Components">("Boards");
+
+	const querySearchBoardList = boards.filter(board => board.name.includes(searchQuery));
 
 	return (
 		<>
@@ -49,13 +52,13 @@ function Dashboard() {
 							{/* Search bar container */}
 							<div className="flex items-center bg-[#1A1F23]">
 								<Icon as={IoSearch} boxSize={6} className="ml-4" color={"#6B6C70"} />
-								<input placeholder="Search boards" type="text" className="py-4 px-2 w-full text-white bg-transparent outline-none placeholder:text-[#6B6C70]" />
+								<input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search boards" type="text" className="py-4 px-2 w-full text-white bg-transparent outline-none placeholder:text-[#6B6C70]" />
 							</div>
 						</div>
 						{/* boards list */}
 						{currentPreviewTab === "Boards" && (
 							<ul className="mt-4 mx-4 flex flex-col gap-2">
-								{boards.map(board => {
+								{querySearchBoardList.map(board => {
 									return (
 										<li key={board.name}>
 											<BoardPreviewTile name={board.name} description={board.description} />
