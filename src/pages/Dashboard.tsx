@@ -13,7 +13,7 @@ function Dashboard() {
 	const [boards, setBoards] = useState<BoardType[]>([]);
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [showAddNewBoardModal, setShowAddNewBoardModal] = useState(false);
-	const [currentSnippetTab, setCurrentSnippetTab] = useState<"Boards" | "Components">("Boards");
+	const [currentPreviewTab, setCurrentPreviewTab] = useState<"Boards" | "Components">("Boards");
 
 	return (
 		<>
@@ -38,11 +38,11 @@ function Dashboard() {
 							{/* Tab Switch Btns container*/}
 							<div className="flex justify-center items-center">
 								{/* Tab Title 1 */}
-								<button onClick={() => setCurrentSnippetTab("Boards")} className={classNames("p-2 flex-1", currentSnippetTab === "Boards" ? "bg-[#353E42]" : "bg-[#171c1f]")}>
+								<button onClick={() => setCurrentPreviewTab("Boards")} className={classNames("p-2 flex-1", currentPreviewTab === "Boards" ? "bg-[#353E42]" : "bg-[#171c1f]")}>
 									<span className="uppercase text-12 font-bold text-white">Boards</span>
 								</button>
 								{/* Tab Title 2 */}
-								<button onClick={() => setCurrentSnippetTab("Components")} className={classNames("p-2 flex-1", currentSnippetTab === "Components" ? "bg-[#353E42]" : "bg-[#171c1f]")}>
+								<button onClick={() => setCurrentPreviewTab("Components")} className={classNames("p-2 flex-1", currentPreviewTab === "Components" ? "bg-[#353E42]" : "bg-[#171c1f]")}>
 									<span className="uppercase text-12 font-bold text-white">Components</span>
 								</button>
 							</div>
@@ -53,15 +53,17 @@ function Dashboard() {
 							</div>
 						</div>
 						{/* boards list */}
-						<ul className="mt-4 mx-4 flex flex-col gap-2">
-							{boards.map(board => {
-								return (
-									<li key={board.name}>
-										<BoardPreviewTile name={board.name} previewDescription={board.description} />
-									</li>
-								);
-							})}
-						</ul>
+						{currentPreviewTab === "Boards" && (
+							<ul className="mt-4 mx-4 flex flex-col gap-2">
+								{boards.map(board => {
+									return (
+										<li key={board.name}>
+											<BoardPreviewTile name={board.name} previewDescription={board.description} />
+										</li>
+									);
+								})}
+							</ul>
+						)}
 					</div>
 				</section>
 				{/* left-side main content container */}
