@@ -12,6 +12,7 @@ import BoardPreviewTile from "../components/BoardPreviewTile";
 function Dashboard() {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [boards, setBoards] = useState<BoardType[]>([]);
+	const [currentBoard, setCurrentBoard] = useState<BoardType | null>(null);
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [showAddNewBoardModal, setShowAddNewBoardModal] = useState(false);
 	const [currentPreviewTab, setCurrentPreviewTab] = useState<"Boards" | "Components">("Boards");
@@ -65,7 +66,7 @@ function Dashboard() {
 							<ul className="mt-4 mx-4 flex flex-col gap-2">
 								{querySearchBoardList.map(board => {
 									return (
-										<li key={board.name}>
+										<li onClick={() => setCurrentBoard(board)} key={board.name}>
 											<BoardPreviewTile name={board.name} description={board.description} />
 										</li>
 									);
