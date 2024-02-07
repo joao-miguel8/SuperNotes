@@ -67,7 +67,7 @@ function Dashboard() {
 								{querySearchBoardList.map(board => {
 									return (
 										<li onClick={() => setCurrentBoard(board)} key={board.name}>
-											<BoardPreviewTile name={board.name} description={board.description} />
+											<BoardPreviewTile name={board.name} description={board.description} currentBoard={currentBoard} />
 										</li>
 									);
 								})}
