@@ -36,9 +36,9 @@ function NavMenu() {
 						{navigationMenu.map((navItem: NavigationMenuItemType) => {
 							const currentlyChosenMenuItem = navItem.path === currentPage;
 							return (
-								<li key={navItem.title} className={classNames(`items-center gap-2 font-semibold hover:bg-[#353E43] ${currentlyChosenMenuItem && "bg-[#353E43]"}`)}>
-									<Link className="py-2 flex items-center h-full w-full rounded-md" to={navItem.path}>
-										<Icon className={classNames(`ml-2 ${currentlyChosenMenuItem && "text-white"}`)} as={navItem.icon} color={currentlyChosenMenuItem ? "text-white" : "#ADB0B1"} boxSize={14} />
+								<li key={navItem.title} className={classNames(`items-center gap-2 font-semibold hover:bg-[#434d52] ${currentlyChosenMenuItem && "bg-[#353E43]"}`)}>
+									<Link className="py-2 flex justify-center items-center h-full w-full rounded-md" to={navItem.path}>
+										<Icon className={classNames(`ml-2 ${currentlyChosenMenuItem && "text-white"}`)} as={navItem.icon} color={currentlyChosenMenuItem ? "text-white" : "#ADB0B1"} boxSize={5} />
 										<span className={classNames(`w-20 break-words ml-2 text-12 text-[#ADB0B1] ${currentlyChosenMenuItem && "text-white"}`)}>{navItem.title}</span>
 									</Link>
 								</li>
