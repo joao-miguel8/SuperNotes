@@ -5,6 +5,7 @@ import type { BoardType } from "../types/BoardType";
 function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal, setBoards }: { showAddNewBoardModal: boolean; setShowAddNewBoardModal: (bool: boolean) => void; setBoards: (boards: BoardType[]) => void }) {
 	const [newBoardFormData, setNewBoardFormData] = useState<BoardType>({
 		name: "",
+		description: "",
 	});
 
 	const handleAddNewBoardSubmit = (e: FormEvent) => {
@@ -27,8 +28,9 @@ function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal, setBoards 
 						</div>
 						{/* ----- Form Content ----- */}
 						<form onSubmit={e => handleAddNewBoardSubmit(e)}>
-							<div className="p-6 relative flex-auto">
-								<Input onChange={e => setNewBoardFormData({ ...newBoardFormData, name: e.target.value })} placeholder="Add a name for your board" size="sm" focusBorderColor="#292F33" />
+							<div className="p-6 relative flex flex-col gap-4">
+								<Input onChange={e => setNewBoardFormData({ ...newBoardFormData, name: e.target.value })} placeholder="Add a name for your board" size="sm" focusBorderColor="#292F33" max={18} />
+								<Input onChange={e => setNewBoardFormData({ ...newBoardFormData, description: e.target.value })} placeholder="Enter a description" size="sm" focusBorderColor="#292F33" max={40} />
 							</div>
 							{/* ----- Footer ----- */}
 							<div className="p-2 pt-4 flex items-center justify-end border-t border-solid border-gray-150 rounded-b">
