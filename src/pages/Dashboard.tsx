@@ -45,7 +45,12 @@ function Dashboard() {
 									<span className="uppercase text-12 font-bold text-white">Boards</span>
 								</button>
 								{/* Tab Title 2 */}
-								<button onClick={() => setCurrentPreviewTab("Components")} className={classNames("p-2 flex-1", currentPreviewTab === "Components" ? "bg-[#353E42]" : "bg-[#171c1f]")}>
+								<button
+									onClick={() => {
+										setSearchQuery("");
+										setCurrentPreviewTab("Components");
+									}}
+									className={classNames("p-2 flex-1", currentPreviewTab === "Components" ? "bg-[#353E42]" : "bg-[#171c1f]")}>
 									<span className="uppercase text-12 font-bold text-white">Components</span>
 								</button>
 							</div>
