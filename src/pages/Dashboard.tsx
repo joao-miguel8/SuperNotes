@@ -58,7 +58,7 @@ function Dashboard() {
 								{boards.map(board => {
 									return (
 										<li key={board.name}>
-											<BoardPreviewTile name={board.name} previewDescription={board.description} />
+											<BoardPreviewTile name={board.name} description={board.description} />
 										</li>
 									);
 								})}
