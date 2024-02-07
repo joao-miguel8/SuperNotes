@@ -6,21 +6,17 @@ import { useState } from "react";
 import classNames from "classnames";
 import Header from "../layouts/Header";
 import AddNewBoard from "../components/AddNewBoard";
+import type { BoardType } from "../types/BoardType";
 
 function Dashboard() {
+	const [boards, setBoards] = useState<BoardType[]>([]);
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [showAddNewBoardModal, setShowAddNewBoardModal] = useState(false);
 	const [currentSnippetTab, setCurrentSnippetTab] = useState<"Boards" | "Components">("Boards");
 
-	type BoardType = {
-		name: string;
-	};
-
-	const [boards, setBoards] = useState<BoardType[]>([]);
-
 	return (
 		<>
-			<AddNewBoard showAddNewBoardModal={showAddNewBoardModal} setShowAddNewBoardModal={(bool: boolean) => setShowAddNewBoardModal(bool)} />
+			<AddNewBoard showAddNewBoardModal={showAddNewBoardModal} setShowAddNewBoardModal={(bool: boolean) => setShowAddNewBoardModal(bool)} setBoards={setBoards} />
 			<div className="inline-flex h-screen w-full">
 				{/* page header | menu btn */}
 				<Header isSideNavClosed={isSideNavClosed} setIsSideNavClosed={() => setIsSideNavClosed(!isSideNavClosed)} />

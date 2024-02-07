@@ -1,6 +1,18 @@
 import { Input } from "@chakra-ui/react";
+import { FormEvent, useState } from "react";
+import type { BoardType } from "../types/BoardType";
 
-function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal }: { showAddNewBoardModal: boolean; setShowAddNewBoardModal: (bool: boolean) => void }) {
+function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal, setBoards }: { showAddNewBoardModal: boolean; setShowAddNewBoardModal: (bool: boolean) => void; setBoards: (boards: BoardType[]) => void }) {
+	const [newBoardFormData, setNewBoardFormData] = useState<BoardType>({
+		name: "",
+	});
+
+	const handleAddNewBoardSubmit = (e: FormEvent) => {
+		e.preventDefault();
+		setBoards((prevBoards: BoardType[]) => [...prevBoards, newBoardFormData]);
+		setShowAddNewBoardModal(false);
+	};
+
 	return (
 		<>
 			{showAddNewBoardModal ? (
@@ -14,9 +26,9 @@ function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal }: { showAd
 							<h3 className="text-center text-18 font-semibold text-white">Create a new Board</h3>
 						</div>
 						{/* ----- Form Content ----- */}
-						<form action="">
+						<form onSubmit={e => handleAddNewBoardSubmit(e)}>
 							<div className="p-6 relative flex-auto">
-								<Input placeholder="Add a name for your board" size="sm" focusBorderColor="#292F33" />
+								<Input onChange={e => setNewBoardFormData({ ...newBoardFormData, name: e.target.value })} placeholder="Add a name for your board" size="sm" focusBorderColor="#292F33" />
 							</div>
 							{/* ----- Footer ----- */}
 							<div className="p-2 pt-4 flex items-center justify-end border-t border-solid border-gray-150 rounded-b">
