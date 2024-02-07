@@ -8,7 +8,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { TiTag } from "react-icons/ti";
 import { Link, useLocation } from "react-router-dom";
 
-function NavMenu() {
+function NavMenu({ setIsSideNavClosed }: { setIsSideNavClosed: (bool: boolean) => void }) {
 	const routeLocation = useLocation();
 
 	type NavigationMenuItemType = {
@@ -27,7 +27,7 @@ function NavMenu() {
 
 	return (
 		// side menu wrapper
-		<div className="h-fit max-w-60 w-40 top-8 left-6 absolute z-40 bg-[#1D2327] rounded-lg overflow-clip">
+		<div onMouseLeave={() => setIsSideNavClosed(false)} className="h-fit max-w-60 w-40 top-8 left-6 absolute z-40 bg-[#1D2327] rounded-lg overflow-clip">
 			{/* side menu container */}
 			<div className="max-w-60 h-full">
 				{/* nav list  */}

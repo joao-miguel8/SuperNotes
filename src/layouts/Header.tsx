@@ -10,7 +10,7 @@ function Header({ isSideNavClosed, setIsSideNavClosed }: { isSideNavClosed: bool
 					<Icon as={IoIosMenu} color={"#ADB0B1"} boxSize={6} />
 				</button>
 				{/* menu */}
-				{isSideNavClosed && <NavMenu />}
+				{isSideNavClosed && <NavMenu setIsSideNavClosed={setIsSideNavClosed} />}
 			</div>
 		</header>
 	);
