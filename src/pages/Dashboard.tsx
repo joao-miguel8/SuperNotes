@@ -12,12 +12,16 @@ import BoardPreviewTile from "../components/BoardPreviewTile";
 function Dashboard() {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [boards, setBoards] = useState<BoardType[]>([]);
-	const [currentBoard, setCurrentBoard] = useState<BoardType | null>(null);
+	const [currentBoardIndex, setCurrentBoardIndex] = useState(0);
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [showAddNewBoardModal, setShowAddNewBoardModal] = useState(false);
 	const [currentPreviewTab, setCurrentPreviewTab] = useState<"Boards" | "Components">("Boards");
 
 	const querySearchBoardList = boards.filter(board => board.name.includes(searchQuery));
+
+	const handleUpdateCurrentBoardTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setBoards(prevBoards => prevBoards.map((board, index) => (index === currentBoardIndex ? { ...board, name: e.target.value } : board)));
+	};
 
 	return (
 		<>
@@ -64,10 +68,10 @@ function Dashboard() {
 						{/* boards list */}
 						{currentPreviewTab === "Boards" && (
 							<ul className="mt-4 mx-4 flex flex-col gap-2">
-								{querySearchBoardList.map(board => {
+								{querySearchBoardList.map((board, i) => {
 									return (
-										<li onClick={() => setCurrentBoard(board)} key={board.name}>
-											<BoardPreviewTile name={board.name} description={board.description} currentBoard={currentBoard} />
+										<li onClick={() => setCurrentBoardIndex(i)} key={board.name}>
+											<BoardPreviewTile name={board.name} description={board.description} currentBoardIndex={currentBoardIndex} boards={boards} />
 										</li>
 									);
 								})}
@@ -78,7 +82,9 @@ function Dashboard() {
 				{/* left-side main content container */}
 				<div className="inline-flex flex-col flex-1 h-full overflow-auto">
 					{/* left-side main-content header */}
-					<div className="sticky top-0 py-2 w-full bg-[#1D2327]">header</div>
+					<div className="py-2 h-10 sticky top-0 w-full flex justify-center bg-[#1D2327]">
+						{<input value={boards[currentBoardIndex]?.name} onChange={e => handleUpdateCurrentBoardTitle(e)} type="text" placeholder="Project name here" className="text-12 text-center italic text-[#acadad] focus:outline-dashed outline-[#acadad] bg-transparent" />}
+					</div>
 					{/* left-side main-content */}
 					<div className="w-full flex-1 bg-white"></div>
 				</div>
