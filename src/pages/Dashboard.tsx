@@ -84,7 +84,14 @@ function Dashboard() {
 					{/* left-side main-content header */}
 					<div className="py-2 h-10 sticky top-0 w-full flex justify-center bg-[#1D2327]">
 						{currentBoardIndex !== -1 && (
-							<input value={boards[currentBoardIndex]?.name} onChange={e => handleUpdateCurrentBoardTitle(e)} type="text" placeholder="Project name here" className="text-12 text-center italic text-[#acadad] focus:outline-dashed outline-[#acadad] bg-transparent" />
+							<input
+								value={boards[currentBoardIndex]?.name}
+								onChange={e => handleUpdateCurrentBoardTitle(e)}
+								aria-label={`selected board name ${boards[currentBoardIndex]?.name} change name input`}
+								type="text"
+								placeholder="Project name here"
+								className="text-12 text-center italic text-[#acadad] focus:outline-dashed outline-[#acadad] bg-transparent"
+							/>
 						)}
 					</div>
 					{/* left-side main-content */}
