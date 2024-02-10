@@ -19,7 +19,7 @@ function FlashCardsPage() {
 
 	const querySearchDeckList = decks.filter(deck => deck.name.includes(searchQuery));
 
-	const handleUpdateCurrentBoardTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setDecks(prevDecks => prevDecks.map((deck, index) => (index === currentDeckIndex ? { ...deck, name: e.target.value } : deck)));
 	};
 
@@ -86,7 +86,7 @@ function FlashCardsPage() {
 						{currentDeckIndex !== -1 && (
 							<input
 								value={decks[currentDeckIndex]?.name}
-								onChange={e => handleUpdateCurrentBoardTitle(e)}
+								onChange={e => handleUpdateCurrentDeckTitle(e)}
 								aria-label={`selected board name ${decks[currentDeckIndex]?.name} change name input`}
 								type="text"
 								placeholder="Project name here"
