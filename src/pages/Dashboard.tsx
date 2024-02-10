@@ -7,7 +7,7 @@ import classNames from "classnames";
 import type { DeckType } from "../types/DeckType";
 import Header from "../layouts/Header";
 import AddNewBoard from "../components/AddNewDeck";
-import BoardPreviewTile from "../components/BoardPreviewTile";
+import DeckPreviewTile from "../components/DeckPreviewTile";
 
 function Dashboard() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -71,7 +71,7 @@ function Dashboard() {
 								{querySearchDeckList.map((deck, i) => {
 									return (
 										<li onClick={() => setCurrentDeckIndex(i)} key={deck.name}>
-											<BoardPreviewTile deckPreviewData={deck} currentDeckIndex={currentDeckIndex} decks={decks} />
+											<DeckPreviewTile deckPreviewData={deck} currentDeckIndex={currentDeckIndex} decks={decks} />
 										</li>
 									);
 								})}
