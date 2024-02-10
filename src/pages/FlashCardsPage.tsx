@@ -3,7 +3,6 @@ import { IoSearch } from "react-icons/io5";
 import { Icon } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
-import classNames from "classnames";
 import type { DeckType } from "../types/DeckType";
 import Header from "../layouts/Header";
 import AddNewBoard from "../components/AddNewDeck";
@@ -15,7 +14,6 @@ function FlashCardsPage() {
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
-	const [currentPreviewTab, setCurrentPreviewTab] = useState<"Boards" | "Components">("Boards");
 
 	const querySearchDeckList = decks.filter(deck => deck.name.includes(searchQuery));
 
@@ -43,22 +41,6 @@ function FlashCardsPage() {
 									</button>
 								</Tooltip>
 							</div>
-							{/* Tab Switch Btns container*/}
-							<div className="flex justify-center items-center">
-								{/* Tab Title 1 */}
-								<button onClick={() => setCurrentPreviewTab("Boards")} className={classNames("p-2 flex-1", currentPreviewTab === "Boards" ? "bg-[#353E42]" : "bg-[#171c1f]")}>
-									<span className="uppercase text-12 font-bold text-white">Boards</span>
-								</button>
-								{/* Tab Title 2 */}
-								<button
-									onClick={() => {
-										setSearchQuery("");
-										setCurrentPreviewTab("Components");
-									}}
-									className={classNames("p-2 flex-1", currentPreviewTab === "Components" ? "bg-[#353E42]" : "bg-[#171c1f]")}>
-									<span className="uppercase text-12 font-bold text-white">Components</span>
-								</button>
-							</div>
 							{/* Search bar container */}
 							<div className="flex items-center bg-[#1A1F23]">
 								<Icon as={IoSearch} boxSize={6} className="ml-4" color={"#6B6C70"} />
@@ -66,17 +48,15 @@ function FlashCardsPage() {
 							</div>
 						</div>
 						{/* decks list */}
-						{currentPreviewTab === "Boards" && (
-							<ul className="mt-4 mx-4 flex flex-col gap-2">
-								{querySearchDeckList.map((deck, i) => {
-									return (
-										<li onClick={() => setCurrentDeckIndex(i)} key={deck.name}>
-											<DeckPreviewTile deckPreviewData={deck} currentDeckIndex={currentDeckIndex} decks={decks} />
-										</li>
-									);
-								})}
-							</ul>
-						)}
+						<ul className="mt-4 mx-4 flex flex-col gap-2">
+							{querySearchDeckList.map((deck, i) => {
+								return (
+									<li onClick={() => setCurrentDeckIndex(i)} key={deck.name}>
+										<DeckPreviewTile deckPreviewData={deck} currentDeckIndex={currentDeckIndex} decks={decks} />
+									</li>
+								);
+							})}
+						</ul>
 					</div>
 				</section>
 				{/* left-side main content container */}
