@@ -29,15 +29,15 @@ function Dashboard() {
 			<div className="inline-flex h-screen w-full">
 				{/* page header | menu btn */}
 				<Header isSideNavClosed={isSideNavClosed} setIsSideNavClosed={() => setIsSideNavClosed(!isSideNavClosed)} />
-				{/* Boards + Components preview list wrapper */}
+				{/* Decks + Components preview list wrapper */}
 				<section className="w-80 inline-block">
-					{/* scrolling container for board tiles list and components list */}
+					{/* scrolling container for deck tiles list and components list */}
 					<div className="w-80 h-full scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
 						{/* header + search bar wrapper */}
 						<div className="sticky top-0">
 							{/* header section (title + add Note btn) */}
 							<div className="p-[1rem] flex items-center justify-end bg-[#171C1F] border-b-[1.6px] border-[#292F33]">
-								<Tooltip arrowSize={8} hasArrow label="Add a new board" aria-label="Add a new board">
+								<Tooltip arrowSize={8} hasArrow label="Add a new deck" aria-label="Add a new deck">
 									<button onClick={() => setShowAddNewDeckModal(true)}>
 										<Icon as={RxPencil2} color={"#ADB0B1"} boxSize={6} />
 									</button>
@@ -62,10 +62,10 @@ function Dashboard() {
 							{/* Search bar container */}
 							<div className="flex items-center bg-[#1A1F23]">
 								<Icon as={IoSearch} boxSize={6} className="ml-4" color={"#6B6C70"} />
-								<input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search boards" type="text" className="py-4 px-2 w-full text-white bg-transparent outline-none placeholder:text-[#6B6C70]" />
+								<input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search Decks" type="text" className="py-4 px-2 w-full text-white bg-transparent outline-none placeholder:text-[#6B6C70]" />
 							</div>
 						</div>
-						{/* boards list */}
+						{/* decks list */}
 						{currentPreviewTab === "Boards" && (
 							<ul className="mt-4 mx-4 flex flex-col gap-2">
 								{querySearchDeckList.map((deck, i) => {
