@@ -27,10 +27,10 @@ function FlashCardsPage() {
 			<div className="inline-flex h-screen w-full">
 				{/* page header | menu btn */}
 				<Header isSideNavClosed={isSideNavClosed} setIsSideNavClosed={() => setIsSideNavClosed(!isSideNavClosed)} />
-				{/* Decks + Components preview list wrapper */}
-				<section className="w-80 inline-block">
-					{/* scrolling container for deck tiles list and components list */}
-					<div className="w-80 h-full scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
+				{/* Decks preview list wrapper */}
+				<div className="w-fit inline-block">
+					{/* scrolling container for deck tiles list */}
+					<div className="w-60 h-full scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
 						{/* header + search bar wrapper */}
 						<div className="sticky top-0">
 							{/* header section (title + add Note btn) */}
@@ -58,7 +58,7 @@ function FlashCardsPage() {
 							})}
 						</ul>
 					</div>
-				</section>
+				</div>
 				{/* left-side main content container */}
 				<div className="inline-flex flex-col flex-1 h-full overflow-auto">
 					{/* left-side main-content header */}
