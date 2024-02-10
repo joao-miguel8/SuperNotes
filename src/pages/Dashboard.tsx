@@ -11,21 +11,21 @@ import BoardPreviewTile from "../components/BoardPreviewTile";
 
 function Dashboard() {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [boards, setBoards] = useState<BoardType[]>([]);
-	const [currentBoardIndex, setCurrentBoardIndex] = useState(-1);
+	const [decks, setDecks] = useState<BoardType[]>([]);
+	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
-	const [showAddNewBoardModal, setShowAddNewBoardModal] = useState(false);
+	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
 	const [currentPreviewTab, setCurrentPreviewTab] = useState<"Boards" | "Components">("Boards");
 
-	const querySearchBoardList = boards.filter(board => board.name.includes(searchQuery));
+	const querySearchBoardList = decks.filter(deck => deck.name.includes(searchQuery));
 
 	const handleUpdateCurrentBoardTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setBoards(prevBoards => prevBoards.map((board, index) => (index === currentBoardIndex ? { ...board, name: e.target.value } : board)));
+		setDecks(prevDecks => prevDecks.map((deck, index) => (index === currentDeckIndex ? { ...deck, name: e.target.value } : deck)));
 	};
 
 	return (
 		<>
-			<AddNewBoard showAddNewBoardModal={showAddNewBoardModal} setShowAddNewBoardModal={(bool: boolean) => setShowAddNewBoardModal(bool)} setBoards={setBoards} />
+			<AddNewBoard showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} setDecks={setDecks} />
 			<div className="inline-flex h-screen w-full">
 				{/* page header | menu btn */}
 				<Header isSideNavClosed={isSideNavClosed} setIsSideNavClosed={() => setIsSideNavClosed(!isSideNavClosed)} />
@@ -38,7 +38,7 @@ function Dashboard() {
 							{/* header section (title + add Note btn) */}
 							<div className="p-[1rem] flex items-center justify-end bg-[#171C1F] border-b-[1.6px] border-[#292F33]">
 								<Tooltip arrowSize={8} hasArrow label="Add a new board" aria-label="Add a new board">
-									<button onClick={() => setShowAddNewBoardModal(true)}>
+									<button onClick={() => setShowAddNewDeckModal(true)}>
 										<Icon as={RxPencil2} color={"#ADB0B1"} boxSize={6} />
 									</button>
 								</Tooltip>
@@ -83,11 +83,11 @@ function Dashboard() {
 				<div className="inline-flex flex-col flex-1 h-full overflow-auto">
 					{/* left-side main-content header */}
 					<div className="py-2 h-10 sticky top-0 w-full flex justify-center bg-[#1D2327]">
-						{currentBoardIndex !== -1 && (
+						{currentDeckIndex !== -1 && (
 							<input
-								value={boards[currentBoardIndex]?.name}
+								value={decks[currentDeckIndex]?.name}
 								onChange={e => handleUpdateCurrentBoardTitle(e)}
-								aria-label={`selected board name ${boards[currentBoardIndex]?.name} change name input`}
+								aria-label={`selected board name ${decks[currentDeckIndex]?.name} change name input`}
 								type="text"
 								placeholder="Project name here"
 								className="text-12 text-center italic text-[#acadad] focus:outline-dashed outline-[#acadad] bg-transparent"

@@ -2,7 +2,7 @@ import { Input } from "@chakra-ui/react";
 import { Dispatch, FormEvent, useState } from "react";
 import type { BoardType } from "../types/BoardType";
 
-function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal, setBoards }: { showAddNewBoardModal: boolean; setShowAddNewBoardModal: (bool: boolean) => void; setBoards: Dispatch<React.SetStateAction<BoardType[]>> }) {
+function AddNewBoard({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void; setDecks: Dispatch<React.SetStateAction<BoardType[]>> }) {
 	const [newBoardFormData, setNewBoardFormData] = useState<BoardType>({
 		name: "",
 		description: "",
@@ -10,16 +10,16 @@ function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal, setBoards 
 
 	const handleAddNewBoardSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		setBoards((prevBoards: BoardType[]) => [...prevBoards, newBoardFormData]);
-		setShowAddNewBoardModal(false);
+		setDecks((prevBoards: BoardType[]) => [...prevBoards, newBoardFormData]);
+		setShowAddNewDeckModal(false);
 	};
 
 	return (
 		<>
-			{showAddNewBoardModal ? (
+			{showAddNewDeckModal ? (
 				<>
 					{/* ----- Overlay ----- */}
-					<div onClick={() => setShowAddNewBoardModal(false)} className=" overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none opacity-25 bg-black"></div>
+					<div onClick={() => setShowAddNewDeckModal(false)} className=" overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none opacity-25 bg-black"></div>
 					{/* ----- Content Container ----- */}
 					<div className="max-w-lg w-[400px] flex flex-col z-[60] fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-lg shadow-lg ">
 						{/* ----- Header ----- */}
@@ -34,7 +34,7 @@ function AddNewBoard({ showAddNewBoardModal, setShowAddNewBoardModal, setBoards 
 							</div>
 							{/* ----- Footer ----- */}
 							<div className="p-2 pt-4 flex items-center justify-end border-t border-solid border-gray-150 rounded-b">
-								<button className="font-bold uppercase text-12 ease-linear transition-all duration-150 text-red-400 hover:text-red-600" type="button" onClick={() => setShowAddNewBoardModal(false)}>
+								<button className="font-bold uppercase text-12 ease-linear transition-all duration-150 text-red-400 hover:text-red-600" type="button" onClick={() => setShowAddNewDeckModal(false)}>
 									Close
 								</button>
 								<button className="ml-6 px-2 py-2 text-white text-12 font-bold uppercase ease-linear transition-all duration-150 bg-emerald-400 hover:bg-emerald-500" type="submit">
