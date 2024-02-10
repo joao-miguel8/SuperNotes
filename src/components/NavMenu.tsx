@@ -18,7 +18,7 @@ function NavMenu({ setIsSideNavClosed }: { setIsSideNavClosed: (bool: boolean) =
 	};
 
 	const navigationMenu: NavigationMenuItemType[] = [
-		{ title: "Boards", path: "/boards", icon: GrNotes },
+		{ title: "Flashcards", path: "/flashcards", icon: GrNotes },
 		{ title: "Notifications", path: "", icon: IoMdNotificationsOutline },
 		{ title: "All Tags", path: "", icon: TiTag },
 		{ title: "Trash", path: "", icon: FaRegTrashAlt },
