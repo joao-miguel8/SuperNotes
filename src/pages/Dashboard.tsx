@@ -17,7 +17,7 @@ function Dashboard() {
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
 	const [currentPreviewTab, setCurrentPreviewTab] = useState<"Boards" | "Components">("Boards");
 
-	const querySearchBoardList = decks.filter(deck => deck.name.includes(searchQuery));
+	const querySearchDeckList = decks.filter(deck => deck.name.includes(searchQuery));
 
 	const handleUpdateCurrentBoardTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setDecks(prevDecks => prevDecks.map((deck, index) => (index === currentDeckIndex ? { ...deck, name: e.target.value } : deck)));
@@ -68,10 +68,10 @@ function Dashboard() {
 						{/* boards list */}
 						{currentPreviewTab === "Boards" && (
 							<ul className="mt-4 mx-4 flex flex-col gap-2">
-								{querySearchBoardList.map((board, i) => {
+								{querySearchDeckList.map((deck, i) => {
 									return (
-										<li onClick={() => setCurrentBoardIndex(i)} key={board.name}>
-											<BoardPreviewTile boardPreviewData={board} currentBoardIndex={currentBoardIndex} boards={boards} />
+										<li onClick={() => setCurrentDeckIndex(i)} key={deck.name}>
+											<BoardPreviewTile deckPreviewData={deck} currentDeckIndex={currentDeckIndex} decks={decks} />
 										</li>
 									);
 								})}
