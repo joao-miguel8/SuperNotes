@@ -2,9 +2,9 @@ import { Icon } from "@chakra-ui/react";
 import classNames from "classnames";
 import { useState } from "react";
 import { IconType } from "react-icons";
+import { TbChalkboard } from "react-icons/tb";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { GrNotes } from "react-icons/gr";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import { TiTag } from "react-icons/ti";
 import { Link, useLocation } from "react-router-dom";
 
@@ -19,7 +19,7 @@ function NavMenu({ setIsSideNavClosed }: { setIsSideNavClosed: (bool: boolean) =
 
 	const navigationMenu: NavigationMenuItemType[] = [
 		{ title: "Flashcards", path: "/flashcards", icon: GrNotes },
-		{ title: "Notifications", path: "", icon: IoMdNotificationsOutline },
+		{ title: "Canvas", path: "/canvas", icon: TbChalkboard },
 		{ title: "All Tags", path: "", icon: TiTag },
 		{ title: "Trash", path: "", icon: FaRegTrashAlt },
 	];
