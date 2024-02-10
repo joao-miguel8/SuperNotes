@@ -4,14 +4,14 @@ import { Icon } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
 import classNames from "classnames";
-import type { BoardType } from "../types/BoardType";
+import type { DeckType } from "../types/DeckType";
 import Header from "../layouts/Header";
 import AddNewBoard from "../components/AddNewDeck";
 import BoardPreviewTile from "../components/BoardPreviewTile";
 
 function Dashboard() {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [decks, setDecks] = useState<BoardType[]>([]);
+	const [decks, setDecks] = useState<DeckType[]>([]);
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);

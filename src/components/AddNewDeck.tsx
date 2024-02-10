@@ -1,16 +1,16 @@
 import { Input } from "@chakra-ui/react";
 import { Dispatch, FormEvent, useState } from "react";
-import type { BoardType } from "../types/BoardType";
+import type { DeckType } from "../types/DeckType";
 
-function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void; setDecks: Dispatch<React.SetStateAction<BoardType[]>> }) {
-	const [newDeckFormData, setNewDeckFormData] = useState<BoardType>({
+function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void; setDecks: Dispatch<React.SetStateAction<DeckType[]>> }) {
+	const [newDeckFormData, setNewDeckFormData] = useState<DeckType>({
 		name: "",
 		description: "",
 	});
 
 	const handleAddNewDeckSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		setDecks((prevBoards: BoardType[]) => [...prevBoards, newDeckFormData]);
+		setDecks((prevBoards: DeckType[]) => [...prevBoards, newDeckFormData]);
 		setShowAddNewDeckModal(false);
 	};
 
