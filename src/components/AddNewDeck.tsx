@@ -2,15 +2,15 @@ import { Input } from "@chakra-ui/react";
 import { Dispatch, FormEvent, useState } from "react";
 import type { BoardType } from "../types/BoardType";
 
-function AddNewBoard({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void; setDecks: Dispatch<React.SetStateAction<BoardType[]>> }) {
-	const [newBoardFormData, setNewBoardFormData] = useState<BoardType>({
+function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void; setDecks: Dispatch<React.SetStateAction<BoardType[]>> }) {
+	const [newDeckFormData, setNewDeckFormData] = useState<BoardType>({
 		name: "",
 		description: "",
 	});
 
-	const handleAddNewBoardSubmit = (e: FormEvent) => {
+	const handleAddNewDeckSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		setDecks((prevBoards: BoardType[]) => [...prevBoards, newBoardFormData]);
+		setDecks((prevBoards: BoardType[]) => [...prevBoards, newDeckFormData]);
 		setShowAddNewDeckModal(false);
 	};
 
@@ -24,13 +24,13 @@ function AddNewBoard({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: 
 					<div className="max-w-lg w-[400px] flex flex-col z-[60] fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-lg shadow-lg ">
 						{/* ----- Header ----- */}
 						<div className="p-2 rounded-t bg-[#292F33]">
-							<h3 className="text-center text-18 font-semibold text-white">Create a new Board</h3>
+							<h3 className="text-center text-18 font-semibold text-white">Create a new Deck</h3>
 						</div>
 						{/* ----- Form Content ----- */}
-						<form onSubmit={e => handleAddNewBoardSubmit(e)}>
+						<form onSubmit={e => handleAddNewDeckSubmit(e)}>
 							<div className="p-6 relative flex flex-col gap-4">
-								<Input onChange={e => setNewBoardFormData({ ...newBoardFormData, name: e.target.value })} placeholder="Add a name for your board" size="sm" focusBorderColor="#292F33" max={18} />
-								<Input onChange={e => setNewBoardFormData({ ...newBoardFormData, description: e.target.value })} placeholder="Enter a description" size="sm" focusBorderColor="#292F33" max={40} />
+								<Input onChange={e => setNewDeckFormData({ ...newDeckFormData, name: e.target.value })} placeholder="Add a name for your deck" size="sm" focusBorderColor="#292F33" max={18} />
+								<Input onChange={e => setNewDeckFormData({ ...newDeckFormData, description: e.target.value })} placeholder="Enter a description" size="sm" focusBorderColor="#292F33" max={40} />
 							</div>
 							{/* ----- Footer ----- */}
 							<div className="p-2 pt-4 flex items-center justify-end border-t border-solid border-gray-150 rounded-b">
@@ -38,7 +38,7 @@ function AddNewBoard({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: 
 									Close
 								</button>
 								<button className="ml-6 px-2 py-2 text-white text-12 font-bold uppercase ease-linear transition-all duration-150 bg-emerald-400 hover:bg-emerald-500" type="submit">
-									Save Changes
+									Add Deck
 								</button>
 							</div>
 						</form>
@@ -49,4 +49,4 @@ function AddNewBoard({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: 
 	);
 }
 
-export default AddNewBoard;
+export default AddNewDeck;

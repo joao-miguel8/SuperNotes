@@ -6,7 +6,7 @@ import { useState } from "react";
 import classNames from "classnames";
 import type { BoardType } from "../types/BoardType";
 import Header from "../layouts/Header";
-import AddNewBoard from "../components/AddNewBoard";
+import AddNewBoard from "../components/AddNewDeck";
 import BoardPreviewTile from "../components/BoardPreviewTile";
 
 function Dashboard() {
