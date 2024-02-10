@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { Suspense, lazy } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
 const FlashCardsPage = lazy(() => import("../pages/FlashCardsPage"));
@@ -17,6 +17,10 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: "/canvas",
-		element: <CanvasPage />,
+		element: (
+			<Suspense>
+				<CanvasPage />,
+			</Suspense>
+		),
 	},
 ]);
