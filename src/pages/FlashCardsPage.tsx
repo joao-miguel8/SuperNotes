@@ -5,7 +5,7 @@ import { Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
 import type { DeckType } from "../types/DeckType";
 import Header from "../layouts/Header";
-import AddNewBoard from "../components/AddNewDeck";
+import AddNewDeck from "../components/AddNewDeck";
 import DeckPreviewTile from "../components/DeckPreviewTile";
 
 function FlashCardsPage() {
@@ -23,7 +23,7 @@ function FlashCardsPage() {
 
 	return (
 		<>
-			<AddNewBoard showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} setDecks={setDecks} />
+			<AddNewDeck showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} setDecks={setDecks} />
 			<div className="inline-flex h-screen w-full">
 				{/* page header | menu btn */}
 				<Header isSideNavClosed={isSideNavClosed} setIsSideNavClosed={() => setIsSideNavClosed(!isSideNavClosed)} />
