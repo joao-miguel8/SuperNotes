@@ -9,7 +9,7 @@ import Header from "../layouts/Header";
 import AddNewBoard from "../components/AddNewDeck";
 import DeckPreviewTile from "../components/DeckPreviewTile";
 
-function Dashboard() {
+function FlashCardsPage() {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [decks, setDecks] = useState<DeckType[]>([]);
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
@@ -102,4 +102,4 @@ function Dashboard() {
 	);
 }
 
-export default Dashboard;
+export default FlashCardsPage;

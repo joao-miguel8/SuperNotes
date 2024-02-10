@@ -1,17 +1,17 @@
 import { lazy } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-const Dashboard = lazy(() => import("../pages/Dashboard"));
+const FlashCardsPage = lazy(() => import("../pages/FlashCardsPage"));
 const ErrorPage = lazy(() => import("../pages/ErrorPage"));
 
 export const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Navigate to="/dashboard" />,
+		element: <Navigate to="/flashcards" />,
 		errorElement: <ErrorPage />,
 	},
 	{
-		path: "/dashboard",
-		element: <Dashboard />,
+		path: "/flashcards",
+		element: <FlashCardsPage />,
 	},
 ]);
