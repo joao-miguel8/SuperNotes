@@ -12,7 +12,6 @@ function FlashCardsPage() {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [decks, setDecks] = useState<DeckType[]>([]);
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
-	const [isSideNavClosed, setIsSideNavClosed] = useState(false);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
 
 	const querySearchDeckList = decks.filter(deck => deck.name.includes(searchQuery));
@@ -27,7 +26,7 @@ function FlashCardsPage() {
 			<div className="flex flex-col h-full">
 				<div>
 					{/* page header | menu btn */}
-					<Header isSideNavClosed={isSideNavClosed} setIsSideNavClosed={() => setIsSideNavClosed(!isSideNavClosed)} />
+					<Header />
 				</div>
 				{/* Decks preview list wrapper */}
 				<div className="flex h-full">

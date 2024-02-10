@@ -3,12 +3,10 @@ import classNames from "classnames";
 import { useState } from "react";
 import { IconType } from "react-icons";
 import { TbChalkboard } from "react-icons/tb";
-import { FaRegTrashAlt } from "react-icons/fa";
 import { GrNotes } from "react-icons/gr";
-import { TiTag } from "react-icons/ti";
 import { Link, useLocation } from "react-router-dom";
 
-function NavMenu({ setIsSideNavClosed }: { setIsSideNavClosed: (bool: boolean) => void }) {
+function NavMenu() {
 	const routeLocation = useLocation();
 
 	type NavigationMenuItemType = {
@@ -20,19 +18,17 @@ function NavMenu({ setIsSideNavClosed }: { setIsSideNavClosed: (bool: boolean) =
 	const navigationMenu: NavigationMenuItemType[] = [
 		{ title: "Flashcards", path: "/flashcards", icon: GrNotes },
 		{ title: "Canvas", path: "/canvas", icon: TbChalkboard },
-		{ title: "All Tags", path: "", icon: TiTag },
-		{ title: "Trash", path: "", icon: FaRegTrashAlt },
 	];
 	const [currentPage] = useState(routeLocation.pathname);
 
 	return (
-		// side menu wrapper
-		<div onMouseLeave={() => setIsSideNavClosed(false)} className="h-fit max-w-60 w-40 top-8 left-6 absolute z-40 bg-[#1D2327] rounded-lg overflow-clip">
+		<>
 			{/* side menu container */}
 			<div className="max-w-60 h-full">
 				{/* nav list  */}
-				<nav className="flex flex-col h-full">
-					<ul className="mt-4 flex flex-col text-[#F6F9F8]">
+				<nav className="flex">
+					{/* flex flex-col */}
+					<ul className="flex text-[#F6F9F8]">
 						{navigationMenu.map((navItem: NavigationMenuItemType) => {
 							const currentlyChosenMenuItem = navItem.path === currentPage;
 							return (
@@ -47,7 +43,7 @@ function NavMenu({ setIsSideNavClosed }: { setIsSideNavClosed: (bool: boolean) =
 					</ul>
 				</nav>
 			</div>
-		</div>
+		</>
 	);
 }
 
