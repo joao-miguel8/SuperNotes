@@ -3,10 +3,10 @@ import { IoSearch } from "react-icons/io5";
 import { Icon } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
-import type { DeckType } from "../types/DeckType";
-import Header from "../layouts/Header";
-import AddNewDeck from "../components/AddNewDeck";
-import DeckPreviewTile from "../components/DeckPreviewTile";
+import type { DeckType } from "../../types/DeckType";
+import Header from "../../layouts/Header";
+import AddNewDeck from "./AddNewDeck";
+import DeckPreviewTile from "./DeckPreviewTile";
 
 function FlashCardsPage() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -19,7 +19,7 @@ function FlashCardsPage() {
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setDecks(prevDecks => prevDecks.map((deck, index) => (index === currentDeckIndex ? { ...deck, name: e.target.value } : deck)));
 	};
-
+	console.log(decks);
 	return (
 		<div className="h-screen">
 			<AddNewDeck showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} setDecks={setDecks} />

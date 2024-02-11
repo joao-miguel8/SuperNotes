@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-const FlashCardsPage = lazy(() => import("../pages/FlashCardsPage"));
+const FlashCardsPage = lazy(() => import("../pages/flashcards-page/FlashCardsPage"));
 const CanvasPage = lazy(() => import("../pages/CanvasPage"));
 const ErrorPage = lazy(() => import("../pages/ErrorPage"));
 

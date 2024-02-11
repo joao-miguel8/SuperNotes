@@ -1,6 +1,6 @@
 import { Input } from "@chakra-ui/react";
 import { Dispatch, FormEvent, useState } from "react";
-import type { DeckType } from "../types/DeckType";
+import type { DeckType } from "../../types/DeckType";
 
 function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void; setDecks: Dispatch<React.SetStateAction<DeckType[]>> }) {
 	const [newDeckFormData, setNewDeckFormData] = useState<DeckType>({
