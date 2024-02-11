@@ -4,7 +4,7 @@ export type DeckType = {
 	name: string;
 	description: string;
 	flashcards: FlashCardType[];
-	lastReviewed: Date;
+	lastReviewed: Date | null;
 	subject?: string;
-	bookmarked?: boolean;
+	isBookmarked?: boolean;
 };

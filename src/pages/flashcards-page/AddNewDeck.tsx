@@ -6,6 +6,10 @@ function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: {
 	const [newDeckFormData, setNewDeckFormData] = useState<DeckType>({
 		name: "",
 		description: "",
+		flashcards: [],
+		lastReviewed: null,
+		subject: "",
+		isBookmarked: false,
 	});
 
 	const handleAddNewDeckSubmit = (e: FormEvent) => {
