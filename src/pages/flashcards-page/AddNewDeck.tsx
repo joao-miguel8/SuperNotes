@@ -33,9 +33,9 @@ function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: {
 						{/* ----- Form Content ----- */}
 						<form onSubmit={e => handleAddNewDeckSubmit(e)}>
 							<div className="p-6 relative flex flex-col gap-4">
-								<Input onChange={e => setNewDeckFormData({ ...newDeckFormData, name: e.target.value })} placeholder="Add a name for your deck" size="sm" focusBorderColor="#292F33" max={18} />
-								<Input onChange={e => setNewDeckFormData({ ...newDeckFormData, subject: e.target.value })} placeholder="Add a subject" size="sm" focusBorderColor="#292F33" max={40} />
-								<Input onChange={e => setNewDeckFormData({ ...newDeckFormData, description: e.target.value })} placeholder="Enter a description" size="sm" focusBorderColor="#292F33" max={40} />
+								<Input value={newDeckFormData.name} onChange={e => setNewDeckFormData({ ...newDeckFormData, name: e.target.value })} placeholder="Add a name for your deck" size="sm" focusBorderColor="#292F33" max={18} />
+								<Input value={newDeckFormData.subject} onChange={e => setNewDeckFormData({ ...newDeckFormData, subject: e.target.value })} placeholder="Add a subject" size="sm" focusBorderColor="#292F33" max={40} />
+								<Input value={newDeckFormData.description} onChange={e => setNewDeckFormData({ ...newDeckFormData, description: e.target.value })} placeholder="Enter a description" size="sm" focusBorderColor="#292F33" max={40} />
 							</div>
 							{/* ----- Footer ----- */}
 							<div className="p-2 pt-4 flex items-center justify-end border-t border-solid border-gray-150 rounded-b">
