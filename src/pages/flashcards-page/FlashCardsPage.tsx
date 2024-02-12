@@ -9,6 +9,8 @@ import Header from "../../layouts/Header";
 import AddNewDeck from "../flashcards-page/AddNewDeck";
 import DeckPreviewTile from "../flashcards-page/DeckPreviewTile";
 import classNames from "classnames";
+import FlashcardPreviewTile from "./FlashcardPreviewTile";
+import { FlashCardType } from "../../types/FlashCardType";
 
 function FlashCardsPage() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -29,6 +31,12 @@ function FlashCardsPage() {
 			setCurrentDeckIndex(-1);
 		}
 	}
+
+	const getChosenDeck = () => {
+		return decks.find((_, i) => {
+			return currentDeckIndex === i;
+		});
+	};
 
 	const isDeckSelected = currentDeckIndex === -1;
 
@@ -66,15 +74,24 @@ function FlashCardsPage() {
 							</div>
 						</div>
 						{/* decks list */}
-						<ul className="mt-4 mx-4 flex flex-col gap-2">
-							{querySearchDeckList.map((deck, index) => {
-								return (
-									<li onClick={() => selectAndDeselectChosenDeck(currentDeckIndex, index)} key={deck.name}>
-										<DeckPreviewTile deckPreviewData={deck} currentDeckIndex={currentDeckIndex} decks={decks} />
-									</li>
-								);
-							})}
-						</ul>
+						{isDeckSelected ? (
+							<ul className="mt-4 mx-4 flex flex-col gap-2">
+								{querySearchDeckList.map((deck, index) => {
+									return (
+										<li onClick={() => selectAndDeselectChosenDeck(currentDeckIndex, index)} key={deck.name}>
+											<DeckPreviewTile deckPreviewData={deck} currentDeckIndex={currentDeckIndex} decks={decks} />
+										</li>
+									);
+								})}
+							</ul>
+						) : (
+							<h2 className="text-white">test</h2>
+							// <ul className="mt-4 mx-4 flex flex-col gap-3">
+							// 	{getChosenDeck()?.flashcards?.map((flashcard: FlashCardType) => {
+							// <FlashcardPreviewTile />;
+							// 	})}
+							// </ul>
+						)}
 					</div>
 					<div className="w-full">
 						{/* left-side main-content header */}
