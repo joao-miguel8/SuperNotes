@@ -1,3 +1,4 @@
+import { IoIosAddCircleOutline } from "react-icons/io";
 import { RxPencil2 } from "react-icons/rx";
 import { IoSearch } from "react-icons/io5";
 import { Icon } from "@chakra-ui/react";
@@ -19,7 +20,7 @@ function FlashCardsPage() {
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setDecks(prevDecks => prevDecks.map((deck, index) => (index === currentDeckIndex ? { ...deck, name: e.target.value } : deck)));
 	};
-	console.log(decks);
+
 	return (
 		<div className="h-screen">
 			<AddNewDeck showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} setDecks={setDecks} />
@@ -76,7 +77,16 @@ function FlashCardsPage() {
 						</div>
 						{/* </div> */}
 						{/* left-side main content container  */}
-						<div className="h-full overflow-auto"></div>
+						<div className="h-full overflow-auto bg-[#272e30]">
+							{decks.length <= 0 && (
+								<div className="flex justify-center items-center h-full">
+									<button onClick={() => setShowAddNewDeckModal(true)} className="flex items-center gap-2 ">
+										<h3 className="align-base italic text-40 text-[#acadad] font-thin">You have no decks</h3>
+										<IoIosAddCircleOutline size={"2.4rem"} color="#acadad" />
+									</button>
+								</div>
+							)}
+						</div>
 						{/* left-side main-content */}
 					</div>
 				</div>
