@@ -3,9 +3,10 @@ import { Dispatch, FormEvent, useState } from "react";
 import type { DeckType } from "../../types/DeckType";
 import { useDeckStore } from "../../zustand-store/useDeckStore";
 
-function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void; setDecks: Dispatch<React.SetStateAction<DeckType[]>> }) {
+function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void }) {
 	const createNewDeck = useDeckStore(state => state.createNewDeck);
-
+	//  setDecks;
+	// setDecks: Dispatch<React.SetStateAction<DeckType[]>>;
 	const [newDeckFormData, setNewDeckFormData] = useState<DeckType>({
 		name: "",
 		description: "",
@@ -17,7 +18,7 @@ function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: {
 
 	const handleAddNewDeckSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		setDecks((prevBoards: DeckType[]) => [...prevBoards, newDeckFormData]);
+		// setDecks((prevBoards: DeckType[]) => [...prevBoards, newDeckFormData]);
 		createNewDeck(newDeckFormData);
 		setNewDeckFormData({
 			name: "",

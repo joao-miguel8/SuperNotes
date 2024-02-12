@@ -4,17 +4,28 @@ import type { DeckType } from "../../types/DeckType";
 import Header from "../../layouts/Header";
 import AddNewDeck from "../flashcards-page/AddNewDeck";
 import PreviewListContainer from "./PreviewListContainer";
+import { useDeckStore } from "../../zustand-store/useDeckStore";
 
 function FlashCardsPage() {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [decks, setDecks] = useState<DeckType[]>([]);
+	// const [decks, setDecks] = useState<DeckType[]>([]);
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
+
+	const decks = useDeckStore(state => state.decks);
+	const updateDeck = useDeckStore(state => state.updateDeck);
 
 	const querySearchDeckList = decks.filter(deck => deck.name.includes(searchQuery));
 
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setDecks(prevDecks => prevDecks.map((deck, index) => (index === currentDeckIndex ? { ...deck, name: e.target.value } : deck)));
+		updateDeck((state: any) => ({
+			decks: state.decks.map((deck: DeckType, index: Number) => {
+				if (index === currentDeckIndex) {
+					return { ...deck, name: e.target.value };
+				}
+				return deck;
+			}),
+		}));
 	};
 
 	function selectAndDeselectChosenDeck(chosenDeckIndex: number, index: number) {
@@ -35,7 +46,8 @@ function FlashCardsPage() {
 
 	return (
 		<div className="h-screen">
-			<AddNewDeck showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} setDecks={setDecks} />
+			<AddNewDeck showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} />
+			{/* setDecks={setDecks} */}
 			<div className="flex flex-col h-full">
 				{/* page header | menu btn */}
 				<div>

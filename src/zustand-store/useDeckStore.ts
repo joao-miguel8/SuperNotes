@@ -7,6 +7,7 @@ type State = {
 
 type Actions = {
 	createNewDeck: (newDeck: DeckType) => void;
+	updateDeck: (cb: Function) => void;
 };
 
 export const useDeckStore = create<State & Actions>(set => ({
@@ -15,5 +16,8 @@ export const useDeckStore = create<State & Actions>(set => ({
 		set(state => ({
 			decks: [...state.decks, newDeck],
 		}));
+	},
+	updateDeck(cb) {
+		set(cb);
 	},
 }));
