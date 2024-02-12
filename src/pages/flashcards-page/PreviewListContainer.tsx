@@ -1,10 +1,16 @@
+import { useState } from "react";
 import { Icon, Tooltip } from "@chakra-ui/react";
 import classNames from "classnames";
 import { IoArrowBackOutline, IoSearch } from "react-icons/io5";
 import { RxPencil2 } from "react-icons/rx";
 import DeckPreviewTile from "./DeckPreviewTile";
+import type { DeckType } from "../../types/DeckType";
 
-function PreviewListContainer({ isDeckSelected, decks, currentDeckIndex, searchQuery, setSearchQuery, setCurrentDeckIndex, setShowAddNewDeckModal, selectAndDeselectChosenDeck, querySearchDeckList }) {
+function PreviewListContainer({ isDeckSelected, decks, currentDeckIndex, setCurrentDeckIndex, setShowAddNewDeckModal, selectAndDeselectChosenDeck }) {
+	const [searchQuery, setSearchQuery] = useState("");
+
+	const querySearchDeckList = decks.filter((deck: DeckType) => deck.name.includes(searchQuery));
+
 	return (
 		<div className="pb-6 w-80 scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
 			{/* header + search bar wrapper */}

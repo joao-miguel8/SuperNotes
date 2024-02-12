@@ -7,15 +7,10 @@ import PreviewListContainer from "./PreviewListContainer";
 import { useDeckStore } from "../../zustand-store/useDeckStore";
 
 function FlashCardsPage() {
-	const [searchQuery, setSearchQuery] = useState("");
-	// const [decks, setDecks] = useState<DeckType[]>([]);
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
-
 	const decks = useDeckStore(state => state.decks);
 	const updateDeck = useDeckStore(state => state.updateDeck);
-
-	const querySearchDeckList = decks.filter(deck => deck.name.includes(searchQuery));
 
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		updateDeck((state: any) => ({
@@ -56,17 +51,7 @@ function FlashCardsPage() {
 				{/* Decks preview list wrapper */}
 				<div className="h-full overflow-hidden flex">
 					{/* scrolling container for deck tiles list */}
-					<PreviewListContainer
-						decks={decks}
-						isDeckSelected={isDeckSelected}
-						currentDeckIndex={currentDeckIndex}
-						searchQuery={searchQuery}
-						setSearchQuery={setSearchQuery}
-						setCurrentDeckIndex={setCurrentDeckIndex}
-						setShowAddNewDeckModal={setShowAddNewDeckModal}
-						selectAndDeselectChosenDeck={selectAndDeselectChosenDeck}
-						querySearchDeckList={querySearchDeckList}
-					/>
+					<PreviewListContainer decks={decks} isDeckSelected={isDeckSelected} currentDeckIndex={currentDeckIndex} setCurrentDeckIndex={setCurrentDeckIndex} setShowAddNewDeckModal={setShowAddNewDeckModal} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
 					<div className="w-full">
 						{/* left-side main-content header */}
 						<div className="py-2 h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33]">
