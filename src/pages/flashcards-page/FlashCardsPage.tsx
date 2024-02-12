@@ -32,7 +32,7 @@ function FlashCardsPage() {
 				<div className="h-full overflow-hidden flex">
 					{/* scrolling container for deck tiles list */}
 
-					<div className="pb-6 w-60 scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
+					<div className="pb-6 w-80 scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
 						{/* header + search bar wrapper */}
 						<div className="sticky top-0">
 							{/* header section (title + add Note btn) */}
