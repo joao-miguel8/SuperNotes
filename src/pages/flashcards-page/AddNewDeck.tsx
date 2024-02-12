@@ -15,6 +15,14 @@ function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: {
 	const handleAddNewDeckSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		setDecks((prevBoards: DeckType[]) => [...prevBoards, newDeckFormData]);
+		setNewDeckFormData({
+			name: "",
+			description: "",
+			flashcards: [],
+			lastReviewed: null,
+			subject: "",
+			isBookmarked: false,
+		});
 		setShowAddNewDeckModal(false);
 	};
 
@@ -25,7 +33,7 @@ function AddNewDeck({ showAddNewDeckModal, setShowAddNewDeckModal, setDecks }: {
 					{/* ----- Overlay ----- */}
 					<div onClick={() => setShowAddNewDeckModal(false)} className=" overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none opacity-25 bg-black"></div>
 					{/* ----- Content Container ----- */}
-					<div className="max-w-lg w-[400px] flex flex-col z-[60] fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-lg shadow-lg ">
+					<div className="max-w-lg w-[400px] flex flex-col z-[60] fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-lg shadow-lg">
 						{/* ----- Header ----- */}
 						<div className="p-2 rounded-t bg-[#292F33]">
 							<h3 className="text-center text-18 font-semibold text-white">Create a new Deck</h3>
