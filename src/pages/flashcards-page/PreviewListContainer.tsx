@@ -6,7 +6,21 @@ import { RxPencil2 } from "react-icons/rx";
 import DeckPreviewTile from "./DeckPreviewTile";
 import type { DeckType } from "../../types/DeckType";
 
-function PreviewListContainer({ isDeckSelected, decks, currentDeckIndex, setCurrentDeckIndex, setShowAddNewDeckModal, selectAndDeselectChosenDeck }) {
+function PreviewListContainer({
+	isDeckSelected,
+	decks,
+	currentDeckIndex,
+	setCurrentDeckIndex,
+	setShowAddNewDeckModal,
+	selectAndDeselectChosenDeck,
+}: {
+	isDeckSelected: boolean;
+	decks: DeckType[];
+	currentDeckIndex: number;
+	setCurrentDeckIndex: (index: number) => void;
+	setShowAddNewDeckModal: (triggerModal: boolean) => void;
+	selectAndDeselectChosenDeck: (currentDeckIndex: number, index: number) => void;
+}) {
 	const [searchQuery, setSearchQuery] = useState("");
 
 	const querySearchDeckList = decks.filter((deck: DeckType) => deck.name.includes(searchQuery));
