@@ -1,6 +1,6 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { RxPencil2 } from "react-icons/rx";
-import { IoSearch } from "react-icons/io5";
+import { IoArrowBackOutline, IoSearch } from "react-icons/io5";
 import { Icon } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import type { DeckType } from "../../types/DeckType";
 import Header from "../../layouts/Header";
 import AddNewDeck from "../flashcards-page/AddNewDeck";
 import DeckPreviewTile from "../flashcards-page/DeckPreviewTile";
+import classNames from "classnames";
 
 function FlashCardsPage() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -29,6 +30,8 @@ function FlashCardsPage() {
 		}
 	}
 
+	const isDeckSelected = currentDeckIndex === -1;
+
 	return (
 		<div className="h-screen">
 			<AddNewDeck showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} setDecks={setDecks} />
@@ -44,8 +47,12 @@ function FlashCardsPage() {
 					<div className="pb-6 w-80 scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
 						{/* header + search bar wrapper */}
 						<div className="sticky top-0">
-							{/* header section (title + add Note btn) */}
-							<div className="p-[1rem] flex items-center justify-end bg-[#171C1F] border-b-[1.6px] border-[#292F33]">
+							{/* header section (title + add deck btn) */}
+							<div className="p-[1rem] flex items-center justify-between bg-[#171C1F] border-b-[1.6px] border-[#292F33]">
+								<button className={classNames("flex items-center", isDeckSelected && "invisible")}>
+									<IoArrowBackOutline size={"1.5rem"} color={"#ADB0B1"} />
+								</button>
+
 								<Tooltip arrowSize={8} hasArrow label="Add a new deck" aria-label="Add a new deck">
 									<button onClick={() => setShowAddNewDeckModal(true)}>
 										<Icon as={RxPencil2} color={"#ADB0B1"} boxSize={6} />
@@ -72,7 +79,7 @@ function FlashCardsPage() {
 					<div className="w-full">
 						{/* left-side main-content header */}
 						<div className="py-2 h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33]">
-							{currentDeckIndex !== -1 && (
+							{!isDeckSelected && (
 								<input
 									value={decks[currentDeckIndex]?.name}
 									onChange={e => handleUpdateCurrentDeckTitle(e)}
