@@ -57,7 +57,7 @@ function FlashCardsPage() {
 						<div className="sticky top-0">
 							{/* header section (title + add deck btn) */}
 							<div className="p-[1rem] flex items-center justify-between bg-[#171C1F] border-b-[1.6px] border-[#292F33]">
-								<button className={classNames("flex items-center", isDeckSelected && "invisible")}>
+								<button onClick={() => setCurrentDeckIndex(-1)} className={classNames("flex items-center", isDeckSelected && "invisible")}>
 									<IoArrowBackOutline size={"1.5rem"} color={"#ADB0B1"} />
 								</button>
 
