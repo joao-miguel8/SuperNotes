@@ -21,6 +21,14 @@ function FlashCardsPage() {
 		setDecks(prevDecks => prevDecks.map((deck, index) => (index === currentDeckIndex ? { ...deck, name: e.target.value } : deck)));
 	};
 
+	function selectAndDeselectChosenDeck(chosenDeckIndex: number, index: number) {
+		if (chosenDeckIndex !== index) {
+			setCurrentDeckIndex(index);
+		} else if (chosenDeckIndex === index) {
+			setCurrentDeckIndex(-1);
+		}
+	}
+
 	return (
 		<div className="h-screen">
 			<AddNewDeck showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} setDecks={setDecks} />
@@ -52,9 +60,9 @@ function FlashCardsPage() {
 						</div>
 						{/* decks list */}
 						<ul className="mt-4 mx-4 flex flex-col gap-2">
-							{querySearchDeckList.map((deck, i) => {
+							{querySearchDeckList.map((deck, index) => {
 								return (
-									<li onClick={() => setCurrentDeckIndex(i)} key={deck.name}>
+									<li onClick={() => selectAndDeselectChosenDeck(currentDeckIndex, index)} key={deck.name}>
 										<DeckPreviewTile deckPreviewData={deck} currentDeckIndex={currentDeckIndex} decks={decks} />
 									</li>
 								);
@@ -75,7 +83,6 @@ function FlashCardsPage() {
 								/>
 							)}
 						</div>
-						{/* </div> */}
 						{/* left-side main content container  */}
 						<div className="h-full overflow-auto bg-[#272e30]">
 							{decks.length <= 0 && (
@@ -87,7 +94,6 @@ function FlashCardsPage() {
 								</div>
 							)}
 						</div>
-						{/* left-side main-content */}
 					</div>
 				</div>
 			</div>
