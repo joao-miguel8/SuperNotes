@@ -1,16 +1,8 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { RxPencil2 } from "react-icons/rx";
-import { IoArrowBackOutline, IoSearch } from "react-icons/io5";
-import { Icon } from "@chakra-ui/react";
-import { Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
 import type { DeckType } from "../../types/DeckType";
 import Header from "../../layouts/Header";
 import AddNewDeck from "../flashcards-page/AddNewDeck";
-import DeckPreviewTile from "../flashcards-page/DeckPreviewTile";
-import classNames from "classnames";
-import FlashcardPreviewTile from "./FlashcardPreviewTile";
-import { FlashCardType } from "../../types/FlashCardType";
 import PreviewListContainer from "./PreviewListContainer";
 
 function FlashCardsPage() {
