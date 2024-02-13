@@ -42,19 +42,17 @@ function FlashCardsPage() {
 	return (
 		<div className="h-screen">
 			<AddNewDeck showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} />
-			{/* setDecks={setDecks} */}
-			<div className="flex flex-col h-full">
+			{/* Header | PreviewListContainer | left side container content*/}
+			<div className="h-full flex flex-col">
 				{/* page header | menu btn */}
-				<div>
-					<Header />
-				</div>
-				{/* Decks preview list wrapper */}
-				<div className="h-full overflow-hidden flex">
+				<Header />
+				{/* Decks | Flashcard preview list wrapper */}
+				<div className="overflow-hidden flex grow">
 					{/* scrolling container for deck tiles list */}
 					<PreviewListContainer decks={decks} isDeckSelected={isDeckSelected} currentDeckIndex={currentDeckIndex} setCurrentDeckIndex={setCurrentDeckIndex} setShowAddNewDeckModal={setShowAddNewDeckModal} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
-					<div className="w-full">
+					<div className="overflow-hidden flex-1">
 						{/* left-side main-content header */}
-						<div className="py-2 h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33]">
+						<div className="h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33] ">
 							{!isDeckSelected && (
 								<input
 									value={decks[currentDeckIndex]?.name}
@@ -67,7 +65,7 @@ function FlashCardsPage() {
 							)}
 						</div>
 						{/* left-side main content container  */}
-						<div className="h-full overflow-auto bg-[#272e30]">
+						<div className="pt-10 h-full overflow-auto bg-[#272e30]">
 							{decks.length <= 0 && (
 								<div className="flex justify-center items-center h-full">
 									<button onClick={() => setShowAddNewDeckModal(true)} className="flex items-center gap-2 ">
@@ -77,7 +75,6 @@ function FlashCardsPage() {
 								</div>
 							)}
 						</div>
-						PreviewListContainer
 					</div>
 				</div>
 			</div>
