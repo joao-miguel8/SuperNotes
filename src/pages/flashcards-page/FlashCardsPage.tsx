@@ -5,6 +5,7 @@ import Header from "../../layouts/Header";
 import AddNewDeck from "../flashcards-page/AddNewDeck";
 import PreviewListContainer from "./PreviewListContainer";
 import { useDeckStore } from "../../zustand-store/useDeckStore";
+import FlashcardPanel from "./FlashcardPanel";
 
 function FlashCardsPage() {
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
@@ -65,7 +66,7 @@ function FlashCardsPage() {
 							)}
 						</div>
 						{/* left-side main content container  */}
-						<div className="pt-10 h-full overflow-auto bg-[#272e30]">
+						<div className="pt-10 h-full overflow-auto bg-[#272e30] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-[#272e30]">
 							{decks.length <= 0 && (
 								<div className="flex justify-center items-center h-full">
 									<button onClick={() => setShowAddNewDeckModal(true)} className="flex items-center gap-2 ">
@@ -74,6 +75,7 @@ function FlashCardsPage() {
 									</button>
 								</div>
 							)}
+							{!isDeckSelected && <FlashcardPanel />}
 						</div>
 					</div>
 				</div>
