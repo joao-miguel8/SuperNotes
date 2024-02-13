@@ -38,6 +38,7 @@ function FlashCardsPage() {
 		});
 	};
 
+	const selectedDeck = getChosenDeck();
 	const isDeckSelected = currentDeckIndex === -1;
 
 	return (
