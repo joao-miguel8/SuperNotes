@@ -53,7 +53,7 @@ function FlashCardsPage() {
 				{/* Decks | Flashcard preview list wrapper */}
 				<div className="overflow-hidden flex grow">
 					{/* scrolling container for deck tiles list */}
-					<PreviewListContainer decks={decks} isDeckNotSelected={isDeckNotSelected} currentDeckIndex={currentDeckIndex} setCurrentDeckIndex={setCurrentDeckIndex} setShowAddNewDeckModal={setShowAddNewDeckModal} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
+					<PreviewListContainer isDeckNotSelected={isDeckNotSelected} currentDeckIndex={currentDeckIndex} setCurrentDeckIndex={setCurrentDeckIndex} setShowAddNewDeckModal={setShowAddNewDeckModal} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
 					<div className="overflow-hidden flex-1">
 						{/* left-side main-content header */}
 						<div className="h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33] ">

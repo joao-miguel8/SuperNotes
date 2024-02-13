@@ -5,24 +5,24 @@ import { IoArrowBackOutline, IoSearch } from "react-icons/io5";
 import { RxPencil2 } from "react-icons/rx";
 import DeckPreviewTile from "./DeckPreviewTile";
 import type { DeckType } from "../../types/DeckType";
+import { useDeckStore } from "../../zustand-store/useDeckStore";
 
 function PreviewListContainer({
 	isDeckNotSelected,
-	decks,
 	currentDeckIndex,
 	setCurrentDeckIndex,
 	setShowAddNewDeckModal,
 	selectAndDeselectChosenDeck,
 }: {
 	isDeckNotSelected: boolean;
-	decks: DeckType[];
 	currentDeckIndex: number;
 	setCurrentDeckIndex: (index: number) => void;
 	setShowAddNewDeckModal: (triggerModal: boolean) => void;
 	selectAndDeselectChosenDeck: (currentDeckIndex: number, index: number) => void;
 }) {
 	const [searchQuery, setSearchQuery] = useState("");
-
+	const decks = useDeckStore(state => state.decks);
+	console.log(decks);
 	const querySearchDeckList = decks.filter((deck: DeckType) => deck.name.includes(searchQuery));
 
 	return (
