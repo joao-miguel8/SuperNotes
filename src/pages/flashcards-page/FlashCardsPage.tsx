@@ -1,5 +1,5 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { DeckType } from "../../types/DeckType";
 import Header from "../../layouts/Header";
 import AddNewDeck from "../flashcards-page/AddNewDeck";
@@ -10,6 +10,7 @@ import FlashcardPanel from "./FlashcardPanel";
 function FlashCardsPage() {
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
+	const [chosenDeck, setChosenDeck] = useState<DeckType>();
 	const decks = useDeckStore(state => state.decks);
 	const updateDeck = useDeckStore(state => state.updateDeck);
 
@@ -32,13 +33,18 @@ function FlashCardsPage() {
 		}
 	}
 
-	const getChosenDeck = () => {
-		return decks.find((_, i) => {
-			return currentDeckIndex === i;
-		});
-	};
+	useEffect(() => {
+		setChosenDeck(
+			decks.find((_, i) => {
+				return currentDeckIndex === i;
+			})
+		);
 
-	const selectedDeck = getChosenDeck();
+		console.log("called");
+		console.log(chosenDeck);
+	}, [currentDeckIndex]);
+
+	console.log(chosenDeck);
 	const isDeckSelected = currentDeckIndex === -1;
 
 	return (
