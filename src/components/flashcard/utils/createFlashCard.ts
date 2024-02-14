@@ -1,9 +1,9 @@
 import type { FlashCardType } from "../../../types/FlashCardType";
 
-export const createFlashcard = (createNewFlashCardFn: Function) => {
+export const createFlashcard = () => {
 	const flashCardInitialData: FlashCardType = {
 		question: "",
 		answer: "",
 	};
-	createNewFlashCardFn(flashCardInitialData);
+	return flashCardInitialData;
 };

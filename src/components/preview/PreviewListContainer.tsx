@@ -5,7 +5,9 @@ import { IoArrowBackOutline, IoSearch } from "react-icons/io5";
 import { RxPencil2 } from "react-icons/rx";
 import DeckPreviewTile from "../deck/DeckPreviewTile";
 import type { DeckType } from "../../types/DeckType";
+import type { FlashCardType } from "../../types/FlashCardType";
 import { useDeckStore } from "../../services/zustand/useDeckStore";
+import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
 
 function PreviewListContainer({
 	isDeckNotSelected,
@@ -22,8 +24,10 @@ function PreviewListContainer({
 }) {
 	const [searchQuery, setSearchQuery] = useState("");
 	const decks = useDeckStore(state => state.decks);
-	console.log(decks);
+
 	const querySearchDeckList = decks.filter((deck: DeckType) => deck.name.includes(searchQuery));
+
+	const chosenDeck = currentDeckIndex !== -1 ? decks[currentDeckIndex] : null;
 
 	return (
 		<>
@@ -75,12 +79,11 @@ function PreviewListContainer({
 						})}
 					</ul>
 				) : (
-					<h2 className="text-white">test</h2>
-					// <ul className="mt-4 mx-4 flex flex-col gap-3">
-					// 	{getChosenDeck()?.flashcards?.map((flashcard: FlashCardType) => {
-					// <FlashcardPreviewTile />;
-					// 	})}
-					// </ul>
+					<ul className="mt-4 mx-4 flex flex-col gap-3">
+						{chosenDeck?.flashcards?.map((flashcard: FlashCardType) => {
+							return <FlashcardPreviewTile />;
+						})}
+					</ul>
 				)}
 			</div>
 		</>

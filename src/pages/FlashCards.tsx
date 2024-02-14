@@ -6,15 +6,20 @@ import AddNewDeck from "../components/deck/AddNewDeck";
 import PreviewListContainer from "../components/preview/PreviewListContainer";
 import { useDeckStore } from "../services/zustand/useDeckStore";
 import FlashcardPanel from "../components/flashcard/FlashcardPanel";
+import { createFlashcard } from "../components/flashcard/utils/createFlashCard";
 
 function FlashCards() {
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
-
 	const decks = useDeckStore(state => state.decks);
 	const updateDeck = useDeckStore(state => state.updateDeck);
-	const chosenDeck = useDeckStore(state => state.chosenDeck);
-	const getChosenDeck = useDeckStore(state => state.getChosenDeck);
+
+	const createNewFlashCard = useDeckStore(state => state.createFlashCard);
+
+	const handleCreateNewFlashCard = () => {
+		const initialFlashCardData = createFlashcard();
+		createNewFlashCard(initialFlashCardData);
+	};
 
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		updateDeck((state: any) => ({
@@ -35,11 +40,8 @@ function FlashCards() {
 		}
 	}
 
-	useEffect(() => {
-		getChosenDeck(currentDeckIndex);
-	}, [currentDeckIndex]);
-
 	const isDeckNotSelected = currentDeckIndex === -1;
+	const chosenDeck = currentDeckIndex !== -1 ? decks[currentDeckIndex] : null;
 
 	return (
 		<div className="h-screen">
