@@ -14,6 +14,7 @@ import DeckPreviewTile from "../deck/DeckPreviewTile";
 import PreviewSearchBar from "./PreviewSearchBar";
 import PreviewAddButton from "./PreviewAddButton";
 import PreviewDeckList from "./previewDeckList";
+import PreviewFlashCardsList from "./PreviewFlashCardsList";
 
 function PreviewListContainer({
 	isDeckNotSelected,
@@ -54,15 +55,7 @@ function PreviewListContainer({
 					{isDeckNotSelected ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
 				</div>
 				{/* decks list */}
-				{isDeckNotSelected ? (
-					<PreviewDeckList decks={querySearchDeckList} currentDeckIndex={currentDeckIndex} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
-				) : (
-					<ul className="mt-4 mx-4 flex flex-col gap-3">
-						{chosenDeck?.flashcards?.map((flashcard: FlashCardType) => (
-							<FlashcardPreviewTile flashCardData={flashcard} />
-						))}
-					</ul>
-				)}
+				{isDeckNotSelected ? <PreviewDeckList decks={querySearchDeckList} currentDeckIndex={currentDeckIndex} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} /> : <PreviewFlashCardsList chosenDeck={chosenDeck} />}
 			</div>
 		</>
 	);
