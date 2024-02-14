@@ -10,6 +10,7 @@ import { useDeckStore } from "../../services/zustand/useDeckStore";
 import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
 import { createFlashcard } from "../flashcard/utils/createFlashCard";
 import PreviewSearchBar from "./PreviewSearchBar";
+import PreviewAddButton from "./PreviewAddButton";
 
 function PreviewListContainer({
 	isDeckNotSelected,
@@ -49,19 +50,7 @@ function PreviewListContainer({
 							<IoArrowBackOutline size={"1.5rem"} color={"#ADB0B1"} />
 						</button>
 
-						{isDeckNotSelected ? (
-							<Tooltip arrowSize={8} hasArrow label="Add a new deck" aria-label="Add a new deck">
-								<button onClick={() => setShowAddNewDeckModal(true)}>
-									<Icon as={RxPencil2} color={"#ADB0B1"} boxSize={6} />
-								</button>
-							</Tooltip>
-						) : (
-							<Tooltip arrowSize={8} hasArrow label="Add a new flashcard" aria-label="Add a new flashcard">
-								<button onClick={() => handleCreateNewFlashCard()}>
-									<Icon as={RxPencil2} color={"#ADB0B1"} boxSize={6} />
-								</button>
-							</Tooltip>
-						)}
+						{isDeckNotSelected ? <PreviewAddButton type="Deck" onClick={() => setShowAddNewDeckModal(true)} /> : <PreviewAddButton type="Flashcard" onClick={() => handleCreateNewFlashCard()} />}
 					</div>
 					{/* Search bar container */}
 					{isDeckNotSelected ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
