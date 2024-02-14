@@ -4,7 +4,7 @@ import Header from "../layouts/Header";
 function Canvas() {
 	return (
 		<div className="h-screen flex flex-col">
-			<Header isSideNavClosed={false} setIsSideNavClosed={() => ""} />
+			<Header />
 			<div className="flex-1 h-full">
 				<CanvasPage />
 			</div>
