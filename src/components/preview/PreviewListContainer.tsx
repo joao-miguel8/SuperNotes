@@ -5,7 +5,7 @@ import { IoArrowBackOutline, IoSearch } from "react-icons/io5";
 import { RxPencil2 } from "react-icons/rx";
 import DeckPreviewTile from "../deck/DeckPreviewTile";
 import type { DeckType } from "../../types/DeckType";
-import { useDeckStore } from "../../zustand-store/useDeckStore";
+import { useDeckStore } from "../../services/zustand/useDeckStore";
 
 function PreviewListContainer({
 	isDeckNotSelected,

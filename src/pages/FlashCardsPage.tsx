@@ -4,7 +4,7 @@ import type { DeckType } from "../types/DeckType";
 import Header from "../layouts/Header";
 import AddNewDeck from "../components/deck/AddNewDeck";
 import PreviewListContainer from "../components/preview/PreviewListContainer";
-import { useDeckStore } from "../zustand-store/useDeckStore";
+import { useDeckStore } from "../services/zustand/useDeckStore";
 import FlashcardPanel from "../components/flashcard/FlashcardPanel";
 import type { FlashCardType } from "../types/FlashCardType";
 

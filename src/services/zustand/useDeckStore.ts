@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { DeckType } from "../types/DeckType";
-import { FlashCardType } from "../types/FlashCardType";
+import { DeckType } from "../../types/DeckType";
+import { FlashCardType } from "../../types/FlashCardType";
 
 type State = {
 	decks: DeckType[];
