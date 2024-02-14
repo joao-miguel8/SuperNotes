@@ -1,4 +1,4 @@
-import { DeckType } from "../../types/DeckType";
+import { DeckType } from "../../../../types/DeckType";
 import DeckPreviewTile from "../deck/DeckPreviewTile";
 
 function PreviewDeckList({ decks, currentDeckIndex, selectAndDeselectChosenDeck }: { decks: DeckType[]; currentDeckIndex: number; selectAndDeselectChosenDeck: (chosenIndex: number, index: number) => void }) {

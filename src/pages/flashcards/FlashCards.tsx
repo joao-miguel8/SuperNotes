@@ -1,11 +1,11 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
-import type { DeckType } from "../types/DeckType";
-import Header from "../layouts/Header";
-import { useDeckStore } from "../services/zustand/useDeckStore";
-import FlashcardPanel from "../components/flashcard/FlashcardPanel";
-import PreviewContainer from "../components/preview/PreviewContainer";
-import CreateNewDeckModal from "../components/deck/CreateNewDeckModal";
+import type { DeckType } from "../../types/DeckType";
+import Header from "../../layouts/Header";
+import { useDeckStore } from "../../services/zustand/useDeckStore";
+import FlashcardPanel from "./components/flashcard/FlashcardPanel";
+import PreviewContainer from "./components/preview/PreviewContainer";
+import CreateNewDeckModal from "./components/deck/CreateNewDeckModal";
 
 function FlashCards() {
 	// state

@@ -1,4 +1,4 @@
-import { DeckType } from "../../types/DeckType";
+import { DeckType } from "../../../../types/DeckType";
 
 function FlashcardPanel({ chosenDeckData }: { chosenDeckData: DeckType | null }) {
 	const { flashcards } = chosenDeckData ?? { flashcards: [] };

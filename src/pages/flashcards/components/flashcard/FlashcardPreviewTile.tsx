@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import type { FlashCardType } from "../../types/FlashCardType";
+import type { FlashCardType } from "../../../../types/FlashCardType";
 
 function FlashcardPreviewTile({ flashCardData }: { flashCardData: FlashCardType }) {
 	const { front } = flashCardData ?? {};

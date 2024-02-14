@@ -1,5 +1,5 @@
-import { DeckType } from "../../types/DeckType";
-import { FlashCardType } from "../../types/FlashCardType";
+import { DeckType } from "../../../../types/DeckType";
+import { FlashCardType } from "../../../../types/FlashCardType";
 import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
 
 function PreviewFlashCardsList({ chosenDeck }: { chosenDeck: DeckType | null }) {

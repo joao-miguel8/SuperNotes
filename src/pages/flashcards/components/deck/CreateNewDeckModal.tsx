@@ -1,7 +1,7 @@
 import { Input } from "@chakra-ui/react";
 import { FormEvent, useState } from "react";
-import type { DeckType } from "../../types/DeckType";
-import { useDeckStore } from "../../services/zustand/useDeckStore";
+import type { DeckType } from "../../../../types/DeckType";
+import { useDeckStore } from "../../../../services/zustand/useDeckStore";
 
 function CreateNewDeckModal({ showAddNewDeckModal, setShowAddNewDeckModal }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void }) {
 	const createNewDeck = useDeckStore(state => state.createNewDeck);

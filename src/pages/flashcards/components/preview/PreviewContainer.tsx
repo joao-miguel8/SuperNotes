@@ -3,10 +3,10 @@ import { useState } from "react";
 import classNames from "classnames";
 import { IoArrowBackOutline } from "react-icons/io5";
 // hooks
-import { useDeckStore } from "../../services/zustand/useDeckStore";
+import { useDeckStore } from "../../../../services/zustand/useDeckStore";
 import { useCreateFlashcard } from "../flashcard/hooks/useCreateFlashCard";
 // types
-import type { DeckType } from "../../types/DeckType";
+import type { DeckType } from "../../../../types/DeckType";
 // Components
 import PreviewSearchBar from "./PreviewSearchBar";
 import PreviewAddButton from "./PreviewAddButton";
