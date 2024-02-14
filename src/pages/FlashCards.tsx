@@ -3,9 +3,9 @@ import { useState } from "react";
 import type { DeckType } from "../types/DeckType";
 import Header from "../layouts/Header";
 import AddNewDeck from "../components/deck/AddNewDeck";
-import PreviewListContainer from "../components/preview/PreviewListContainer";
 import { useDeckStore } from "../services/zustand/useDeckStore";
 import FlashcardPanel from "../components/flashcard/FlashcardPanel";
+import PreviewContainer from "../components/preview/PreviewContainer";
 
 function FlashCards() {
 	// state
@@ -48,7 +48,7 @@ function FlashCards() {
 				{/* Decks | Flashcard preview list wrapper */}
 				<div className="overflow-hidden flex grow">
 					{/* scrolling container for deck tiles list */}
-					<PreviewListContainer isDeckNotSelected={isDeckNotSelected} currentDeckIndex={currentDeckIndex} setCurrentDeckIndex={setCurrentDeckIndex} setShowAddNewDeckModal={setShowAddNewDeckModal} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
+					<PreviewContainer isDeckNotSelected={isDeckNotSelected} currentDeckIndex={currentDeckIndex} setCurrentDeckIndex={setCurrentDeckIndex} setShowAddNewDeckModal={setShowAddNewDeckModal} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
 					<div className="overflow-hidden flex-1">
 						{/* left-side main-content header */}
 						<div className="h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33] ">

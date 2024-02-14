@@ -16,7 +16,7 @@ import PreviewAddButton from "./PreviewAddButton";
 import PreviewDeckList from "./previewDeckList";
 import PreviewFlashCardsList from "./PreviewFlashCardsList";
 
-function PreviewListContainer({
+function PreviewContainer({
 	isDeckNotSelected,
 	currentDeckIndex,
 	setCurrentDeckIndex,
@@ -61,4 +61,4 @@ function PreviewListContainer({
 	);
 }
 
-export default PreviewListContainer;
+export default PreviewContainer;
