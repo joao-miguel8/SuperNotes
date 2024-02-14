@@ -2,10 +2,10 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
 import type { DeckType } from "../types/DeckType";
 import Header from "../layouts/Header";
-import AddNewDeck from "../components/deck/AddNewDeck";
 import { useDeckStore } from "../services/zustand/useDeckStore";
 import FlashcardPanel from "../components/flashcard/FlashcardPanel";
 import PreviewContainer from "../components/preview/PreviewContainer";
+import CreateNewDeckModal from "../components/deck/CreateNewDeckModal";
 
 function FlashCards() {
 	// state
@@ -32,7 +32,7 @@ function FlashCards() {
 
 	return (
 		<div className="h-screen">
-			<AddNewDeck showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} />
+			<CreateNewDeckModal showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} />
 			{/* Header | PreviewListContainer | left side container content*/}
 			<div className="h-full flex flex-col">
 				{/* page header | menu btn */}
