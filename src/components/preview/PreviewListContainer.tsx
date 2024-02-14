@@ -3,7 +3,7 @@ import { Icon, Tooltip } from "@chakra-ui/react";
 import classNames from "classnames";
 import { IoArrowBackOutline, IoSearch } from "react-icons/io5";
 import { RxPencil2 } from "react-icons/rx";
-import DeckPreviewTile from "./DeckPreviewTile";
+import DeckPreviewTile from "../deck/DeckPreviewTile";
 import type { DeckType } from "../../types/DeckType";
 import { useDeckStore } from "../../zustand-store/useDeckStore";
 
