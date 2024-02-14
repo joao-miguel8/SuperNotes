@@ -1,12 +1,12 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useEffect, useState } from "react";
-import type { DeckType } from "../../types/DeckType";
-import Header from "../../layouts/Header";
-import AddNewDeck from "../../components/deck/AddNewDeck";
-import PreviewListContainer from "../../components/preview/PreviewListContainer";
-import { useDeckStore } from "../../zustand-store/useDeckStore";
-import FlashcardPanel from "../../components/flashcard/FlashcardPanel";
-import type { FlashCardType } from "../../types/FlashCardType";
+import type { DeckType } from "../types/DeckType";
+import Header from "../layouts/Header";
+import AddNewDeck from "../components/deck/AddNewDeck";
+import PreviewListContainer from "../components/preview/PreviewListContainer";
+import { useDeckStore } from "../zustand-store/useDeckStore";
+import FlashcardPanel from "../components/flashcard/FlashcardPanel";
+import type { FlashCardType } from "../types/FlashCardType";
 
 function FlashCardsPage() {
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);

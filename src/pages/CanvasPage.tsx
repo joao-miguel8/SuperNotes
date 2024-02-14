@@ -1,5 +1,5 @@
-import Canvas from "./Canvas";
-import Header from "../../layouts/Header";
+import Canvas from "../components/canvas/Canvas";
+import Header from "../layouts/Header";
 
 function CanvasPage() {
 	return (
