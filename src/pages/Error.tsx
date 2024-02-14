@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function ErrorPage() {
+function Error() {
 	return (
 		<div className="p-20 bg-[#171C1F] h-screen">
 			<div className="h-80 shadow-md border border-white rounded-md">
@@ -15,4 +15,4 @@ function ErrorPage() {
 	);
 }
 
-export default ErrorPage;
+export default Error;

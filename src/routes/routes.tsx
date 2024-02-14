@@ -1,9 +1,9 @@
 import { Suspense, lazy } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-const FlashCardsPage = lazy(() => import("../pages/FlashCardsPage"));
-const CanvasPage = lazy(() => import("../pages/CanvasPage"));
-const ErrorPage = lazy(() => import("../pages/ErrorPage"));
+const FlashCardsPage = lazy(() => import("../pages/FlashCards"));
+const CanvasPage = lazy(() => import("../pages/Canvas"));
+const ErrorPage = lazy(() => import("../pages/Error"));
 
 export const router = createBrowserRouter([
 	{

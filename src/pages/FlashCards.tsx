@@ -7,10 +7,11 @@ import PreviewListContainer from "../components/preview/PreviewListContainer";
 import { useDeckStore } from "../services/zustand/useDeckStore";
 import FlashcardPanel from "../components/flashcard/FlashcardPanel";
 
-function FlashCardsPage() {
+function FlashCards() {
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
 	const [chosenDeck, setChosenDeck] = useState<DeckType>();
+
 	const decks = useDeckStore(state => state.decks);
 	const updateDeck = useDeckStore(state => state.updateDeck);
 
@@ -87,4 +88,4 @@ function FlashCardsPage() {
 	);
 }
 
-export default FlashCardsPage;
+export default FlashCards;
