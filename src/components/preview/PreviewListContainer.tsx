@@ -13,6 +13,7 @@ import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
 import DeckPreviewTile from "../deck/DeckPreviewTile";
 import PreviewSearchBar from "./PreviewSearchBar";
 import PreviewAddButton from "./PreviewAddButton";
+import PreviewDeckList from "./previewDeckList";
 
 function PreviewListContainer({
 	isDeckNotSelected,
@@ -54,20 +55,12 @@ function PreviewListContainer({
 				</div>
 				{/* decks list */}
 				{isDeckNotSelected ? (
-					<ul className="mt-4 mx-4 flex flex-col gap-2">
-						{querySearchDeckList.map((deck, index) => {
-							return (
-								<li onClick={() => selectAndDeselectChosenDeck(currentDeckIndex, index)} key={deck.name}>
-									<DeckPreviewTile deckPreviewData={deck} currentDeckIndex={currentDeckIndex} decks={decks} />
-								</li>
-							);
-						})}
-					</ul>
+					<PreviewDeckList decks={querySearchDeckList} currentDeckIndex={currentDeckIndex} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
 				) : (
 					<ul className="mt-4 mx-4 flex flex-col gap-3">
-						{chosenDeck?.flashcards?.map((flashcard: FlashCardType) => {
-							return <FlashcardPreviewTile flashCardData={flashcard} />;
-						})}
+						{chosenDeck?.flashcards?.map((flashcard: FlashCardType) => (
+							<FlashcardPreviewTile flashCardData={flashcard} />
+						))}
 					</ul>
 				)}
 			</div>
