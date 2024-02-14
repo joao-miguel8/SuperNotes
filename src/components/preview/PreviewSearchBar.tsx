@@ -1,7 +1,7 @@
 import { Icon } from "@chakra-ui/react";
 import { IoSearch } from "react-icons/io5";
 
-const PreviewSearchBar = ({ searchQuery, setSearchQuery, placeHolder }) => {
+const PreviewSearchBar = ({ searchQuery, setSearchQuery, placeHolder }: { searchQuery: string; setSearchQuery: (val: string) => void; placeHolder: string }) => {
 	return (
 		<div className="flex items-center bg-[#1A1F23]">
 			<Icon as={IoSearch} boxSize={6} className="ml-4" color={"#6B6C70"} />
