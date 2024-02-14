@@ -1,4 +1,8 @@
-function FlashcardPanel() {
+import { DeckType } from "../../types/DeckType";
+
+function FlashcardPanel({ chosenDeckData }: { chosenDeckData: DeckType | null }) {
+	const { flashcards } = chosenDeckData ?? { flashcards: [] };
+
 	return (
 		<form className="py-10 px-2 mx-auto mb-4 flex gap-8 items-center flex-col lg:flex-row lg:justify-center">
 			<div className="w-full max-w-[500px] lg:w-1/2 bg-white rounded-lg overflow-clip">

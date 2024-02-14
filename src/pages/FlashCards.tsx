@@ -10,10 +10,11 @@ import FlashcardPanel from "../components/flashcard/FlashcardPanel";
 function FlashCards() {
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
-	const [chosenDeck, setChosenDeck] = useState<DeckType>();
 
 	const decks = useDeckStore(state => state.decks);
 	const updateDeck = useDeckStore(state => state.updateDeck);
+	const chosenDeck = useDeckStore(state => state.chosenDeck);
+	const getChosenDeck = useDeckStore(state => state.getChosenDeck);
 
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		updateDeck((state: any) => ({
@@ -35,11 +36,7 @@ function FlashCards() {
 	}
 
 	useEffect(() => {
-		setChosenDeck(
-			decks.find((_, i) => {
-				return currentDeckIndex === i;
-			})
-		);
+		getChosenDeck(currentDeckIndex);
 	}, [currentDeckIndex]);
 
 	const isDeckNotSelected = currentDeckIndex === -1;
@@ -79,7 +76,7 @@ function FlashCards() {
 									</button>
 								</div>
 							)}
-							{!isDeckNotSelected && <FlashcardPanel />}
+							{!isDeckNotSelected && <FlashcardPanel chosenDeckData={chosenDeck} />}
 						</div>
 					</div>
 				</div>
