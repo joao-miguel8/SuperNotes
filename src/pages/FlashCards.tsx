@@ -1,12 +1,11 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { DeckType } from "../types/DeckType";
 import Header from "../layouts/Header";
 import AddNewDeck from "../components/deck/AddNewDeck";
 import PreviewListContainer from "../components/preview/PreviewListContainer";
 import { useDeckStore } from "../services/zustand/useDeckStore";
 import FlashcardPanel from "../components/flashcard/FlashcardPanel";
-import { createFlashcard } from "../components/flashcard/utils/createFlashCard";
 
 function FlashCards() {
 	// state

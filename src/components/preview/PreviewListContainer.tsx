@@ -1,14 +1,16 @@
+// 3rd party
 import { useState } from "react";
-import { Icon, Tooltip } from "@chakra-ui/react";
 import classNames from "classnames";
 import { IoArrowBackOutline } from "react-icons/io5";
-import { RxPencil2 } from "react-icons/rx";
-import DeckPreviewTile from "../deck/DeckPreviewTile";
+// hooks
+import { useDeckStore } from "../../services/zustand/useDeckStore";
+import { useCreateFlashcard } from "../flashcard/hooks/useCreateFlashCard";
+// types
 import type { DeckType } from "../../types/DeckType";
 import type { FlashCardType } from "../../types/FlashCardType";
-import { useDeckStore } from "../../services/zustand/useDeckStore";
 import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
-import { createFlashcard } from "../flashcard/utils/createFlashCard";
+// Components
+import DeckPreviewTile from "../deck/DeckPreviewTile";
 import PreviewSearchBar from "./PreviewSearchBar";
 import PreviewAddButton from "./PreviewAddButton";
 
@@ -28,12 +30,7 @@ function PreviewListContainer({
 	const [searchQuery, setSearchQuery] = useState("");
 	const decks = useDeckStore(state => state.decks);
 
-	const createNewFlashCard = useDeckStore(state => state.createFlashCard);
-
-	const handleCreateNewFlashCard = () => {
-		const initialFlashCardData = createFlashcard();
-		createNewFlashCard(initialFlashCardData);
-	};
+	const createFlashCard = useCreateFlashcard();
 
 	const querySearchDeckList = decks.filter((deck: DeckType) => deck.name.includes(searchQuery));
 
@@ -50,7 +47,7 @@ function PreviewListContainer({
 							<IoArrowBackOutline size={"1.5rem"} color={"#ADB0B1"} />
 						</button>
 
-						{isDeckNotSelected ? <PreviewAddButton type="Deck" onClick={() => setShowAddNewDeckModal(true)} /> : <PreviewAddButton type="Flashcard" onClick={() => handleCreateNewFlashCard()} />}
+						{isDeckNotSelected ? <PreviewAddButton type="Deck" onClick={() => setShowAddNewDeckModal(true)} /> : <PreviewAddButton type="Flashcard" onClick={() => createFlashCard()} />}
 					</div>
 					{/* Search bar container */}
 					{isDeckNotSelected ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
