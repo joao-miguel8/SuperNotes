@@ -9,6 +9,7 @@ import type { FlashCardType } from "../../types/FlashCardType";
 import { useDeckStore } from "../../services/zustand/useDeckStore";
 import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
 import { createFlashcard } from "../flashcard/utils/createFlashCard";
+import PreviewSearchBar from "./PreviewSearchBar";
 
 function PreviewListContainer({
 	isDeckNotSelected,
@@ -63,17 +64,7 @@ function PreviewListContainer({
 						)}
 					</div>
 					{/* Search bar container */}
-					{isDeckNotSelected ? (
-						<div className="flex items-center bg-[#1A1F23]">
-							<Icon as={IoSearch} boxSize={6} className="ml-4" color={"#6B6C70"} />
-							<input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search Decks" type="text" className="py-4 px-2 w-full text-white bg-transparent outline-none placeholder:text-[#6B6C70]" />
-						</div>
-					) : (
-						<div className="flex items-center bg-[#1A1F23]">
-							<Icon as={IoSearch} boxSize={6} className="ml-4" color={"#6B6C70"} />
-							<input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search Flashcards" type="text" className="py-4 px-2 w-full text-white bg-transparent outline-none placeholder:text-[#6B6C70]" />
-						</div>
-					)}
+					{isDeckNotSelected ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
 				</div>
 				{/* decks list */}
 				{isDeckNotSelected ? (
