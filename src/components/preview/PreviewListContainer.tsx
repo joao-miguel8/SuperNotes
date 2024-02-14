@@ -8,6 +8,7 @@ import type { DeckType } from "../../types/DeckType";
 import type { FlashCardType } from "../../types/FlashCardType";
 import { useDeckStore } from "../../services/zustand/useDeckStore";
 import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
+import { createFlashcard } from "../flashcard/utils/createFlashCard";
 
 function PreviewListContainer({
 	isDeckNotSelected,
@@ -24,6 +25,13 @@ function PreviewListContainer({
 }) {
 	const [searchQuery, setSearchQuery] = useState("");
 	const decks = useDeckStore(state => state.decks);
+
+	const createNewFlashCard = useDeckStore(state => state.createFlashCard);
+
+	const handleCreateNewFlashCard = () => {
+		const initialFlashCardData = createFlashcard();
+		createNewFlashCard(initialFlashCardData);
+	};
 
 	const querySearchDeckList = decks.filter((deck: DeckType) => deck.name.includes(searchQuery));
 
@@ -48,7 +56,7 @@ function PreviewListContainer({
 							</Tooltip>
 						) : (
 							<Tooltip arrowSize={8} hasArrow label="Add a new flashcard" aria-label="Add a new flashcard">
-								<button onClick={() => setShowAddNewDeckModal(true)}>
+								<button onClick={() => handleCreateNewFlashCard()}>
 									<Icon as={RxPencil2} color={"#ADB0B1"} boxSize={6} />
 								</button>
 							</Tooltip>

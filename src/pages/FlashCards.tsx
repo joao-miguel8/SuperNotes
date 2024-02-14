@@ -9,17 +9,13 @@ import FlashcardPanel from "../components/flashcard/FlashcardPanel";
 import { createFlashcard } from "../components/flashcard/utils/createFlashCard";
 
 function FlashCards() {
+	// state
 	const [currentDeckIndex, setCurrentDeckIndex] = useState(-1);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
+
+	// Store
 	const decks = useDeckStore(state => state.decks);
 	const updateDeck = useDeckStore(state => state.updateDeck);
-
-	const createNewFlashCard = useDeckStore(state => state.createFlashCard);
-
-	const handleCreateNewFlashCard = () => {
-		const initialFlashCardData = createFlashcard();
-		createNewFlashCard(initialFlashCardData);
-	};
 
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		updateDeck((state: any) => ({
