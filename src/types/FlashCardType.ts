@@ -1,7 +1,7 @@
 export type DifficultyRatingType = "easy" | "medium" | "hard";
 
 export type FlashCardType = {
-	question: string | object;
-	answer: string | object;
+	front: string;
+	back: string;
 	chosenDifficulty?: DifficultyRatingType;
 };

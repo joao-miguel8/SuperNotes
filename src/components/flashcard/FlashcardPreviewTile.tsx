@@ -1,9 +1,13 @@
 import classNames from "classnames";
+import type { FlashCardType } from "../../types/FlashCardType";
 
-function FlashcardPreviewTile() {
+function FlashcardPreviewTile({ flashCardData }: { flashCardData: FlashCardType }) {
+	const { front } = flashCardData ?? {};
+
 	return (
-		<div className={classNames("group px-4 p-2 rounded-lg hover:bg-[#353E43]", "bg-[#fff]")}>
-			<h4 className="text-center text-16 font-semibold line-clamp-2 text-[#1A1F23] group-hover:text-white">test card Lorem ipsum dolor sit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium, maxime?</h4>
+		<div className={classNames("group px-4 p-2 rounded-lg hover:bg-[#dfdfdf]", "bg-[#fff] duration-150")}>
+			<h3 className="w-fit mx-auto text-12 font-semibold italic text-[#1A1F23]">Question:</h3>
+			<input value={front} type="text" className="w-full text-center text-16 font-regular line-clamp-2 bg-transparent outline-none text-[#1A1F23]" />
 		</div>
 	);
 }
