@@ -27,14 +27,6 @@ function FlashCards() {
 		}));
 	};
 
-	function selectAndDeselectChosenDeck(chosenDeckIndex: number, index: number) {
-		if (chosenDeckIndex !== index) {
-			setCurrentDeckIndex(index);
-		} else if (chosenDeckIndex === index) {
-			setCurrentDeckIndex(-1);
-		}
-	}
-
 	const isDeckNotSelected = currentDeckIndex === -1;
 	const chosenDeck = currentDeckIndex !== -1 ? decks[currentDeckIndex] : null;
 
@@ -48,7 +40,7 @@ function FlashCards() {
 				{/* Decks | Flashcard preview list wrapper */}
 				<div className="overflow-hidden flex grow">
 					{/* scrolling container for deck tiles list */}
-					<PreviewContainer isDeckNotSelected={isDeckNotSelected} currentDeckIndex={currentDeckIndex} setCurrentDeckIndex={setCurrentDeckIndex} setShowAddNewDeckModal={setShowAddNewDeckModal} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
+					<PreviewContainer isDeckNotSelected={isDeckNotSelected} currentDeckIndex={currentDeckIndex} setCurrentDeckIndex={setCurrentDeckIndex} setShowAddNewDeckModal={setShowAddNewDeckModal} />
 					<div className="overflow-hidden flex-1">
 						{/* left-side main-content header */}
 						<div className="h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33] ">

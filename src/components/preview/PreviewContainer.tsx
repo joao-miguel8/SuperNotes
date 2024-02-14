@@ -7,34 +7,27 @@ import { useDeckStore } from "../../services/zustand/useDeckStore";
 import { useCreateFlashcard } from "../flashcard/hooks/useCreateFlashCard";
 // types
 import type { DeckType } from "../../types/DeckType";
-import type { FlashCardType } from "../../types/FlashCardType";
-import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
 // Components
-import DeckPreviewTile from "../deck/DeckPreviewTile";
 import PreviewSearchBar from "./PreviewSearchBar";
 import PreviewAddButton from "./PreviewAddButton";
 import PreviewDeckList from "./previewDeckList";
 import PreviewFlashCardsList from "./PreviewFlashCardsList";
 
-function PreviewContainer({
-	isDeckNotSelected,
-	currentDeckIndex,
-	setCurrentDeckIndex,
-	setShowAddNewDeckModal,
-	selectAndDeselectChosenDeck,
-}: {
-	isDeckNotSelected: boolean;
-	currentDeckIndex: number;
-	setCurrentDeckIndex: (index: number) => void;
-	setShowAddNewDeckModal: (triggerModal: boolean) => void;
-	selectAndDeselectChosenDeck: (currentDeckIndex: number, index: number) => void;
-}) {
+function PreviewContainer({ isDeckNotSelected, currentDeckIndex, setCurrentDeckIndex, setShowAddNewDeckModal }: { isDeckNotSelected: boolean; currentDeckIndex: number; setCurrentDeckIndex: (index: number) => void; setShowAddNewDeckModal: (triggerModal: boolean) => void }) {
 	const [searchQuery, setSearchQuery] = useState("");
 	const decks = useDeckStore(state => state.decks);
 
 	const createFlashCard = useCreateFlashcard();
 
 	const querySearchDeckList = decks.filter((deck: DeckType) => deck.name.includes(searchQuery));
+
+	function selectAndDeselectChosenDeck(chosenDeckIndex: number, index: number) {
+		if (chosenDeckIndex !== index) {
+			setCurrentDeckIndex(index);
+		} else if (chosenDeckIndex === index) {
+			setCurrentDeckIndex(-1);
+		}
+	}
 
 	const chosenDeck = currentDeckIndex !== -1 ? decks[currentDeckIndex] : null;
 
