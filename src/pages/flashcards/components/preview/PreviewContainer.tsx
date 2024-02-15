@@ -36,18 +36,19 @@ function PreviewContainer({ isDeckNotSelected, currentDeckIndex, setCurrentDeckI
 			<div className="pb-6 w-[20rem] shrink-0 scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
 				{/* header + search bar wrapper */}
 				<div className="sticky top-0">
-					{/* header section (title + add deck btn) */}
+					{/* header section (title & go back btn & Create btn) */}
 					<div className="p-[1rem] flex items-center justify-between bg-[#171C1F] border-b-[1.6px] border-[#292F33]">
+						{/* Go back btn */}
 						<button onClick={() => setCurrentDeckIndex(-1)} className={classNames("flex items-center", isDeckNotSelected && "invisible")}>
 							<IoArrowBackOutline size={"1.5rem"} color={"#ADB0B1"} />
 						</button>
-
+						{/* Create Deck btn & Create Flashcard btn */}
 						{isDeckNotSelected ? <PreviewAddButton type="Deck" onClick={() => setShowAddNewDeckModal(true)} /> : <PreviewAddButton type="Flashcard" onClick={() => createFlashCard()} />}
 					</div>
-					{/* Search bar container */}
+					{/* Search bar */}
 					{isDeckNotSelected ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
 				</div>
-				{/* decks list */}
+				{/* decks & flashcards list */}
 				{isDeckNotSelected ? <PreviewDeckList decks={querySearchDeckList} currentDeckIndex={currentDeckIndex} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} /> : <PreviewFlashCardsList chosenDeck={chosenDeck} />}
 			</div>
 		</>
