@@ -1,8 +1,10 @@
 import { DeckType } from "@/types/DeckType";
 import { FlashCardType } from "@/types/FlashCardType";
 
-function FlashcardPanel({ chosenDeckData }: { chosenDeckData: DeckType | null }) {
+function FlashcardPanel({ currentFlashCardIndex, chosenDeckData }: { currentFlashCardIndex: number; chosenDeckData: DeckType | null }) {
 	const { flashcards }: { flashcards: FlashCardType[] } = chosenDeckData ?? { flashcards: [] };
+
+	const chosenFlashCard = flashcards[currentFlashCardIndex];
 
 	return (
 		<form className="py-10 px-2 mx-auto mb-4 flex gap-8 items-center flex-col lg:flex-row lg:justify-center">

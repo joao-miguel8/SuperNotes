@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import type { DeckType } from "../types/DeckType";
+import type { DeckType } from "@/types/DeckType";
 
 function DeckPreviewTile({ deckPreviewData, currentDeckIndex, decks }: { deckPreviewData: DeckType; currentDeckIndex: number; decks: DeckType[] }) {
 	const { name, description } = deckPreviewData ?? {};
