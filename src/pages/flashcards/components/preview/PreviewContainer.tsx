@@ -10,7 +10,7 @@ import type { DeckType } from "../../../../types/DeckType";
 // Components
 import PreviewSearchBar from "./PreviewSearchBar";
 import PreviewAddButton from "./PreviewAddButton";
-import PreviewDeckList from "./previewDeckList";
+import PreviewDeckList from "./PreviewDeckList";
 import PreviewFlashCardsList from "./PreviewFlashCardsList";
 
 function PreviewContainer({ isDeckNotSelected, currentDeckIndex, setCurrentDeckIndex, setShowAddNewDeckModal }: { isDeckNotSelected: boolean; currentDeckIndex: number; setCurrentDeckIndex: (index: number) => void; setShowAddNewDeckModal: (triggerModal: boolean) => void }) {
