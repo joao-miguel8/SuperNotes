@@ -11,7 +11,7 @@ import type { DeckType } from "@/types/DeckType";
 import PreviewSearchBar from "@/pages/flashcards/components/preview/PreviewSearchBar";
 import PreviewAddButton from "@/pages/flashcards/components/preview/PreviewAddButton";
 import PreviewDeckList from "@/pages/flashcards/components/preview/PreviewDeckList";
-import PreviewFlashCardsList from "@/pages/flashcards/components/preview/PreviewDeckList";
+import PreviewFlashCardsList from "@/pages/flashcards/components/preview/PreviewFlashCardsList";
 
 function PreviewContainer({
 	currentFlashCardIndex,
