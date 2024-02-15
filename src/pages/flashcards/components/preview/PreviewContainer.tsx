@@ -3,15 +3,15 @@ import { useState } from "react";
 import classNames from "classnames";
 import { IoArrowBackOutline } from "react-icons/io5";
 // hooks
-import { useDeckStore } from "../../../../services/zustand/useDeckStore";
-import { useCreateFlashcard } from "../flashcard/hooks/useCreateFlashCard";
+import { useDeckStore } from "@/services/zustand/useDeckStore";
+import { useCreateFlashcard } from "@/pages/flashcards/components/flashcard/hooks/useCreateFlashCard";
 // types
-import type { DeckType } from "../../../../types/DeckType";
+import type { DeckType } from "@/types/DeckType";
 // Components
-import PreviewSearchBar from "./PreviewSearchBar";
-import PreviewAddButton from "./PreviewAddButton";
-import PreviewDeckList from "./PreviewDeckList";
-import PreviewFlashCardsList from "./PreviewFlashCardsList";
+import PreviewSearchBar from "@/pages/flashcards/components/preview/PreviewSearchBar";
+import PreviewAddButton from "@/pages/flashcards/components/preview/PreviewAddButton";
+import PreviewDeckList from "@/pages/flashcards/components/preview/PreviewDeckList";
+import PreviewFlashCardsList from "@/pages/flashcards/components/preview/PreviewDeckList";
 
 function PreviewContainer({
 	currentFlashCardIndex,
