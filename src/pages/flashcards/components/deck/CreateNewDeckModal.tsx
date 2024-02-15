@@ -5,8 +5,6 @@ import { useDeckStore } from "@/services/zustand/useDeckStore";
 
 function CreateNewDeckModal({ showAddNewDeckModal, setShowAddNewDeckModal }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void }) {
 	const createNewDeck = useDeckStore(state => state.createNewDeck);
-	//  setDecks;
-	// setDecks: Dispatch<React.SetStateAction<DeckType[]>>;
 	const [newDeckFormData, setNewDeckFormData] = useState<DeckType>({
 		name: "",
 		description: "",
@@ -18,7 +16,6 @@ function CreateNewDeckModal({ showAddNewDeckModal, setShowAddNewDeckModal }: { s
 
 	const handleAddNewDeckSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		// setDecks((prevBoards: DeckType[]) => [...prevBoards, newDeckFormData]);
 		createNewDeck(newDeckFormData);
 		setNewDeckFormData({
 			name: "",
