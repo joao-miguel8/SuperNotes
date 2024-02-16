@@ -1,10 +1,8 @@
 import { DeckType } from "@/types/DeckType";
 import { FlashCardType } from "@/types/FlashCardType";
 
-function FlashcardPanel({ currentFlashCardIndex, chosenDeckData }: { currentFlashCardIndex: number; chosenDeckData: DeckType | null }) {
+function FlashcardPanel({ handleUpdateFrontCardVal, currentFlashCardIndex, chosenDeckData }: { handleUpdateFrontCardVal: (strVal: string) => void; currentFlashCardIndex: number; chosenDeckData: DeckType | null }) {
 	const { flashcards }: { flashcards: FlashCardType[] } = chosenDeckData ?? { flashcards: [] };
-
-	const chosenFlashCard = flashcards[currentFlashCardIndex];
 
 	return (
 		<form className="py-10 px-2 mx-auto mb-4 flex gap-8 items-center flex-col lg:flex-row lg:justify-center">
@@ -13,7 +11,7 @@ function FlashcardPanel({ currentFlashCardIndex, chosenDeckData }: { currentFlas
 				<span className="py-2 w-full inline-block text-14 text-center uppercase italic font-bold text-[#171C1F] bg-white border-b">front</span>
 				{/* flash card text content container*/}
 				<div className="mx-auto w-full max-h-[450px] h-60 overflow-y-auto text-center overscroll-contain scrollbar-none">
-					<textarea className="py-4 px-2 inline overflow-auto h-full w-full text-20 text-center scrollbar-none outline-none resize-none" />
+					<textarea value={flashcards[currentFlashCardIndex]?.front} onChange={e => handleUpdateFrontCardVal(e.target.value)} name="front" id="front" className="py-4 px-2 inline overflow-auto h-full w-full text-20 text-center scrollbar-none outline-none resize-none" />
 				</div>
 			</div>
 
@@ -22,7 +20,7 @@ function FlashcardPanel({ currentFlashCardIndex, chosenDeckData }: { currentFlas
 				<span className="py-2 w-full inline-block text-14 text-center uppercase italic font-bold text-[#171C1F] bg-white border-b">back</span>
 				{/* flash card text content container*/}
 				<div className="mx-auto w-full max-h-[450px] h-60 text-center overflow-y-auto overscroll-contain scrollbar-none">
-					<textarea className="py-4 px-2 inline overflow-auto h-full w-full text-20 text-center outline-none scrollbar-none resize-none" />
+					<textarea name="back" id="back" className="py-4 px-2 inline overflow-auto h-full w-full text-20 text-center outline-none scrollbar-none resize-none" />
 				</div>
 			</div>
 		</form>

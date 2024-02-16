@@ -6,8 +6,8 @@ function PreviewFlashCardsList({ handleSelectAndDeselectChosenFlashCard, current
 	return (
 		<ul className="mt-4 mx-4 flex flex-col gap-3">
 			{chosenDeck?.flashcards?.map((flashcard: FlashCardType, index) => (
-				<li key={flashcard.front} onClick={() => handleSelectAndDeselectChosenFlashCard(currentFlashCardIndex, index)}>
-					<FlashcardPreviewTile flashCardData={flashcard} />
+				<li onClick={() => handleSelectAndDeselectChosenFlashCard(currentFlashCardIndex, index)}>
+					<FlashcardPreviewTile flashcard={flashcard} />
 				</li>
 			))}
 		</ul>

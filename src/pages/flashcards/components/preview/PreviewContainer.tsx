@@ -30,8 +30,11 @@ function PreviewContainer({
 }) {
 	const [searchQuery, setSearchQuery] = useState("");
 	const decks = useDeckStore(state => state.decks);
-
+	console.log(decks);
 	const createFlashCard = useCreateFlashcard();
+
+	const chosenDeck = currentDeckIndex !== -1 ? decks[currentDeckIndex] : null;
+	// const chosenFlashCard = currentFlashCardIndex !== -1 ? chosenDeck?.flashcards[currentFlashCardIndex] : null;
 
 	const querySearchDeckList = decks.filter((deck: DeckType) => deck.name.includes(searchQuery));
 
@@ -49,10 +52,6 @@ function PreviewContainer({
 			setCurrentFlashCardIndex(-1);
 		}
 	}
-
-	const chosenDeck = currentDeckIndex !== -1 ? decks[currentDeckIndex] : null;
-	const chosenFlashCard = currentFlashCardIndex !== -1 ? chosenDeck?.flashcards[currentFlashCardIndex] : null;
-
 	return (
 		<>
 			<div className="pb-6 w-[20rem] shrink-0 scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">

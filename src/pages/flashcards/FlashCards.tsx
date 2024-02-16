@@ -6,6 +6,7 @@ import { useDeckStore } from "@/services/zustand/useDeckStore";
 import FlashcardPanel from "@/pages/flashcards/components/flashcard/FlashcardPanel";
 import PreviewContainer from "@/pages/flashcards/components/preview/PreviewContainer";
 import CreateNewDeckModal from "@/pages/flashcards/components/deck/CreateNewDeckModal";
+import { FlashCardType } from "@/types/FlashCardType";
 
 function FlashCards() {
 	// state
@@ -30,6 +31,20 @@ function FlashCards() {
 
 	const isDeckNotSelected = currentDeckIndex === -1;
 	const chosenDeck = currentDeckIndex !== -1 ? decks[currentDeckIndex] : null;
+	const chosenFlashcard = currentFlashCardIndex !== -1 ? chosenDeck?.flashcards[currentFlashCardIndex] : null;
+
+	const handleUpdateFrontCardVal = (newFrontVal: string) => {
+		if (chosenFlashcard) {
+			const updateFlashCardFrontVal = { ...chosenFlashcard, front: newFrontVal };
+			const updateDecks = decks.map((deck: DeckType) => {
+				if (deck?.id === chosenDeck?.id) {
+					return { ...deck, flashcards: deck.flashcards?.map((flashcard: FlashCardType) => (flashcard.id === chosenFlashcard.id ? updateFlashCardFrontVal : flashcard)) };
+				}
+				return deck;
+			});
+			updateDeck({ decks: updateDecks });
+		}
+	};
 
 	return (
 		<div className="h-screen">
@@ -73,7 +88,7 @@ function FlashCards() {
 									</button>
 								</div>
 							)}
-							{!isDeckNotSelected && <FlashcardPanel currentFlashCardIndex={currentFlashCardIndex} chosenDeckData={chosenDeck} />}
+							{!isDeckNotSelected && <FlashcardPanel currentFlashCardIndex={currentFlashCardIndex} chosenDeckData={chosenDeck} handleUpdateFrontCardVal={handleUpdateFrontCardVal} />}
 						</div>
 					</div>
 				</div>
