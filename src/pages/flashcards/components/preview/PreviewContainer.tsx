@@ -16,32 +16,31 @@ import PreviewFlashCardsList from "@/pages/flashcards/components/preview/Preview
 function PreviewContainer({
 	currentFlashCardIndex,
 	setCurrentFlashCardIndex,
-	isDeckNotSelected,
-	currentDeckIndex,
-	setCurrentDeckIndex,
+	currentDeck,
+	setCurrentDeck,
 	setShowAddNewDeckModal,
 }: {
 	currentFlashCardIndex: number;
 	setCurrentFlashCardIndex: (index: number) => void;
-	isDeckNotSelected: boolean;
-	currentDeckIndex: number;
-	setCurrentDeckIndex: (index: number) => void;
+	currentDeck: DeckType | null;
+	setCurrentDeck: (deck: DeckType | null) => void;
 	setShowAddNewDeckModal: (triggerModal: boolean) => void;
 }) {
+	// states
 	const [searchQuery, setSearchQuery] = useState("");
+	// store
 	const decks = useDeckStore(state => state.decks);
-	console.log(decks);
 	const createFlashCard = useCreateFlashcard();
 
-	const chosenDeck = currentDeckIndex !== -1 ? decks[currentDeckIndex] : null;
+	const chosenFlashcard = currentFlashCardIndex !== -1 ? currentDeck?.flashcards[currentFlashCardIndex] : null;
 
 	const querySearchDeckList = decks?.filter((deck: DeckType) => deck?.name?.includes(searchQuery));
 
-	function selectAndDeselectChosenDeck(chosenDeckIndex: number, index: number) {
-		if (chosenDeckIndex !== index) {
-			setCurrentDeckIndex(index);
-		} else if (chosenDeckIndex === index) {
-			setCurrentDeckIndex(-1);
+	function selectAndDeselectChosenDeck(deckID: string, index: number) {
+		if (currentDeck?.id !== deckID) {
+			setCurrentDeck(decks[index]);
+		} else if (currentDeck?.id !== deckID) {
+			setCurrentDeck(null);
 		}
 	}
 	function handleSelectAndDeselectChosenFlashCard(chosenFlashCardIndex: number, index: number) {
@@ -51,6 +50,7 @@ function PreviewContainer({
 			setCurrentFlashCardIndex(-1);
 		}
 	}
+
 	return (
 		<>
 			<div className="pb-6 w-[20rem] shrink-0 scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
@@ -59,20 +59,20 @@ function PreviewContainer({
 					{/* header section (title & go back btn & Create btn) */}
 					<div className="p-[1rem] flex items-center justify-between bg-[#171C1F] border-b-[1.6px] border-[#292F33]">
 						{/* Go back btn */}
-						<button onClick={() => setCurrentDeckIndex(-1)} className={classNames("flex items-center", isDeckNotSelected && "invisible")}>
+						<button onClick={() => setCurrentDeck(null)} className={classNames("flex items-center", !currentDeck && "invisible")}>
 							<IoArrowBackOutline size={"1.5rem"} color={"#ADB0B1"} />
 						</button>
 						{/* Create Deck btn & Create Flashcard btn */}
-						{isDeckNotSelected ? <PreviewAddButton type="Deck" onClick={() => setShowAddNewDeckModal(true)} /> : <PreviewAddButton type="Flashcard" onClick={() => createFlashCard()} />}
+						{!currentDeck ? <PreviewAddButton type="Deck" onClick={() => setShowAddNewDeckModal(true)} /> : <PreviewAddButton type="Flashcard" onClick={() => createFlashCard()} />}
 					</div>
 					{/* Search bar */}
-					{isDeckNotSelected ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
+					{!currentDeck ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
 				</div>
 				{/* decks & flashcards list */}
-				{isDeckNotSelected ? (
-					<PreviewDeckList decks={querySearchDeckList} currentDeckIndex={currentDeckIndex} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
+				{!currentDeck ? (
+					<PreviewDeckList decks={querySearchDeckList} currentDeck={currentDeck ?? null} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
 				) : (
-					<PreviewFlashCardsList handleSelectAndDeselectChosenFlashCard={handleSelectAndDeselectChosenFlashCard} currentFlashCardIndex={currentFlashCardIndex} chosenDeck={chosenDeck} />
+					<PreviewFlashCardsList handleSelectAndDeselectChosenFlashCard={handleSelectAndDeselectChosenFlashCard} currentFlashCardIndex={currentFlashCardIndex} chosenDeck={currentDeck} />
 				)}
 			</div>
 		</>
