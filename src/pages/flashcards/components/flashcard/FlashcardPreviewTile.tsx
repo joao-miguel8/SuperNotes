@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import type { FlashCardType } from "../../../../types/FlashCardType";
+import type { FlashCardType } from "@/types/FlashCardType";
 
 function FlashcardPreviewTile({ index, currentFlashCardIndex, flashcard }: { index: number; currentFlashCardIndex: number; flashcard: FlashCardType }) {
 	return (

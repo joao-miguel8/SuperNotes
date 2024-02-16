@@ -1,7 +1,6 @@
-import classNames from "classnames";
-import { DeckType } from "../../../../types/DeckType";
-import { FlashCardType } from "../../../../types/FlashCardType";
-import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
+import { DeckType } from "@/types/DeckType";
+import { FlashCardType } from "@/types/FlashCardType";
+import FlashcardPreviewTile from "@/pages/flashcards/components/flashcard/FlashcardPreviewTile";
 
 function PreviewFlashCardsList({ handleSelectAndDeselectChosenFlashCard, currentFlashCardIndex, chosenDeck }: { handleSelectAndDeselectChosenFlashCard: (chosenFlashCardIndex: number, index: number) => void; currentFlashCardIndex: number; chosenDeck: DeckType | null }) {
 	return (
