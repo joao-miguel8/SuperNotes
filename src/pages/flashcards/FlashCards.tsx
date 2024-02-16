@@ -19,14 +19,13 @@ function FlashCards() {
 	const updateDeck = useDeckStore(state => state.updateDeck);
 
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-		updateDeck((state: any) => ({
-			decks: state.decks.map((deck: DeckType, index: Number) => {
-				if (index === currentDeckIndex) {
-					return { ...deck, name: e.target.value };
-				}
-				return deck;
-			}),
-		}));
+		const updatedDeck = decks.map((deck: DeckType, index: Number) => {
+			if (index === currentDeckIndex) {
+				return { ...deck, name: e.target.value };
+			}
+			return deck;
+		});
+		updateDeck(updatedDeck);
 	};
 
 	const isDeckNotSelected = currentDeckIndex === -1;
@@ -36,13 +35,13 @@ function FlashCards() {
 	const handleUpdateFrontCardVal = (newFrontVal: string) => {
 		if (chosenFlashcard) {
 			const updateFlashCardFrontVal = { ...chosenFlashcard, front: newFrontVal };
-			const updateDecks = decks.map((deck: DeckType) => {
+			const updateDeckFrontField = decks.map((deck: DeckType) => {
 				if (deck?.id === chosenDeck?.id) {
 					return { ...deck, flashcards: deck.flashcards?.map((flashcard: FlashCardType) => (flashcard.id === chosenFlashcard.id ? updateFlashCardFrontVal : flashcard)) };
 				}
 				return deck;
 			});
-			updateDeck({ decks: updateDecks });
+			updateDeck(updateDeckFrontField);
 		}
 	};
 

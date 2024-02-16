@@ -8,7 +8,7 @@ type State = {
 
 type Actions = {
 	createNewDeck: (newDeck: DeckType) => void;
-	updateDeck: (cb: Function) => void;
+	updateDeck: (updatedDeck: DeckType[]) => void;
 	createFlashCard: (flashcard: FlashCardType) => void;
 };
 
@@ -19,8 +19,8 @@ export const useDeckStore = create<State & Actions>(set => ({
 			decks: [...state.decks, newDeck],
 		}));
 	},
-	updateDeck(cb) {
-		set(cb);
+	updateDeck(updatedDeck) {
+		set({ decks: updatedDeck });
 	},
 	createFlashCard(flashCard: FlashCardType) {
 		set(state => ({
