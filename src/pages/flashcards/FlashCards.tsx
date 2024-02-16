@@ -88,7 +88,7 @@ function FlashCards() {
 									</button>
 								</div>
 							)}
-							{!isDeckNotSelected && <FlashcardPanel currentFlashCardIndex={currentFlashCardIndex} chosenDeckData={chosenDeck} handleUpdateFrontCardVal={handleUpdateFrontCardVal} />}
+							{!isDeckNotSelected && chosenFlashcard && <FlashcardPanel currentFlashCardIndex={currentFlashCardIndex} chosenDeckData={chosenDeck} handleUpdateFrontCardVal={handleUpdateFrontCardVal} />}
 						</div>
 					</div>
 				</div>
