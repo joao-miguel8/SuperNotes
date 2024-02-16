@@ -14,7 +14,7 @@ import { FlashCardType } from "@/types/FlashCardType";
 
 function FlashCards() {
 	// state
-	const [currentDeck, setCurrentDeck] = useState<DeckType | null>();
+	const [currentDeckID, setCurrentDeckID] = useState<string | null>(null);
 	const [currentFlashCardIndex, setCurrentFlashCardIndex] = useState(-1);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
 
@@ -22,25 +22,23 @@ function FlashCards() {
 	const decks = useDeckStore(state => state.decks);
 	const updateDeck = useDeckStore(state => state.updateDeck);
 
+	const chosenDeck = decks?.find(deck => (deck?.id === currentDeckID ? deck : null));
+
+	const chosenFlashcard = currentFlashCardIndex !== -1 ? chosenDeck?.flashcards[currentFlashCardIndex] : null;
+
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedDeck = decks.map((deck: DeckType) => {
-			if (currentDeck && currentDeck?.id === deck?.id) {
-				setCurrentDeck({ ...deck, name: e.target.value });
-				return { ...deck, name: e.target.value };
-			}
-			return deck;
+			if (currentDeckID && currentDeckID === deck?.id) return { ...chosenDeck, name: e.target.value };
 		});
 		updateDeck(updatedDeck);
 	};
-
-	const chosenFlashcard = currentFlashCardIndex !== -1 ? currentDeck?.flashcards[currentFlashCardIndex] : null;
 
 	const handleUpdateFrontCardVal = (newFrontVal: string) => {
 		if (chosenFlashcard) {
 			const updateFlashCardFrontVal = { ...chosenFlashcard, front: newFrontVal };
 			const updateDeckFrontField = decks.map((deck: DeckType) => {
-				if (deck?.id === currentDeck?.id) {
-					return { ...deck, flashcards: deck.flashcards?.map((flashcard: FlashCardType) => (flashcard.id === chosenFlashcard.id ? updateFlashCardFrontVal : flashcard)) };
+				if (deck?.id === currentDeckID) {
+					return { ...deck, flashcards: deck.flashcards?.map((flashcard: FlashCardType) => (flashcard?.id === currentDeckID ? updateFlashCardFrontVal : flashcard)) };
 				}
 				return deck;
 			});
@@ -52,7 +50,7 @@ function FlashCards() {
 		if (chosenFlashcard) {
 			const updateFlashCardBackVal = { ...chosenFlashcard, back: newBackVal };
 			const updateDeckFrontField = decks.map((deck: DeckType) => {
-				if (deck?.id === currentDeck?.id) {
+				if (deck?.id === currentDeckID) {
 					return { ...decks, flashcards: deck.flashcards?.map((flashcard: FlashCardType) => (flashcard?.id === chosenFlashcard?.id ? updateFlashCardBackVal : flashcard)) };
 				}
 				return deck;
@@ -71,15 +69,15 @@ function FlashCards() {
 				{/* Decks | Flashcard preview list wrapper */}
 				<div className="overflow-hidden flex grow">
 					{/* scrolling container for deck tiles list */}
-					<PreviewContainer currentFlashCardIndex={currentFlashCardIndex} setCurrentFlashCardIndex={setCurrentFlashCardIndex} currentDeck={currentDeck ?? null} setCurrentDeck={setCurrentDeck} setShowAddNewDeckModal={setShowAddNewDeckModal} />
+					<PreviewContainer currentFlashCardIndex={currentFlashCardIndex} setCurrentFlashCardIndex={setCurrentFlashCardIndex} currentDeck={chosenDeck} currentDeckID={currentDeckID ?? null} setCurrentDeckID={setCurrentDeckID} setShowAddNewDeckModal={setShowAddNewDeckModal} />
 					<div className="overflow-hidden flex-1">
 						{/* left-side main-content header */}
 						<div className="h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33] ">
-							{currentDeck && (
+							{chosenDeck && (
 								<input
-									value={currentDeck?.name}
+									value={chosenDeck?.name}
 									onChange={e => handleUpdateCurrentDeckTitle(e)}
-									aria-label={`selected board name ${currentDeck?.name} change name input`}
+									aria-label={`selected board name ${chosenDeck?.name} change name input`}
 									type="text"
 									placeholder="Project name here"
 									className="text-12 text-center italic text-[#acadad] focus:outline-dashed outline-[#acadad] bg-transparent"
@@ -96,7 +94,7 @@ function FlashCards() {
 									</button>
 								</div>
 							)}
-							{!currentDeck && chosenFlashcard && <FlashcardPanel currentFlashCardIndex={currentFlashCardIndex} chosenDeckData={currentDeck ?? null} handleUpdateFrontCardVal={handleUpdateFrontCardVal} handleUpdateBackCardVal={handleUpdateBackCardVal} />}
+							{chosenDeck && chosenFlashcard && <FlashcardPanel currentFlashCardIndex={currentFlashCardIndex} chosenDeckData={chosenDeck ?? null} handleUpdateFrontCardVal={handleUpdateFrontCardVal} handleUpdateBackCardVal={handleUpdateBackCardVal} />}
 						</div>
 					</div>
 				</div>
