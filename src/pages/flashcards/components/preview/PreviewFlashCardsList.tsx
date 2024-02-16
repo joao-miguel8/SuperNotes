@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { DeckType } from "../../../../types/DeckType";
 import { FlashCardType } from "../../../../types/FlashCardType";
 import FlashcardPreviewTile from "../flashcard/FlashcardPreviewTile";
@@ -7,7 +8,7 @@ function PreviewFlashCardsList({ handleSelectAndDeselectChosenFlashCard, current
 		<ul className="mt-4 mx-4 flex flex-col gap-3">
 			{chosenDeck?.flashcards?.map((flashcard: FlashCardType, index) => (
 				<li onClick={() => handleSelectAndDeselectChosenFlashCard(currentFlashCardIndex, index)}>
-					<FlashcardPreviewTile flashcard={flashcard} />
+					<FlashcardPreviewTile index={index} currentFlashCardIndex={currentFlashCardIndex} flashcard={flashcard} />
 				</li>
 			))}
 		</ul>
