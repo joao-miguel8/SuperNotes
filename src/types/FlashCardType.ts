@@ -1,7 +1,7 @@
 export type DifficultyRatingType = "easy" | "medium" | "hard";
 
 export type FlashCardType = {
-	id: number;
+	id: string;
 	front: string;
 	back: string;
 	chosenDifficulty?: DifficultyRatingType;
