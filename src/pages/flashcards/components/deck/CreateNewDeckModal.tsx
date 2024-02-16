@@ -1,14 +1,14 @@
+import { v4 as uuidv4 } from "uuid";
 import { FormEvent, useState } from "react";
 import { Input } from "@chakra-ui/react";
 import type { DeckType } from "@/types/DeckType";
 import { useDeckStore } from "@/services/zustand/useDeckStore";
-import { generateRandomID } from "@/api/util/generateRandomID";
 
 function CreateNewDeckModal({ showAddNewDeckModal, setShowAddNewDeckModal }: { showAddNewDeckModal: boolean; setShowAddNewDeckModal: (bool: boolean) => void }) {
 	const createNewDeck = useDeckStore(state => state.createNewDeck);
-	const eleID = generateRandomID();
+
 	const [newDeckFormData, setNewDeckFormData] = useState<DeckType>({
-		id: eleID,
+		id: uuidv4(),
 		name: "",
 		description: "",
 		flashcards: [],
@@ -19,8 +19,9 @@ function CreateNewDeckModal({ showAddNewDeckModal, setShowAddNewDeckModal }: { s
 
 	const handleAddNewDeckSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		createNewDeck(newDeckFormData);
+
 		setNewDeckFormData({
+			id: uuidv4(),
 			name: "",
 			description: "",
 			flashcards: [],
@@ -28,6 +29,7 @@ function CreateNewDeckModal({ showAddNewDeckModal, setShowAddNewDeckModal }: { s
 			subject: "",
 			isBookmarked: false,
 		});
+		createNewDeck(newDeckFormData);
 		setShowAddNewDeckModal(false);
 	};
 

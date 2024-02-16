@@ -1,7 +1,7 @@
 import type { FlashCardType } from "./FlashCardType";
 
 export type DeckType = {
-	id: number;
+	id: string;
 	name: string;
 	description: string;
 	flashcards: FlashCardType[];
