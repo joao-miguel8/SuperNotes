@@ -45,6 +45,19 @@ function FlashCards() {
 		}
 	};
 
+	const handleUpdateBackCardVal = (newBackVal: string) => {
+		if (chosenFlashcard) {
+			const updateFlashCardBackVal = { ...chosenFlashcard, back: newBackVal };
+			const updateDeckFrontField = decks.map((deck: DeckType) => {
+				if (deck?.id === chosenDeck?.id) {
+					return { ...decks, flashcards: deck.flashcards?.map((flashcard: FlashCardType) => (flashcard?.id === chosenFlashcard?.id ? updateFlashCardBackVal : flashcard)) };
+				}
+				return deck;
+			});
+			updateDeck(updateDeckFrontField);
+		}
+	};
+
 	return (
 		<div className="h-screen">
 			<CreateNewDeckModal showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} />
@@ -87,7 +100,7 @@ function FlashCards() {
 									</button>
 								</div>
 							)}
-							{!isDeckNotSelected && chosenFlashcard && <FlashcardPanel currentFlashCardIndex={currentFlashCardIndex} chosenDeckData={chosenDeck} handleUpdateFrontCardVal={handleUpdateFrontCardVal} />}
+							{!isDeckNotSelected && chosenFlashcard && <FlashcardPanel currentFlashCardIndex={currentFlashCardIndex} chosenDeckData={chosenDeck} handleUpdateFrontCardVal={handleUpdateFrontCardVal} handleUpdateBackCardVal={handleUpdateBackCardVal} />}
 						</div>
 					</div>
 				</div>

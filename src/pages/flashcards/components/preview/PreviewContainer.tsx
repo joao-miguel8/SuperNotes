@@ -34,9 +34,8 @@ function PreviewContainer({
 	const createFlashCard = useCreateFlashcard();
 
 	const chosenDeck = currentDeckIndex !== -1 ? decks[currentDeckIndex] : null;
-	// const chosenFlashCard = currentFlashCardIndex !== -1 ? chosenDeck?.flashcards[currentFlashCardIndex] : null;
 
-	const querySearchDeckList = decks?.filter((deck: DeckType) => deck?.name.includes(searchQuery));
+	const querySearchDeckList = decks?.filter((deck: DeckType) => deck?.name?.includes(searchQuery));
 
 	function selectAndDeselectChosenDeck(chosenDeckIndex: number, index: number) {
 		if (chosenDeckIndex !== index) {
