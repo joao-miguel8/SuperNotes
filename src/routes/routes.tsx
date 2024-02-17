@@ -14,7 +14,11 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: "/flashcards",
-		element: <FlashCardsPage />,
+		element: (
+			<Suspense>
+				<FlashCardsPage />
+			</Suspense>
+		),
 	},
 	{
 		path: "/flashcards/studydeck/:deckID",
