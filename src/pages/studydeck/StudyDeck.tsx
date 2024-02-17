@@ -1,5 +1,10 @@
+import { useLocation } from "react-router-dom";
+
 function StudyDeck() {
-	return <div></div>;
+	const history = useLocation();
+	console.log(history);
+
+	return <div>Stody deck</div>;
 }
 
 export default StudyDeck;

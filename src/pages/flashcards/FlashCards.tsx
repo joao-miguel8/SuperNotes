@@ -11,6 +11,8 @@ import { useDeckStore } from "@/services/zustand/useDeckStore";
 // Types
 import type { DeckType } from "@/types/DeckType";
 import type { FlashCardType } from "@/types/FlashCardType";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 function FlashCards() {
 	// state
@@ -98,6 +100,17 @@ function FlashCards() {
 										<h3 className="align-base italic text-40 text-[#acadad] font-thin">You have no decks</h3>
 										<IoIosAddCircleOutline size={"2.4rem"} color="#acadad" />
 									</button>
+								</div>
+							)}
+							{chosenDeck && (
+								<div className="mx-auto flex justify-center">
+									<Link
+										state={currentDeckID}
+										to={`/flashcards/studydeck/:${currentDeckID}`}
+										className={classNames("px-4 py-2 text-14 font-semibold border-2 rounded-md bg-white", chosenDeck.flashcards.length > 0 ? "bg-white hover:bg-[#292F33] hover:text-white duration-150" : "bg-gray-400 text-gray-50 rounded-md cursor-not-allowed opacity-50")}
+										disabled={chosenDeck?.flashcards?.length > 0}>
+										Study Deck
+									</Link>
 								</div>
 							)}
 							{chosenDeck && chosenFlashcard && <EditFlashcardPanel currentFlashCard={chosenFlashcard} chosenDeckData={chosenDeck ?? null} handleUpdateFrontCardVal={handleUpdateFrontCardVal} handleUpdateBackCardVal={handleUpdateBackCardVal} />}
