@@ -13,7 +13,7 @@ function StudyDeck() {
 	const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
 
 	const chosenDeck = decks.find(deck => deck?.id === history?.state);
-	const [currentFlashCard, setCurrentFlashCard] = useState<FlashCardType | undefined>();
+	const [currentFlashCard, setCurrentFlashCard] = useState<FlashCardType | null>();
 
 	const getRandomFlashCard = () => {
 		if (chosenDeck?.flashcards) {
@@ -27,7 +27,7 @@ function StudyDeck() {
 			<div className="mt-8 mx-10">
 				<div className="w-full flex justify-center">
 					<div className="relative w-full flex justify-center items-center">
-						<button onClick={() => setIsStudyingDeck(false)} className="px-4 py-2 right-0 absolute font-semibold text-white bg-gray-500 hover:bg-gray-700 duration-150 rounded-md">
+						<button onClick={() => setIsStudyingDeck(false)} className="px-4 py-2 right-0 absolute text-14 font-semibold text-white bg-gray-500 hover:bg-gray-700 duration-150 rounded-md">
 							Stop Reviewing Deck
 						</button>
 					</div>

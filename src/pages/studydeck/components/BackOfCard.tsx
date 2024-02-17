@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/react";
 import { DifficultyRatingType, FlashCardType } from "@/types/FlashCardType";
 import { useDeckStore } from "@/services/zustand/useDeckStore";
 
-function BackOfCard({ setIsAnswerRevealed, getRandomFlashCard, currentFlashCard }: { setIsAnswerRevealed: (boolVal: boolean) => void; getRandomFlashCard: () => void; currentFlashCard: FlashCardType }) {
+function BackOfCard({ setIsAnswerRevealed, getRandomFlashCard, currentFlashCard }: { setIsAnswerRevealed: (boolVal: boolean) => void; getRandomFlashCard: () => void; currentFlashCard: FlashCardType | null }) {
 	const updateFlashCardDifficulty = useDeckStore(state => state.updateFlashCardDifficulty);
 
 	return (
