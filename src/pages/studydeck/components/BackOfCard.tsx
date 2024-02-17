@@ -1,7 +1,10 @@
-import { FlashCardType } from "@/types/FlashCardType";
 import { Button } from "@chakra-ui/react";
+import { DifficultyRatingType, FlashCardType } from "@/types/FlashCardType";
+import { useDeckStore } from "@/services/zustand/useDeckStore";
 
-function BackOfCard({ setIsAnswerRevealed, getRandomFlashCard, currentFlashCard }: { setIsAnswerRevealed: (boolVal: boolean) => void; getRandomFlashCard: () => void; currentFlashCard: FlashCardType | undefined }) {
+function BackOfCard({ setIsAnswerRevealed, getRandomFlashCard, currentFlashCard }: { setIsAnswerRevealed: (boolVal: boolean) => void; getRandomFlashCard: () => void; currentFlashCard: FlashCardType }) {
+	const updateFlashCardDifficulty = useDeckStore(state => state.updateFlashCardDifficulty);
+
 	return (
 		<>
 			<div className="mt-10 bg-white rounded-lg overflow-clip">
@@ -16,13 +19,13 @@ function BackOfCard({ setIsAnswerRevealed, getRandomFlashCard, currentFlashCard 
 					getRandomFlashCard();
 				}}
 				className="py-2 mt-4 flex justify-center gap-4">
-				<Button colorScheme={"green"} size="lg">
+				<Button onClick={() => updateFlashCardDifficulty(currentFlashCard, DifficultyRatingType.Easy)} colorScheme={"green"} size="lg">
 					Easy
 				</Button>
-				<Button colorScheme={"orange"} size="lg">
+				<Button onClick={() => updateFlashCardDifficulty(currentFlashCard, DifficultyRatingType.Medium)} colorScheme={"orange"} size="lg">
 					Medium
 				</Button>
-				<Button colorScheme={"red"} size="lg">
+				<Button onClick={() => updateFlashCardDifficulty(currentFlashCard, DifficultyRatingType.Hard)} colorScheme={"red"} size="lg">
 					Hard
 				</Button>
 			</div>

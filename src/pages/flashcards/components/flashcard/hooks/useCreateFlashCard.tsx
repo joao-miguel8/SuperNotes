@@ -9,6 +9,7 @@ export const useCreateFlashcard = () => {
 		id: uuidv4(),
 		front: "",
 		back: "",
+		chosenDifficulty: null,
 	};
 	return () => createNewFlashCard(flashCardInitialData);
 };

@@ -8,6 +8,7 @@ import { Button } from "@chakra-ui/react";
 function StudyDeck() {
 	const history = useLocation();
 	const decks = useDeckStore(state => state.decks);
+
 	const [isStudyingDeck, setIsStudyingDeck] = useState(true);
 	const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
 
@@ -20,7 +21,7 @@ function StudyDeck() {
 			setCurrentFlashCard(chosenDeck?.flashcards[randomCardIndex]);
 		}
 	};
-
+	console.log(decks);
 	return (
 		<section className="my-4 bg-[#1D2327]">
 			<div className="mt-8 mx-10">
@@ -32,8 +33,8 @@ function StudyDeck() {
 					</div>
 				</div>
 
-				{/* back of card */}
 				{isAnswerRevealed ? (
+					//  back of card
 					<BackOfCard setIsAnswerRevealed={setIsAnswerRevealed} currentFlashCard={currentFlashCard} getRandomFlashCard={getRandomFlashCard} />
 				) : (
 					// front of card
