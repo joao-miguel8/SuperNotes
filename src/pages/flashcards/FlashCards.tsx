@@ -12,7 +12,6 @@ import EditFlashcardPanel from "@/pages/flashcards/components/flashcard/EditFlas
 import { useDeckStore } from "@/services/zustand/useDeckStore";
 // Types
 import type { DeckType } from "@/types/DeckType";
-import type { FlashCardType } from "@/types/FlashCardType";
 
 function FlashCards() {
 	// state
@@ -33,18 +32,6 @@ function FlashCards() {
 			if (currentDeckID && currentDeckID === deck?.id) return { ...chosenDeck, name: e.target.value };
 		});
 		updateDeck(updatedDeck);
-	};
-
-	const handleUpdateFrontCardVal = (newFrontVal: string) => {
-		const updateDeckFrontValField = decks.map((deck: DeckType) => {
-			return {
-				...deck,
-				flashcards: deck.flashcards?.map((flashcard: FlashCardType) => {
-					return flashcard?.id === currentFlashCardID ? { ...chosenFlashcard, front: newFrontVal } : flashcard;
-				}),
-			};
-		});
-		updateDeck(updateDeckFrontValField);
 	};
 
 	return (
@@ -101,7 +88,7 @@ function FlashCards() {
 									</Link>
 								</div>
 							)}
-							{chosenDeck && chosenFlashcard && <EditFlashcardPanel currentFlashCard={chosenFlashcard} handleUpdateFrontCardVal={handleUpdateFrontCardVal} />}
+							{chosenDeck && chosenFlashcard && <EditFlashcardPanel currentFlashCard={chosenFlashcard} />}
 						</div>
 					</div>
 				</div>
