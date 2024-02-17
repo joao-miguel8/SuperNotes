@@ -15,7 +15,7 @@ import { FlashCardType } from "@/types/FlashCardType";
 function FlashCards() {
 	// state
 	const [currentDeckID, setCurrentDeckID] = useState<string | null>(null);
-	const [currentFlashCardIndex, setCurrentFlashCardIndex] = useState(-1);
+	const [currentFlashCardID, setCurrentFlashCardID] = useState<string | null>(null);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
 
 	// Store
@@ -24,7 +24,7 @@ function FlashCards() {
 
 	const chosenDeck = decks?.find(deck => (deck?.id === currentDeckID ? deck : null));
 
-	const chosenFlashcard = currentFlashCardIndex !== -1 ? chosenDeck?.flashcards[currentFlashCardIndex] : null;
+	const chosenFlashcard = chosenDeck?.flashcards?.find(card => (card?.id === currentFlashCardID ? card : null));
 
 	const handleUpdateCurrentDeckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedDeck = decks.map((deck: DeckType) => {
@@ -34,31 +34,29 @@ function FlashCards() {
 	};
 
 	const handleUpdateFrontCardVal = (newFrontVal: string) => {
-		if (chosenFlashcard) {
-			const updateFlashCardFrontVal = { ...chosenFlashcard, front: newFrontVal };
-			const updateDeckFrontField = decks.map((deck: DeckType) => {
-				if (deck?.id === currentDeckID) {
-					return { ...deck, flashcards: deck.flashcards?.map((flashcard: FlashCardType) => (flashcard?.id === currentDeckID ? updateFlashCardFrontVal : flashcard)) };
-				}
-				return deck;
-			});
-			updateDeck(updateDeckFrontField);
-		}
+		const updateDeckFrontValField = decks.map((deck: DeckType) => {
+			return {
+				...deck,
+				flashcards: deck.flashcards?.map((flashcard: FlashCardType) => {
+					return flashcard?.id === currentFlashCardID ? { ...chosenFlashcard, front: newFrontVal } : flashcard;
+				}),
+			};
+		});
+		updateDeck(updateDeckFrontValField);
 	};
 
-	const handleUpdateBackCardVal = (newBackVal: string) => {
-		if (chosenFlashcard) {
-			const updateFlashCardBackVal = { ...chosenFlashcard, back: newBackVal };
-			const updateDeckFrontField = decks.map((deck: DeckType) => {
-				if (deck?.id === currentDeckID) {
-					return { ...decks, flashcards: deck.flashcards?.map((flashcard: FlashCardType) => (flashcard?.id === chosenFlashcard?.id ? updateFlashCardBackVal : flashcard)) };
-				}
-				return deck;
-			});
-			updateDeck(updateDeckFrontField);
-		}
+	const handleUpdateBackCardVal = (newFrontVal: string) => {
+		const updateDeckFrontValField = decks.map((deck: DeckType) => {
+			return {
+				...deck,
+				flashcards: deck.flashcards?.map((flashcard: FlashCardType) => {
+					return flashcard?.id === currentFlashCardID ? { ...chosenFlashcard, back: newFrontVal } : flashcard;
+				}),
+			};
+		});
+		updateDeck(updateDeckFrontValField);
 	};
-
+	console.log(chosenFlashcard);
 	return (
 		<div className="h-screen">
 			<CreateNewDeckModal showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} />
@@ -69,7 +67,15 @@ function FlashCards() {
 				{/* Decks | Flashcard preview list wrapper */}
 				<div className="overflow-hidden flex grow">
 					{/* scrolling container for deck tiles list */}
-					<PreviewContainer currentFlashCardIndex={currentFlashCardIndex} setCurrentFlashCardIndex={setCurrentFlashCardIndex} currentDeck={chosenDeck} currentDeckID={currentDeckID ?? null} setCurrentDeckID={setCurrentDeckID} setShowAddNewDeckModal={setShowAddNewDeckModal} />
+					<PreviewContainer
+						chosenFlashcard={chosenFlashcard ?? null}
+						currentFlashCardID={currentFlashCardID ?? null}
+						setCurrentFlashCardID={setCurrentFlashCardID}
+						currentDeck={chosenDeck}
+						currentDeckID={currentDeckID ?? null}
+						setCurrentDeckID={setCurrentDeckID}
+						setShowAddNewDeckModal={setShowAddNewDeckModal}
+					/>
 					<div className="overflow-hidden flex-1">
 						{/* left-side main-content header */}
 						<div className="h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33] ">
@@ -94,7 +100,7 @@ function FlashCards() {
 									</button>
 								</div>
 							)}
-							{chosenDeck && chosenFlashcard && <FlashcardPanel currentFlashCardIndex={currentFlashCardIndex} chosenDeckData={chosenDeck ?? null} handleUpdateFrontCardVal={handleUpdateFrontCardVal} handleUpdateBackCardVal={handleUpdateBackCardVal} />}
+							{chosenDeck && chosenFlashcard && <FlashcardPanel currentFlashCard={chosenFlashcard} chosenDeckData={chosenDeck ?? null} handleUpdateFrontCardVal={handleUpdateFrontCardVal} handleUpdateBackCardVal={handleUpdateBackCardVal} />}
 						</div>
 					</div>
 				</div>

@@ -12,17 +12,20 @@ import PreviewSearchBar from "@/pages/flashcards/components/preview/PreviewSearc
 import PreviewAddButton from "@/pages/flashcards/components/preview/PreviewAddButton";
 import PreviewDeckList from "@/pages/flashcards/components/preview/PreviewDeckList";
 import PreviewFlashCardsList from "@/pages/flashcards/components/preview/PreviewFlashCardsList";
+import { FlashCardType } from "@/types/FlashCardType";
 
 function PreviewContainer({
-	currentFlashCardIndex,
-	setCurrentFlashCardIndex,
+	chosenFlashcard,
+	currentFlashCardID,
+	setCurrentFlashCardID,
 	currentDeck,
 	currentDeckID,
 	setCurrentDeckID,
 	setShowAddNewDeckModal,
 }: {
-	currentFlashCardIndex: number;
-	setCurrentFlashCardIndex: (index: number) => void;
+	chosenFlashcard: FlashCardType | null;
+	currentFlashCardID: string | null;
+	setCurrentFlashCardID: (cardID: string) => void;
 	currentDeck: DeckType | null;
 	currentDeckID: string | null;
 	setCurrentDeckID: (deckID: string | null) => void;
@@ -46,11 +49,11 @@ function PreviewContainer({
 		}
 	}
 
-	function handleSelectAndDeselectChosenFlashCard(chosenFlashCardIndex: number, index: number) {
-		if (chosenFlashCardIndex !== index) {
-			setCurrentFlashCardIndex(index);
-		} else if (chosenFlashCardIndex === index) {
-			setCurrentFlashCardIndex(-1);
+	function handleSelectAndDeselectChosenFlashCard(cardID: string) {
+		if (currentFlashCardID !== cardID) {
+			setCurrentFlashCardID(cardID);
+		} else if (currentFlashCardID === cardID) {
+			setCurrentFlashCardID(null);
 		}
 	}
 	console.log(currentDeck);
@@ -75,7 +78,7 @@ function PreviewContainer({
 				{!currentDeckID ? (
 					<PreviewDeckList decks={querySearchDeckList} currentDeck={currentDeck ?? null} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
 				) : (
-					<PreviewFlashCardsList handleSelectAndDeselectChosenFlashCard={handleSelectAndDeselectChosenFlashCard} currentFlashCardIndex={currentFlashCardIndex} chosenDeck={currentDeck} />
+					<PreviewFlashCardsList handleSelectAndDeselectChosenFlashCard={handleSelectAndDeselectChosenFlashCard} currentFlashCard={chosenFlashcard} chosenDeck={currentDeck} />
 				)}
 			</div>
 		</>
