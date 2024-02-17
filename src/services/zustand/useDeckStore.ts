@@ -10,7 +10,8 @@ type Actions = {
 	createNewDeck: (newDeck: DeckType) => void;
 	updateDeck: (updatedDeck: DeckType[]) => void;
 	createFlashCard: (flashcard: FlashCardType) => void;
-	updateFlashCardDifficulty: (flashcard: FlashCardType | null, difficultyLevel: DifficultyRatingType) => void;
+	updateFlashCardDifficulty: (updatedFlashCard: FlashCardType, difficultyLevel: DifficultyRatingType) => void;
+	updateFlashCardBackValue: (updatedFlashCard: FlashCardType, backFieldVal: string) => void;
 };
 
 export const useDeckStore = create<State & Actions>(set => ({
@@ -36,6 +37,19 @@ export const useDeckStore = create<State & Actions>(set => ({
 				...deck,
 				flashcards: deck.flashcards.map((flashcard: FlashCardType) => {
 					return flashcard.id === updatedFlashCard.id ? { ...flashcard, chosenDifficulty: difficultyLevel } : flashcard;
+				}),
+			})),
+		}));
+	},
+	updateFlashCardBackValue(updatedFlashCard: FlashCardType, backFieldVal: string) {
+		set(state => ({
+			decks: state.decks.map(deck => ({
+				...deck,
+				flashcards: deck.flashcards.map((flashcard: FlashCardType) => {
+					if (flashcard.id === updatedFlashCard.id) {
+						return { ...flashcard, back: backFieldVal };
+					}
+					return flashcard;
 				}),
 			})),
 		}));

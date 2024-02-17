@@ -1,4 +1,6 @@
 // 3rd party libs
+import { Link } from "react-router-dom";
+import classNames from "classnames";
 import { useState } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 // Components
@@ -11,8 +13,6 @@ import { useDeckStore } from "@/services/zustand/useDeckStore";
 // Types
 import type { DeckType } from "@/types/DeckType";
 import type { FlashCardType } from "@/types/FlashCardType";
-import classNames from "classnames";
-import { Link } from "react-router-dom";
 
 function FlashCards() {
 	// state
@@ -47,18 +47,6 @@ function FlashCards() {
 		updateDeck(updateDeckFrontValField);
 	};
 
-	const handleUpdateBackCardVal = (newFrontVal: string) => {
-		const updateDeckFrontValField = decks.map((deck: DeckType) => {
-			return {
-				...deck,
-				flashcards: deck.flashcards?.map((flashcard: FlashCardType) => {
-					return flashcard?.id === currentFlashCardID ? { ...chosenFlashcard, back: newFrontVal } : flashcard;
-				}),
-			};
-		});
-		updateDeck(updateDeckFrontValField);
-	};
-	console.log(chosenFlashcard);
 	return (
 		<div className="h-screen">
 			<CreateNewDeckModal showAddNewDeckModal={showAddNewDeckModal} setShowAddNewDeckModal={(bool: boolean) => setShowAddNewDeckModal(bool)} />
@@ -113,7 +101,7 @@ function FlashCards() {
 									</Link>
 								</div>
 							)}
-							{chosenDeck && chosenFlashcard && <EditFlashcardPanel currentFlashCard={chosenFlashcard} chosenDeckData={chosenDeck ?? null} handleUpdateFrontCardVal={handleUpdateFrontCardVal} handleUpdateBackCardVal={handleUpdateBackCardVal} />}
+							{chosenDeck && chosenFlashcard && <EditFlashcardPanel currentFlashCard={chosenFlashcard} handleUpdateFrontCardVal={handleUpdateFrontCardVal} />}
 						</div>
 					</div>
 				</div>
