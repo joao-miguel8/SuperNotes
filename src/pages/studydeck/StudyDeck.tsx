@@ -44,13 +44,12 @@ function StudyDeck() {
 								<p className="my-4 text-center text-20">{currentFlashCard?.front}</p>
 							</div>
 						</div>
-						<div onClick={() => getRandomFlashCard()} className="py-2 mt-4 flex justify-center gap-4">
-							<Button
-								onClick={() => {
-									setIsAnswerRevealed(true);
-								}}
-								colorScheme={"gray"}
-								size="lg">
+						<div
+							onClick={() => {
+								setIsAnswerRevealed(true);
+							}}
+							className="py-2 mt-4 flex justify-center gap-4">
+							<Button colorScheme={"gray"} size="lg">
 								Reveal Answer
 							</Button>
 						</div>
