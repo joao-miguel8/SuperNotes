@@ -3,11 +3,13 @@ import { useState } from "react";
 import { useDeckStore } from "@/services/zustand/useDeckStore";
 import type { FlashCardType } from "@/types/FlashCardType";
 import BackOfCard from "./components/BackOfCard";
+import { Button } from "@chakra-ui/react";
 
 function StudyDeck() {
 	const history = useLocation();
 	const decks = useDeckStore(state => state.decks);
 	const [isStudyingDeck, setIsStudyingDeck] = useState(true);
+	const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
 
 	const chosenDeck = decks.find(deck => deck?.id === history?.state);
 	const [currentFlashCard, setCurrentFlashCard] = useState<FlashCardType | undefined>();
@@ -31,7 +33,29 @@ function StudyDeck() {
 				</div>
 
 				{/* back of card */}
-				<BackOfCard currentFlashCard={currentFlashCard} getRandomFlashCard={getRandomFlashCard} />
+				{isAnswerRevealed ? (
+					<BackOfCard setIsAnswerRevealed={setIsAnswerRevealed} currentFlashCard={currentFlashCard} getRandomFlashCard={getRandomFlashCard} />
+				) : (
+					// front of card
+					<>
+						<div className="mt-10 bg-white rounded-lg overflow-clip">
+							<span className="border-b mt-2 pb-2 px-2 w-full inline-block text-center text-16 italic uppercase font-bold">Front</span>
+							<div className=" px-4 max-h-[500px] h-[600px] rounded-lg overflow-scroll overflow-x-auto scrollbar-thin scrollbar-thumb-[#1D2327] scrollbar-track-white">
+								<p className="my-4 text-center text-20">{currentFlashCard?.front}</p>
+							</div>
+						</div>
+						<div onClick={() => getRandomFlashCard()} className="py-2 mt-4 flex justify-center gap-4">
+							<Button
+								onClick={() => {
+									setIsAnswerRevealed(true);
+								}}
+								colorScheme={"gray"}
+								size="lg">
+								Reveal Answer
+							</Button>
+						</div>
+					</>
+				)}
 			</div>
 		</section>
 	);

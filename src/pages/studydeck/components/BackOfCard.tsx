@@ -1,7 +1,7 @@
 import { FlashCardType } from "@/types/FlashCardType";
 import { Button } from "@chakra-ui/react";
 
-function BackOfCard({ getRandomFlashCard, currentFlashCard }: { getRandomFlashCard: () => void; currentFlashCard: FlashCardType | undefined }) {
+function BackOfCard({ setIsAnswerRevealed, getRandomFlashCard, currentFlashCard }: { setIsAnswerRevealed: (boolVal: boolean) => void; getRandomFlashCard: () => void; currentFlashCard: FlashCardType | undefined }) {
 	return (
 		<>
 			<div className="mt-10 bg-white rounded-lg overflow-clip">
@@ -10,7 +10,12 @@ function BackOfCard({ getRandomFlashCard, currentFlashCard }: { getRandomFlashCa
 					<p className="my-4 text-center text-20">{currentFlashCard?.back}</p>
 				</div>
 			</div>
-			<div onClick={() => getRandomFlashCard()} className="py-2 mt-4 flex justify-center gap-4">
+			<div
+				onClick={() => {
+					setIsAnswerRevealed(false);
+					getRandomFlashCard();
+				}}
+				className="py-2 mt-4 flex justify-center gap-4">
 				<Button colorScheme={"green"} size="lg">
 					Easy
 				</Button>
