@@ -1,7 +1,7 @@
 import { DeckType } from "@/types/DeckType";
 import { FlashCardType } from "@/types/FlashCardType";
 
-function FlashcardPanel({ handleUpdateFrontCardVal, handleUpdateBackCardVal, currentFlashCard, chosenDeckData }: { handleUpdateFrontCardVal: (strVal: string) => void; handleUpdateBackCardVal: (strVal: string) => void; currentFlashCard: FlashCardType; chosenDeckData: DeckType | null }) {
+function EditFlashcardPanel({ handleUpdateFrontCardVal, handleUpdateBackCardVal, currentFlashCard, chosenDeckData }: { handleUpdateFrontCardVal: (strVal: string) => void; handleUpdateBackCardVal: (strVal: string) => void; currentFlashCard: FlashCardType; chosenDeckData: DeckType | null }) {
 	return (
 		<form className="py-10 px-2 mx-auto mb-4 flex gap-8 items-center flex-col lg:flex-row lg:justify-center">
 			<div className="w-full max-w-[500px] lg:w-1/2 bg-white rounded-lg overflow-clip">
@@ -25,4 +25,4 @@ function FlashcardPanel({ handleUpdateFrontCardVal, handleUpdateBackCardVal, cur
 	);
 }
 
-export default FlashcardPanel;
+export default EditFlashcardPanel;

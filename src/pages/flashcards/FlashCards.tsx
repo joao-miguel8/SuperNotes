@@ -3,14 +3,14 @@ import { useState } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 // Components
 import Header from "@/layouts/Header";
-import FlashcardPanel from "@/pages/flashcards/components/flashcard/FlashcardPanel";
 import PreviewContainer from "@/pages/flashcards/components/preview/PreviewContainer";
 import CreateNewDeckModal from "@/pages/flashcards/components/deck/CreateNewDeckModal";
+import EditFlashcardPanel from "@/pages/flashcards/components/flashcard/EditFlashcardPanel";
 // hooks
 import { useDeckStore } from "@/services/zustand/useDeckStore";
 // Types
 import type { DeckType } from "@/types/DeckType";
-import { FlashCardType } from "@/types/FlashCardType";
+import type { FlashCardType } from "@/types/FlashCardType";
 
 function FlashCards() {
 	// state
@@ -100,7 +100,7 @@ function FlashCards() {
 									</button>
 								</div>
 							)}
-							{chosenDeck && chosenFlashcard && <FlashcardPanel currentFlashCard={chosenFlashcard} chosenDeckData={chosenDeck ?? null} handleUpdateFrontCardVal={handleUpdateFrontCardVal} handleUpdateBackCardVal={handleUpdateBackCardVal} />}
+							{chosenDeck && chosenFlashcard && <EditFlashcardPanel currentFlashCard={chosenFlashcard} chosenDeckData={chosenDeck ?? null} handleUpdateFrontCardVal={handleUpdateFrontCardVal} handleUpdateBackCardVal={handleUpdateBackCardVal} />}
 						</div>
 					</div>
 				</div>
