@@ -1,9 +1,9 @@
+import { Button } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDeckStore } from "@/services/zustand/useDeckStore";
 import type { FlashCardType } from "@/types/FlashCardType";
 import BackOfCard from "./components/BackOfCard";
-import { Button } from "@chakra-ui/react";
 
 function StudyDeck() {
 	const history = useLocation();
@@ -21,6 +21,11 @@ function StudyDeck() {
 			setCurrentFlashCard(chosenDeck?.flashcards[randomCardIndex]);
 		}
 	};
+
+	useEffect(() => {
+		getRandomFlashCard();
+	}, []);
+
 	console.log(decks);
 	return (
 		<section className="my-4 bg-[#1D2327]">
