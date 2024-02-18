@@ -8,6 +8,7 @@ type State = {
 
 type Actions = {
 	createNewDeck: (newDeck: DeckType) => void;
+	DeleteSelectedDecks: (decks: DeckType[]) => void;
 	updateDeck: (updatedDeck: DeckType[]) => void;
 	createFlashCard: (flashcard: FlashCardType) => void;
 	updateFlashCardDifficulty: (updatedFlashCard: FlashCardType, difficultyLevel: DifficultyRatingType) => void;
@@ -20,6 +21,11 @@ export const useDeckStore = create<State & Actions>(set => ({
 	createNewDeck(newDeck) {
 		set(state => ({
 			decks: [...state.decks, newDeck],
+		}));
+	},
+	DeleteSelectedDecks(selectedDecks: DeckType[]) {
+		set(state => ({
+			decks: state.decks.filter(deck => !selectedDecks.includes(deck)),
 		}));
 	},
 	updateDeck(updatedDeck) {

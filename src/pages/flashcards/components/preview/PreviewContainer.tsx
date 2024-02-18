@@ -74,13 +74,11 @@ function PreviewContainer({
 		});
 	};
 
-	console.log(selectedDecksToDelete);
-
 	return (
 		<>
 			<div className="pb-6 w-[20rem] shrink-0 border-[1.6px] border-[#292F33] bg-[#171C1F]">
 				{/* header + search bar wrapper */}
-				<DeleteDeckModal isDeleteDeckModalActive={isDeleteDeckModalActive} EnableDeleteDeckModal={EnableDeleteDeckModal} disableDeleteDeckModal={disableDeleteDeckModal} />
+				<DeleteDeckModal selectedDecksToDelete={selectedDecksToDelete} setSelectedDecksToDelete={setSelectedDecksToDelete} isDeleteDeckModalActive={isDeleteDeckModalActive} EnableDeleteDeckModal={EnableDeleteDeckModal} disableDeleteDeckModal={disableDeleteDeckModal} />
 				<div className="sticky top-0">
 					{/* container title */}
 					{!currentDeckID ? <h5 className="mt-4 text-center text-20 font-semibold text-white">Decks</h5> : <h5 className="mt-4 text-center text-20 font-semibold text-white">FlashCards</h5>}
@@ -100,9 +98,7 @@ function PreviewContainer({
 						<button onClick={() => EnableDeleteDeckModal()} disabled={selectedDecksToDelete.length <= 0} className={classNames("flex items-center gap-2", selectedDecksToDelete.length <= 0 && "cursor-not-allowed")}>
 							<FaTrashAlt size={"1.4rem"} className={classNames("duration-300", selectedDecksToDelete.length > 0 ? "fill-white hover:fill-red-400" : "fill-white opacity-25 disable")} />
 						</button>
-						{/* </div> */}
 					</div>
-					D
 				</div>
 				{/* decks & flashcards list */}
 				<div className="pt-4 pb-40 h-full overflow-y-auto overscroll-contain scrollbar-none">
