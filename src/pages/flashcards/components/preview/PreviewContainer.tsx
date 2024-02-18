@@ -59,7 +59,7 @@ function PreviewContainer({
 	console.log(currentDeck);
 	return (
 		<>
-			<div className="pb-6 w-[20rem] shrink-0 scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
+			<div className="pb-6 w-[20rem] shrink-0 border-[1.6px] border-[#292F33] bg-[#171C1F]">
 				{/* header + search bar wrapper */}
 				<div className="sticky top-0">
 					{/* container title */}
@@ -77,11 +77,13 @@ function PreviewContainer({
 					{!currentDeckID ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
 				</div>
 				{/* decks & flashcards list */}
-				{!currentDeckID ? (
-					<PreviewDeckList decks={querySearchDeckList} currentDeck={currentDeck ?? null} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
-				) : (
-					<PreviewFlashCardsList handleSelectAndDeselectChosenFlashCard={handleSelectAndDeselectChosenFlashCard} currentFlashCard={chosenFlashcard} chosenDeck={currentDeck} />
-				)}
+				<div className="pt-4 pb-40 h-full overflow-y-auto overscroll-contain scrollbar-none">
+					{!currentDeckID ? (
+						<PreviewDeckList decks={querySearchDeckList} currentDeck={currentDeck ?? null} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
+					) : (
+						<PreviewFlashCardsList handleSelectAndDeselectChosenFlashCard={handleSelectAndDeselectChosenFlashCard} currentFlashCard={chosenFlashcard} chosenDeck={currentDeck} />
+					)}
+				</div>
 			</div>
 		</>
 	);
