@@ -1,10 +1,11 @@
 // 3rd party
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import classNames from "classnames";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { FaTrashAlt } from "react-icons/fa";
 
 // hooks
+import { useDisclosure } from "@chakra-ui/react";
 import { useDeckStore } from "@/services/zustand/useDeckStore";
 import { useCreateFlashcard } from "@/pages/flashcards/components/flashcard/hooks/useCreateFlashCard";
 // types
@@ -15,6 +16,7 @@ import PreviewAddButton from "@/pages/flashcards/components/preview/PreviewAddBu
 import PreviewDeckList from "@/pages/flashcards/components/preview/PreviewDeckList";
 import PreviewFlashCardsList from "@/pages/flashcards/components/preview/PreviewFlashCardsList";
 import { FlashCardType } from "@/types/FlashCardType";
+import DeleteDeckModal from "../deck/DeleteDeckModal";
 
 function PreviewContainer({
 	chosenFlashcard,
@@ -36,6 +38,7 @@ function PreviewContainer({
 	// states
 	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedDecksToDelete, setSelectedDecksToDelete] = useState<DeckType[]>([]);
+	const { isOpen: isDeleteDeckModalActive, onOpen: EnableDeleteDeckModal, onClose: disableDeleteDeckModal } = useDisclosure();
 
 	// store
 	const decks = useDeckStore(state => state.decks);
@@ -77,6 +80,7 @@ function PreviewContainer({
 		<>
 			<div className="pb-6 w-[20rem] shrink-0 border-[1.6px] border-[#292F33] bg-[#171C1F]">
 				{/* header + search bar wrapper */}
+				<DeleteDeckModal isDeleteDeckModalActive={isDeleteDeckModalActive} EnableDeleteDeckModal={EnableDeleteDeckModal} disableDeleteDeckModal={disableDeleteDeckModal} />
 				<div className="sticky top-0">
 					{/* container title */}
 					{!currentDeckID ? <h5 className="mt-4 text-center text-20 font-semibold text-white">Decks</h5> : <h5 className="mt-4 text-center text-20 font-semibold text-white">FlashCards</h5>}
@@ -93,11 +97,12 @@ function PreviewContainer({
 					{!currentDeckID ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
 					{/* delete selected decks */}
 					<div className="mx-2 p-4 flex items-center border-y border-[#292F33] ">
-						<button disabled={selectedDecksToDelete.length > 0} className={classNames("flex items-center gap-2", selectedDecksToDelete.length <= 0 && "cursor-not-allowed")}>
+						<button onClick={() => EnableDeleteDeckModal()} disabled={selectedDecksToDelete.length <= 0} className={classNames("flex items-center gap-2", selectedDecksToDelete.length <= 0 && "cursor-not-allowed")}>
 							<FaTrashAlt size={"1.4rem"} className={classNames("duration-300", selectedDecksToDelete.length > 0 ? "fill-white hover:fill-red-400" : "fill-white opacity-25 disable")} />
 						</button>
 						{/* </div> */}
 					</div>
+					D
 				</div>
 				{/* decks & flashcards list */}
 				<div className="pt-4 pb-40 h-full overflow-y-auto overscroll-contain scrollbar-none">
