@@ -37,9 +37,8 @@ function PreviewContainer({
 	const decks = useDeckStore(state => state.decks);
 	const createFlashCard = useCreateFlashcard();
 
-	// const chosenFlashcard = currentFlashCardIndex !== -1 ? currentDeck?.flashcards[currentFlashCardIndex] : null;
-
 	const querySearchDeckList = decks?.filter((deck: DeckType) => deck?.name?.includes(searchQuery));
+	const queryFlashCardsList = currentDeck?.flashcards?.filter((flashcard: FlashCardType) => flashcard?.front?.includes(searchQuery));
 
 	function selectAndDeselectChosenDeck(deckID: string) {
 		if (currentDeckID !== deckID) {
@@ -81,7 +80,7 @@ function PreviewContainer({
 					{!currentDeckID ? (
 						<PreviewDeckList decks={querySearchDeckList} currentDeck={currentDeck ?? null} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
 					) : (
-						<PreviewFlashCardsList handleSelectAndDeselectChosenFlashCard={handleSelectAndDeselectChosenFlashCard} currentFlashCard={chosenFlashcard} chosenDeck={currentDeck} />
+						<PreviewFlashCardsList handleSelectAndDeselectChosenFlashCard={handleSelectAndDeselectChosenFlashCard} currentFlashCard={chosenFlashcard} chosenDeck={queryFlashCardsList} />
 					)}
 				</div>
 			</div>
