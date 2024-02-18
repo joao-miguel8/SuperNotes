@@ -1,7 +1,9 @@
 // 3rd party
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import classNames from "classnames";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { FaTrashAlt } from "react-icons/fa";
+
 // hooks
 import { useDeckStore } from "@/services/zustand/useDeckStore";
 import { useCreateFlashcard } from "@/pages/flashcards/components/flashcard/hooks/useCreateFlashCard";
@@ -33,6 +35,8 @@ function PreviewContainer({
 }) {
 	// states
 	const [searchQuery, setSearchQuery] = useState("");
+	const [selectedDecksToDelete, setSelectedDecksToDelete] = useState<DeckType[]>([]);
+
 	// store
 	const decks = useDeckStore(state => state.decks);
 	const createFlashCard = useCreateFlashcard();
@@ -55,7 +59,20 @@ function PreviewContainer({
 			setCurrentFlashCardID(null);
 		}
 	}
-	console.log(currentDeck);
+
+	const handleDeleteSelectedDecks = (e: Event, deck: DeckType) => {
+		setSelectedDecksToDelete((prevDecks: DeckType[]) => {
+			if (e.target.checked) {
+				return [...prevDecks, deck];
+			} else {
+				// Remove deck from arr
+				return prevDecks.filter(flashCardDeck => flashCardDeck !== deck);
+			}
+		});
+	};
+
+	console.log(selectedDecksToDelete);
+
 	return (
 		<>
 			<div className="pb-6 w-[20rem] shrink-0 border-[1.6px] border-[#292F33] bg-[#171C1F]">
@@ -74,11 +91,18 @@ function PreviewContainer({
 					</div>
 					{/* Search bar */}
 					{!currentDeckID ? <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Decks"} /> : <PreviewSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} placeHolder={"Search for Flashcard"} />}
+					{/* delete selected decks */}
+					<div className="mx-2 p-4 flex items-center border-y border-[#292F33] ">
+						<button disabled={selectedDecksToDelete.length > 0} className={classNames("flex items-center gap-2", selectedDecksToDelete.length <= 0 && "cursor-not-allowed")}>
+							<FaTrashAlt size={"1.4rem"} className={classNames("duration-300", selectedDecksToDelete.length > 0 ? "fill-white hover:fill-red-400" : "fill-white opacity-25 disable")} />
+						</button>
+						{/* </div> */}
+					</div>
 				</div>
 				{/* decks & flashcards list */}
 				<div className="pt-4 pb-40 h-full overflow-y-auto overscroll-contain scrollbar-none">
 					{!currentDeckID ? (
-						<PreviewDeckList decks={querySearchDeckList} currentDeck={currentDeck ?? null} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} />
+						<PreviewDeckList decks={querySearchDeckList} currentDeck={currentDeck ?? null} selectAndDeselectChosenDeck={selectAndDeselectChosenDeck} handleDeleteSelectedDecks={handleDeleteSelectedDecks} />
 					) : (
 						<PreviewFlashCardsList handleSelectAndDeselectChosenFlashCard={handleSelectAndDeselectChosenFlashCard} currentFlashCard={chosenFlashcard} chosenDeck={queryFlashCardsList} />
 					)}
