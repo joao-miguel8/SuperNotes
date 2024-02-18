@@ -11,7 +11,7 @@ export const ThemeProviderWrapper = (children: ReactNode[]) => {
 		setTheme(savedTheme);
 	}, []);
 
-	const toggleTheme = newTheme => {
+	const toggleTheme = (newTheme: string) => {
 		setTheme(newTheme);
 		localStorage.setItem("theme", newTheme);
 	};
