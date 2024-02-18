@@ -28,8 +28,8 @@ function StudyDeck() {
 
 	console.log(decks);
 	return (
-		<section className="my-4 bg-[#1D2327]">
-			<div className="mt-8 mx-10">
+		<section className="my-4 px-4 bg-[#1D2327]">
+			<div className="mt-10 mx-auto max-w-[1100px]">
 				<div className="w-full flex justify-center">
 					<div className="relative w-full flex justify-center items-center">
 						<button onClick={() => setIsStudyingDeck(false)} className="px-4 py-2 right-0 absolute text-14 font-semibold text-white bg-gray-500 hover:bg-gray-700 duration-150 rounded-md">
