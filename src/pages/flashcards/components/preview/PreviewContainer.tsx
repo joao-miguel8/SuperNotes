@@ -62,6 +62,8 @@ function PreviewContainer({
 			<div className="pb-6 w-[20rem] shrink-0 scrollbar-none overflow-auto overscroll-contain border-[1.6px] border-[#292F33] bg-[#171C1F]">
 				{/* header + search bar wrapper */}
 				<div className="sticky top-0">
+					{/* container title */}
+					{!currentDeckID ? <h5 className="mt-4 text-center text-20 font-semibold text-white">Decks</h5> : <h5 className="mt-4 text-center text-20 font-semibold text-white">FlashCards</h5>}
 					{/* header section (title & go back btn & Create btn) */}
 					<div className="p-[1rem] flex items-center justify-between bg-[#171C1F] border-b-[1.6px] border-[#292F33]">
 						{/* Go back btn */}
