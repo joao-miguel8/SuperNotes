@@ -102,7 +102,7 @@ function FlashCards() {
 									<Link
 										state={currentDeckID}
 										to={`/flashcards/studydeck/${currentDeckID}`}
-										className={classNames("px-4 py-2 text-14 font-semibold border-2 rounded-md bg-white", chosenDeck.flashcards.length > 0 ? "bg-white hover:bg-[#292F33] hover:text-white duration-150" : "bg-gray-300 text-gray-100 rounded-md cursor-not-allowed opacity-50")}
+										className={classNames("px-4 py-2 text-14 font-semibold border-2 rounded-md bg-white", chosenDeck.flashcards.length > 0 ? "bg-white hover:bg-[#292F33] hover:text-white duration-150" : "bg-gray-300 text-gray-300 rounded-md cursor-not-allowed opacity-50")}
 										disabled={chosenDeck?.flashcards?.length > 0}>
 										Study Deck
 									</Link>
