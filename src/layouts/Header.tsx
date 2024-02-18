@@ -1,8 +1,8 @@
-import NavMenu from "../components/NavMenu";
+import NavMenu from "@/components/NavMenu";
 
 function Header() {
 	return (
-		<header className=" bg-[#1D2327]">
+		<header className="bg-[#1D2327]">
 			<NavMenu />
 		</header>
 	);
