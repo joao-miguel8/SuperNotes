@@ -82,9 +82,6 @@ function FlashCards() {
 										<li className="p-2 w-full hover:bg-gray-200 cursor-pointer">
 											<button className="text-14">View FlashCard Details</button>
 										</li>
-										<li className="p-2 w-full hover:bg-gray-200 cursor-pointer">
-											<button className="text-14">Delete Deck</button>
-										</li>
 									</ul>
 								</div>
 							)}
