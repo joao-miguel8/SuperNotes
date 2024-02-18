@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { useState } from "react";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { IoIosAddCircleOutline } from "react-icons/io";
 // Components
 import Header from "@/layouts/Header";
@@ -17,6 +18,7 @@ function FlashCards() {
 	// state
 	const [currentDeckID, setCurrentDeckID] = useState<string | null>(null);
 	const [currentFlashCardID, setCurrentFlashCardID] = useState<string | null>(null);
+	const [isUtilitySelectionActive, setIsUtilitySelectionActive] = useState(false);
 	const [showAddNewDeckModal, setShowAddNewDeckModal] = useState(false);
 
 	// Store
@@ -55,7 +57,7 @@ function FlashCards() {
 					/>
 					<div className="overflow-hidden flex-1">
 						{/* left-side main-content header */}
-						<div className="h-10 sticky top-0 flex justify-center bg-[#1D2327] border-t-[1.6px] border-[#292F33] ">
+						<div className="h-10 sticky top-0 flex justify-center items-center bg-[#1D2327] border-t-[1.6px] border-[#292F33]">
 							{chosenDeck && (
 								<input
 									value={chosenDeck?.name}
@@ -63,10 +65,31 @@ function FlashCards() {
 									aria-label={`selected board name ${chosenDeck?.name} change name input`}
 									type="text"
 									placeholder="Project name here"
-									className="text-12 text-center italic text-[#acadad] focus:outline-dashed outline-[#acadad] bg-transparent"
+									className="py-2 text-12 text-center italic text-[#acadad] focus:outline-dashed outline-[#acadad] bg-transparent"
 								/>
 							)}
+							{/* utility button  */}
+							<button onMouseOver={() => setIsUtilitySelectionActive(true)} className="mr-6 absolute right-0 ">
+								<HiOutlineDotsHorizontal className="" size="2rem" color="#fff" />
+							</button>
+							{isUtilitySelectionActive && (
+								// utility button drop down select
+								<div onMouseLeave={() => setIsUtilitySelectionActive(false)} className="absolute right-10 top-8 bg-white rounded-sm overflow-clip">
+									<ul className="flex flex-col items-start divide-y">
+										<li className="p-2 w-full hover:bg-gray-200 cursor-pointer">
+											<button className="text-14">View Deck Details</button>
+										</li>
+										<li className="p-2 w-full hover:bg-gray-200 cursor-pointer">
+											<button className="text-14">View FlashCard Details</button>
+										</li>
+										<li className="p-2 w-full hover:bg-gray-200 cursor-pointer">
+											<button className="text-14">Delete Deck</button>
+										</li>
+									</ul>
+								</div>
+							)}
 						</div>
+
 						{/* left-side main content container  */}
 						<div className="pt-10 h-full overflow-auto bg-[#272e30] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-[#272e30]">
 							{decks.length <= 0 && (
