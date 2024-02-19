@@ -46,7 +46,7 @@ function StudyDeck() {
 					<>
 						<div className="mt-10 bg-white rounded-lg overflow-clip">
 							<span className="border-b mt-2 pb-2 px-2 w-full inline-block text-center text-16 italic uppercase font-bold">Front</span>
-							<div className=" px-4 max-h-[500px] h-[600px] rounded-lg overflow-scroll overflow-x-auto scrollbar-thin scrollbar-thumb-[#1D2327] scrollbar-track-white">
+							<div className=" px-4 max-h-[400px] h-[400px] rounded-lg overflow-scroll overflow-x-auto scrollbar-thin scrollbar-thumb-[#1D2327] scrollbar-track-white">
 								<p className="my-4 text-center text-20">{currentFlashCard?.front}</p>
 							</div>
 						</div>

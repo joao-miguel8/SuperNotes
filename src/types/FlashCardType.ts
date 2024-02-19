@@ -1,7 +1,9 @@
 export enum DifficultyRatingType {
-	Easy = "easy",
-	Medium = "medium",
-	Hard = "hard",
+	veryEasy = 1,
+	easy = 2,
+	medium = 3,
+	hard = 4,
+	veryHard = 5,
 }
 
 export type FlashCardType = {
