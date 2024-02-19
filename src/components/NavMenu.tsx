@@ -24,18 +24,18 @@ function NavMenu() {
 	return (
 		<>
 			{/* side menu container */}
-			<div className="max-w-60 h-full">
+			<div className="py-2 mx-auto max-w-80 w-fit h-full">
 				{/* nav list  */}
-				<nav className="flex">
+				<nav className="flex justify-center">
 					{/* flex flex-col */}
 					<ul className="flex text-[#F6F9F8]">
 						{navigationMenu.map((navItem: NavigationMenuItemType) => {
 							const currentlyChosenMenuItem = navItem.path === currentPage;
 							return (
 								<li key={navItem.title} className={classNames(`items-center gap-2 font-semibold hover:bg-[#434d52] ${currentlyChosenMenuItem && "bg-[#353E43]"}`)}>
-									<Link className="py-2 flex justify-center items-center h-full w-full rounded-md" to={navItem.path}>
+									<Link className="px-2 py-2 flex justify-center items-center h-full w-full rounded-md" to={navItem.path}>
 										<Icon className={classNames(`ml-2 ${currentlyChosenMenuItem && "text-white"}`)} as={navItem.icon} color={currentlyChosenMenuItem ? "text-white" : "#ADB0B1"} boxSize={5} />
-										<span className={classNames(`w-20 break-words ml-2 text-12 text-[#ADB0B1] ${currentlyChosenMenuItem && "text-white"}`)}>{navItem.title}</span>
+										<span className={classNames(`break-words ml-2 text-12 text-[#ADB0B1] ${currentlyChosenMenuItem && "text-white"}`)}>{navItem.title}</span>
 									</Link>
 								</li>
 							);
