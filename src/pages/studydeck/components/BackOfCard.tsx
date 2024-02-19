@@ -13,10 +13,12 @@ function BackOfCard({ setIsAnswerRevealed, getRandomFlashCard, currentFlashCard 
 				</div>
 			</div>
 			{/* current card difficulty rating*/}
-			<div className="mt-2">
-				<span className="w-fit text-16 text-white">Current Card Difficulty:</span>
-				<div className="mt-2 px-4 py-2 w-fit font-bold bg-gray-300 rounded-md">{currentFlashCard?.chosenDifficulty}</div>
-			</div>
+			{currentFlashCard?.chosenDifficulty && (
+				<div className="mt-2">
+					<span className="w-fit text-16 text-white">Current Card Difficulty:</span>
+					<div className="mt-2 px-4 py-2 w-fit font-bold bg-gray-300 rounded-md">{currentFlashCard?.chosenDifficulty}</div>
+				</div>
+			)}
 			<h5 className="text-center text-white text-20">Rate this Card:</h5>
 			<div
 				onClick={() => {
