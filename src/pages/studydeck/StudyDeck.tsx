@@ -8,12 +8,13 @@ import BackOfCard from "./components/BackOfCard";
 function StudyDeck() {
 	const history = useLocation();
 	const decks = useDeckStore(state => state.decks);
+	const updateFlashCardDateLastStudied = useDeckStore(state => state.updateFlashCardDateLastStudied);
 
 	const [isStudyingDeck, setIsStudyingDeck] = useState(true);
 	const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
 
 	const chosenDeck = decks.find(deck => deck?.id === history?.state);
-	const [currentFlashCard, setCurrentFlashCard] = useState<FlashCardType | null>();
+	const [currentFlashCard, setCurrentFlashCard] = useState<FlashCardType>();
 
 	const getRandomFlashCard = () => {
 		if (chosenDeck?.flashcards) {
@@ -52,6 +53,7 @@ function StudyDeck() {
 						</div>
 						<div
 							onClick={() => {
+								updateFlashCardDateLastStudied(currentFlashCard);
 								setIsAnswerRevealed(true);
 							}}
 							className="py-2 mt-4 flex justify-center gap-4">

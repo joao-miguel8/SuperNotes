@@ -11,4 +11,5 @@ export type FlashCardType = {
 	front: string;
 	back: string;
 	chosenDifficulty?: DifficultyRatingType | null;
+	dateLastStudied: Date | null;
 };

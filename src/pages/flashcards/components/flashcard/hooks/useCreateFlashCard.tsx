@@ -10,6 +10,7 @@ export const useCreateFlashcard = () => {
 		front: "",
 		back: "",
 		chosenDifficulty: null,
+		dateLastStudied: null,
 	};
 	return () => createNewFlashCard(flashCardInitialData);
 };
