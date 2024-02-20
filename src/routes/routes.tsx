@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
 		path: "/canvas",
 		element: (
 			<Suspense>
-				<CanvasPage />,
+				<CanvasPage />
 			</Suspense>
 		),
 	},
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
 		path: "/codeEditor",
 		element: (
 			<Suspense>
-				<CodeEditor />,
+				<CodeEditor />
 			</Suspense>
 		),
 	},
